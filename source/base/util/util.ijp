@@ -1,0 +1,50 @@
+NB. project file: /home/chris/deb/addons/format/publish/source/base/util/util
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/base/util/init
+~Publish/base/util/cut
+~Publish/base/util/util
+~Publish/base/util/ascii85
+~Publish/base/util/roman
+)
+
+PRIMARYLIBS=: 0 : 0
+afm
+bmp
+colortab
+files
+font
+plot
+regex
+strings
+)
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: ''
+
+TARGETFILE=: '~.Publish/release/util.ijs'
+
+TARGETLOCALE=: 'publish'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/base/util/test.ijs'
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''

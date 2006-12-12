@@ -1,0 +1,39 @@
+NB. project file: /home/chris/dev/apps/pub/source/classes/xobject/xobject
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/classes/xobject/init
+~Publish/classes/xobject/draw
+~Publish/classes/xobject/jpg
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: ''
+
+TARGETFILE=: '~.Publish/release/xobject.ijs'
+
+TARGETLOCALE=: 'publishxobject'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/classes/xobject/test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

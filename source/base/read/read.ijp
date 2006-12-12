@@ -1,0 +1,44 @@
+NB. project file: /home/chris/dev/apps/pub/source/base/read/read
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/base/read/util
+~Publish/base/read/fixed
+~Publish/base/read/parse
+~Publish/base/read/read
+~Publish/base/read/regex
+~Publish/base/read/section
+~Publish/base/read/tags
+~Publish/base/read/text
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: '~Publish/base/read/test0.ijs'
+
+TARGETFILE=: '~.Publish/release/read.ijs'
+
+TARGETLOCALE=: 'publish'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/base/read/test.ijs'
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''

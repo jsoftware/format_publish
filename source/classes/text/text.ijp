@@ -1,0 +1,43 @@
+NB. project file: /home/chris/dev/apps/pub/source/classes/text/text
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/classes/text/init
+~Publish/classes/text/util
+~Publish/classes/text/add
+~Publish/classes/text/draw
+~Publish/classes/text/fit
+~Publish/classes/text/make
+~Publish/classes/text/para
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: '~Publish/classes/text/test0.ijs'
+
+TARGETFILE=: '~.Publish/release/text.ijs'
+
+TARGETLOCALE=: 'publishtext'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/classes/text/test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

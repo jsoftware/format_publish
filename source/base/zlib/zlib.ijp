@@ -1,0 +1,40 @@
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish\base\zlib\api
+~Publish\base\zlib\compress
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: 0 : 0
+~Publish\base\zlib\test0.ijs
+~Publish\base\zlib\zip.ijs
+)
+
+TARGETFILE=: '~.Publish\release\zlib.ijs'
+
+TARGETLOCALE=: 'pzlib'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish\base\zlib\test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

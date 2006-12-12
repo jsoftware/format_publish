@@ -1,0 +1,47 @@
+NB. project file: e:\dev\apps\pub\source\base\build\build
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish\base\build\init
+~Publish\base\build\util
+~Publish\base\build\build
+~Publish\base\build\font
+~Publish\base\build\number
+~Publish\base\build\outline
+~Publish\base\build\page
+~Publish\base\build\section
+~Publish\base\build\url
+~Publish\base\build\wrap
+~Publish\base\build\xobject
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: '~Publish\base\build\test0.ijs'
+
+TARGETFILE=: '~.Publish\release\build.ijs'
+
+TARGETLOCALE=: 'publish'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish\base\build\test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

@@ -1,0 +1,35 @@
+NB. project file: e:\dev\apps\pub\source\classes\skip\skip
+
+coclass 'jproject'
+
+PRIMARYFILES=: '~Publish\classes\skip\init'
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: ''
+
+TARGETFILE=: '~.Publish\release\skip.ijs'
+
+TARGETLOCALE=: 'publishskip'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish\classes\skip\test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

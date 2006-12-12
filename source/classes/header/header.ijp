@@ -1,0 +1,39 @@
+NB. project file: e:\dev\apps\pub\source\classes\header\header
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish\classes\header\init
+~Publish\classes\header\add
+~Publish\classes\header\draw
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: ''
+
+TARGETFILE=: '~.Publish\release\header.ijs'
+
+TARGETLOCALE=: 'publishheader'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish\classes\header\test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

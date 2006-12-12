@@ -1,0 +1,38 @@
+NB. project file: e:\dev\apps\pub\source\base\save\save
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish\base\save\files
+~Publish\base\save\save
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: '~Publish\base\save\loadall.ijs'
+
+TARGETFILE=: ''
+
+TARGETLOCALE=: ''
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: '~Publish\base\save\postbuild.ijs'
+
+TESTFILE=: '~Publish\base\save\test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

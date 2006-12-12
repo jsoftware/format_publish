@@ -1,0 +1,39 @@
+NB. project file: e:\dev\apps\pub\source\classes\toc\toc
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish\classes\toc\init
+~Publish\classes\toc\draw
+~Publish\classes\toc\fit
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: ''
+
+TARGETFILE=: '~.Publish\release\toc.ijs'
+
+TARGETLOCALE=: 'publishtoc'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish\classes\toc\test.ijs'
+
+NOTES=: ''
+
+WINDOWS=: ''
+
+WINDOWSTATE=: 0

@@ -1,0 +1,38 @@
+NB. project file: /home/chris/dev/apps/pub/source/classes/pre/pre
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/classes/pre/init
+~Publish/classes/pre/draw
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: ''
+
+TARGETFILE=: '~.Publish/release/pre.ijs'
+
+TARGETLOCALE=: 'publishpre'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/classes/pre/test.ijs'
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''
