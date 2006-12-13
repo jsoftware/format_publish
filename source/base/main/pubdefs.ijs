@@ -1,4 +1,4 @@
-NB. report writer defaults
+NB. publish defaults
 NB.
 NB. Note: names for global nouns defined in this script must be
 NB. uppercase only. Publish does not use uppercase names in the

@@ -58,7 +58,7 @@ creator=: 3 : 0
 msk=. (0 < #TITLE),(0 < #AUTHOR), 1 1
 t=. '/Title (',TITLE,')'
 a=. '/Author (',AUTHOR,')'
-p=. '/Producer (J Report Writer)'
+p=. '/Producer (J Publish)'
 d=. creationdate''
 dict msk # t;a;p;d
 )

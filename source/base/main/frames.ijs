@@ -26,7 +26,7 @@ setsxywhP=: 3 : 'setsxywh__locP y'
 
 NB. =========================================================
 NB. subwindow
-NB. Report Writer windows
+NB. Publish windows
 NB.
 NB. A window parameter is 4 numbers in points (1/72 inch):
 NB.   top left corner, width and height

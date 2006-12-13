@@ -1,6 +1,6 @@
 NB. Publish example
 
-<title>Report Writer Demo</title>
+<title>Publish Demo</title>
 <author>Peter Simple</author>
 <include>front.txt</include>
 <include>section1.txt</include>

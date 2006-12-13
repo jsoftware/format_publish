@@ -99,7 +99,7 @@ info=: 3 : 0
 if. IFCONSOLE do.
   smoutput y
 else.
-  wdinfo 'Report Writer';y
+  wdinfo 'Publish';y
 end.
 )
 
@@ -181,7 +181,7 @@ if. IFCONSOLE do.
   smoutput y
   1
 else.
-  x wdquery 'Report Writer';y
+  x wdquery 'Publish';y
 end.
 )
 

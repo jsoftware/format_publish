@@ -125,7 +125,7 @@ info=: 3 : 0
 if. IFCONSOLE do.
   smoutput y
 else.
-  wdinfo 'Report Writer';y
+  wdinfo 'Publish';y
 end.
 )
 getpath=: ([: +./\. =&PATHSEP) # ]
@@ -183,7 +183,7 @@ if. IFCONSOLE do.
   smoutput y
   1
 else.
-  x wdquery 'Report Writer';y
+  x wdquery 'Publish';y
 end.
 )
 rgb2alf=: 3 : 0
@@ -281,52 +281,6 @@ pageinit=: 3 : 0
 setframe Pxywh shrinkmargins PAGEMARGINS
 setdraw Fxywh
 )
-FONTH0=: 'Sans 11 bold'
-FONTH1=: 'Sans 11 bold'
-FONTH2=: 'Sans 10 bold'
-FONTH3=: 'Sans 9 bold'
-FONTH4=: 'Sans 9 bold'
-FONTH5=: 'Sans 9 bold'
-FONTH6=: 'Sans 9 bold'
-FONTC0=: 'Sans 10 bold'  
-FONTC1=: 'Sans 10 bold'  
-FONTC2=: 'Sans 9'
-FONTC3=: 'Sans 9'
-FONTC4=: 'Sans 9'
-FONTC5=: 'Sans 9'
-FONTC6=: 'Sans 9'
-
-FONTP=: 'Sans 9'  
-FONTPF=: 'Mono 9'  
-FONTTH=: 'Sans 9' 
-FONTTC=: 'Sans 9' 
-TCOLOR=: ". ;._2 (0 : 0)
-0 0 0 192 192 192
-0 0 0 255 255 255
-0 0 0 255 255 255
-0 0 0 255 255 179
-0 0 0 153 153 255
-255 0 0 255 255 255
-255 255 255 0 128 128
-)
-TGRIDSIZE=: 0.3
-ALIGN=: 0  
-ALIGNV=: 0 
-AUTHOR=: '' 
-BMLEVEL=: 3  
-CLASS=: '' 
-HYPHEN=: '~' 
-LEADING=: 1.2 
-LCOLOR=: 0 0 128 
-NAME=: ''
-PAGEMARGINS=: 72  
-PAGESIZE=: PSletter 
-PARASPACE=: 0.6 
-SCALE=: 1 
-STYLE=: '' 
-TITLE=: '' 
-TOCLEVEL=: 3 
-
 ". toupper COLORTABLE
 
 Colors=: i.0 3
@@ -566,6 +520,51 @@ if. -. 1 e. '/\' e. y do.
 end.
 load y
 )
+FONTH0=: 'Sans 11 bold'
+FONTH1=: 'Sans 11 bold'
+FONTH2=: 'Sans 10 bold'
+FONTH3=: 'Sans 9 bold'
+FONTH4=: 'Sans 9 bold'
+FONTH5=: 'Sans 9 bold'
+FONTH6=: 'Sans 9 bold'
+FONTC0=: 'Sans 10 bold'  
+FONTC1=: 'Sans 10 bold'  
+FONTC2=: 'Sans 9'
+FONTC3=: 'Sans 9'
+FONTC4=: 'Sans 9'
+FONTC5=: 'Sans 9'
+FONTC6=: 'Sans 9'
+
+FONTP=: 'Sans 9'  
+FONTPF=: 'Mono 9'  
+FONTTH=: 'Sans 9' 
+FONTTC=: 'Sans 9' 
+TCOLOR=: ". ;._2 (0 : 0)
+0 0 0 192 192 192
+0 0 0 255 255 255
+0 0 0 255 255 255
+0 0 0 255 255 179
+0 0 0 153 153 255
+255 0 0 255 255 255
+255 255 255 0 128 128
+)
+TGRIDSIZE=: 0.3
+ALIGN=: 0  
+ALIGNV=: 0 
+AUTHOR=: '' 
+BMLEVEL=: 3  
+CLASS=: '' 
+HYPHEN=: '~' 
+LEADING=: 1.2 
+LCOLOR=: 0 0 128 
+NAME=: ''
+PAGEMARGINS=: 72  
+PAGESIZE=: PSletter 
+PARASPACE=: 0.6 
+SCALE=: 1 
+STYLE=: '' 
+TITLE=: '' 
+TOCLEVEL=: 3 
 coclass 'publish'
 
 PDFCompress=: 0
@@ -626,7 +625,7 @@ creator=: 3 : 0
 msk=. (0 < #TITLE),(0 < #AUTHOR), 1 1
 t=. '/Title (',TITLE,')'
 a=. '/Author (',AUTHOR,')'
-p=. '/Producer (J Report Writer)'
+p=. '/Producer (J Publish)'
 d=. creationdate''
 dict msk # t;a;p;d
 )
@@ -1367,7 +1366,6 @@ end.
 Data=: dat
 )
 draw=: 3 : 'Data'
-
 
 coclass 'publishpre'
 
@@ -2348,7 +2346,6 @@ case. 'jpg' do.
   readjpgshape dat
 end.
 )
-
 xobject=: 3 : 0
 ('xobject',Type)~''
 )
@@ -2482,7 +2479,6 @@ coinsert 'publishtext'
 coinsert locP=: COCREATOR
 Font=: fontindex FONTC0  
 )
-
 draw=: 3 : 0
 res=. 0;''
 if. isempty Contents do. res return. end.
