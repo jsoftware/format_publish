@@ -10,7 +10,7 @@ row=: '<row>' , ,&'</row>'
 top=: '<top>' , ,&'</top>'
 quote=: '"' , ,&'" '
 
-PUBPATH=: '/home/chris/demo/'
+PUBPATH=: 'e:\findemo\'
 
 NB. =========================================================
 gettable=: 3 : 0

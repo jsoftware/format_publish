@@ -1,17 +1,17 @@
-script_z_ '~system/classes/plot/afm.ijs'
-script_z_ '~system/packages/graphics/bmp.ijs'
-script_z_ '~system/packages/color/colortab.ijs'
-script_z_ '~system/main/dll.ijs'
-script_z_ '~system/main/files.ijs'
-script_z_ '~system/packages/misc/font.ijs'
-script_z_ '~system/main/gl2.ijs'
-script_z_ '~system/classes/plot/jzplot.ijs'
-script_z_ '~system/main/libpath.ijs'
-script_z_ '~system/main/numeric.ijs'
-script_z_ '~system/classes/plot/plot.ijs'
-script_z_ '~system/main/regex.ijs'
-script_z_ '~system/main/strings.ijs'
-script_z_ '~system/main/trig.ijs'
+script_z_ '~system\classes\plot\afm.ijs'
+script_z_ '~system\packages\graphics\bmp.ijs'
+script_z_ '~system\packages\color\colortab.ijs'
+script_z_ '~system\main\dll.ijs'
+script_z_ '~system\main\files.ijs'
+script_z_ '~system\packages\misc\font.ijs'
+script_z_ '~system\main\gl2.ijs'
+script_z_ '~system\classes\plot\jzplot.ijs'
+script_z_ '~system\main\libpath.ijs'
+script_z_ '~system\main\numeric.ijs'
+script_z_ '~system\classes\plot\plot.ijs'
+script_z_ '~system\main\regex.ijs'
+script_z_ '~system\main\strings.ijs'
+script_z_ '~system\main\trig.ijs'
 
 coclass 'ppublish'
 
@@ -1302,78 +1302,35 @@ coclass 'ppubzlib'
 
 z2chr=: 2 & ic
 z2num=: _2 & ic
-
-Z_MEM_ERROR=: _4
 zlibinit=: 3 : 0
 if. IFUNIX do.
   p=. find_dll :: (''"_) 'z'
 else.
-  p=. 'zlib.dll'
+  p=. 'zlib1.dll'
   p=. (fexist p) # p
 end.
 res=. 0 < #p
 if. res do.
-  zcompress2=: (p,' compress2 i * *i * i i') & cd
-  zuncompress=: (p,' uncompress i * *i * i') & cd
+  zcompress2=: (p,' compress2 + i * *i * i i') & cd
+  zuncompress=: (p,' uncompress + i * *i * i') & cd
 end.
 res
 )
-ZMINSIZE=: 512
+
+
+
 compress=: 3 : 0
 1 compress y
 :
 dat=. y
-len=. >. 1.01 * 12 + #dat
-'rc res wid j j j'=. zcompress2 ((len$' ');,len),y;(#y);x
+len=. >: >. 1.01 * 12 + #dat
+'rc res wid j j j'=. zcompress2 ((len$' ');,len),dat;(#dat);x
 if. rc do.
   dat
 else.
-  dat=. wid {. res
+  wid {. res
 end.
 )
-compress_count=: 3 : 0
-1 compress_count y
-:
-dat=. y
-cnt=. #dat
-if. cnt >: ZMINSIZE do.
-  len=. >. 1.01 * 12 + cnt
-  'rc res wid j j j'=. zcompress2 ((len$' ');,len),y;(#y);x
-  if. rc do.
-    throw 3002;'Compress error: ',":rc
-  else.
-    dat=. wid {. res
-  end.
-end.
-(z2chr cnt), dat
-)
-uncompress=: 3 : 0
-dat=. y
-cnt=. ZMINSIZE >. 10 * #dat
-while. 1 do.
-  'rc res wid j j'=. zuncompress ((cnt$' ');,cnt),dat;#dat
-  if. rc = Z_MEM_ERROR do.
-    cnt=. cnt * 1.1
-  elseif. rc do.
-    throw 3002;'Uncompress error: ',":rc
-  elseif. do.
-    res return.
-  end.
-end.
-)
-uncompress_count=: 3 : 0
-cnt=. z2num 4 {. y
-dat=. 4 }. y
-if. cnt >: ZMINSIZE do.
-  'rc res wid j j'=. zuncompress ((cnt$' ');,cnt),dat;#dat
-  if. rc do.
-    throw 3002;'Uncompress error: ',":rc
-  else.
-    res
-  end.
-end.
-)
-
 coclass 'ppubimage'
 
 
@@ -1463,6 +1420,7 @@ Data=: dat
 )
 draw=: 3 : 'Data'
 
+
 coclass 'ppubpre'
 
 
@@ -1475,6 +1433,7 @@ add=: 3 : 0
 Data=: u2a y
 Font=: fontindex FONTPF
 )
+
 draw=: 3 : 0
 
 if. y do.
@@ -2442,6 +2401,7 @@ case. 'jpg' do.
   readjpgshape dat
 end.
 )
+
 xobject=: 3 : 0
 ('xobject',Type)~''
 )
@@ -2575,6 +2535,7 @@ coinsert 'ppubtext'
 coinsert locP=: COCREATOR
 Font=: fontindex FONTC0  
 )
+
 draw=: 3 : 0
 res=. 0;''
 if. isempty Contents do. res return. end.

@@ -18,7 +18,7 @@ NB. has already been run.
 NB.
 NB. set PUBPATH as appropriate
 
-PUBPATH=: '/home/chris/demo/'
+PUBPATH=: 'e:\findemo\'
 PIECOLORS=: 'color red,blue,green,yellow,teal,brown,cyan,gray, jade, HotPink' 
 
 fmtc=: 3 : 0
@@ -243,7 +243,7 @@ pd 'backcolor white'
 pd 'ycaption yhtiön kokonaiskaapelointiaste'
 pd 'yrange 0 100'
 pd 'xcaption keskeytysaika h/a'
-d=.>". each <;._2    fread PUBPATH,'data_4_1_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_4_1_pic1.txt'
 dat=.<"1 |:(-. +./"1 d e. __)#d
 pd dat
 f=. PUBPATH,'plot_4_1_pic1.jpf'
@@ -259,7 +259,7 @@ pd 'backcolor white'
 pd 'ycaption yhtiön kokonaiskaapelointiaste'
 pd 'yrange 0 100'
 pd 'xcaption keskeytysmäärä kpl/a'
-d=.>". each <;._2    fread PUBPATH,'data_4_2_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_4_2_pic1.txt'
 dat=.<"1 |:(-. +./"1 d e. __)#d
 pd dat
 f=. PUBPATH,'plot_4_2_pic1.jpf'
@@ -295,7 +295,7 @@ pd 'yrange 0 25'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_5_1_1_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_5_1_1_pic1.txt'
 dat=.<"1 |:0 3 {"1 (-. (3{"1 d) e. __)#d
 pd dat
 dat=.<"1 |:0 4 {"1 (-. (4{"1 d) e. __)#d
@@ -324,7 +324,7 @@ pd 'yrange 0 25'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_5_1_2_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_5_1_2_pic1.txt'
 dat=.<"1 |:0 3 {"1 (-. (3{"1 d) e. __)#d
 pd dat
 dat=.<"1 |:0 4 {"1 (-. (4{"1 d) e. __)#d
@@ -353,7 +353,7 @@ pd 'yrange 0 25'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_5_1_3_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_5_1_3_pic1.txt'
 dat=.<"1 |:0 3 {"1 (-. (3{"1 d) e. __)#d
 pd dat
 dat=.<"1 |:0 4 {"1 (-. (4{"1 d) e. __)#d
@@ -383,7 +383,7 @@ pd 'yrange 0 10'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_5_2_1_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_5_2_1_pic1.txt'
 dat=.<"1 |:0 3 {"1 (-. (3{"1 d) e. __)#d
 pd dat
 dat=.<"1 |:0 4 {"1 (-. (4{"1 d) e. __)#d
@@ -412,7 +412,7 @@ pd 'yrange 0 10'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_5_2_2_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_5_2_2_pic1.txt'
 NB. dat=.<"1 |:0 1{"1 (-. (1{"1 d) e. __)#d
 NB. pd dat
 NB. dat=.<"1 |:0 2{"1 (-. (2{"1 d) e. __)#d
@@ -575,7 +575,7 @@ pd 'yrange 0 15'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_L3_1_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_L3_1_pic1.txt'
 dat=.<"1 |:0 1{"1 (-. (1{"1 d) e. __)#d
 pd dat
 dat=.<"1 |:0 2{"1 (-. (2{"1 d) e. __)#d
@@ -600,7 +600,7 @@ pd 'yrange 0 15'
 pd 'xrange 1970 2010'
 pd 'xcaption vuosi'
 pd 'pensize 2'
-d=.>". each <;._2    fread PUBPATH,'data_L3_2_pic1.txt'
+d=.>". each <;._2    freads PUBPATH,'data_L3_2_pic1.txt'
 dat=.<"1 |:0 1{"1 (-. (1{"1 d) e. __)#d
 pd dat
 dat=.<"1 |:0 2{"1 (-. (2{"1 d) e. __)#d

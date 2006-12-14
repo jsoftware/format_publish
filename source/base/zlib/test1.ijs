@@ -1,3 +1,4 @@
+NB. test1
 
 NB. inflate pdf contents
 inflatepdf=: 3 : 0
@@ -23,4 +24,4 @@ end.
 r
 )
 
-wdview inflatepdf fread '/home/chris/temp/test1.pdf'
+
