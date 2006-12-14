@@ -18,7 +18,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish\release\toc.ijs'
 
-TARGETLOCALE=: 'publishtoc'
+TARGETLOCALE=: 'ppubtoc'
 
 TARGETHEADER=: ''
 

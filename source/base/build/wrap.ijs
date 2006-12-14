@@ -29,7 +29,7 @@ NB. =========================================================
 wrapstream=: 3 : 0
 if. PDFCompress do.
   s=. '<< /Length ',(":#y),' /Filter /FlateDecode >> stream',LF
-  s,(9 compress_pzlib_ y),LF,'endstream',LF
+  s,(9 compress_ppubzlib_ y),LF,'endstream',LF
 else.
   y=. addLF y
   s=. '<< /Length ',(":#y),' >> stream',LF

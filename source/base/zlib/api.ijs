@@ -1,6 +1,6 @@
-NB. zlib api
-NB. 
-NB. requires global ZLIBDLL
+NB. publish zlib
+NB.
+NB. note - this needs to use the zip addon
 
 z2chr=: 2 & ic
 z2num=: _2 & ic
@@ -8,18 +8,21 @@ z2num=: _2 & ic
 Z_MEM_ERROR=: _4
 
 NB. =========================================================
-makezlib=: 1 : 0
-if. '"' ~: {. ZLIBDLL do.
-  dll=. '"',ZLIBDLL,'"'
+NB. returns success flag
+zlibinit=: 3 : 0
+if. IFUNIX do.
+  p=. find_dll :: (''"_) 'z'
 else.
-  dll=. ZLIBDLL
+  p=. 'zlib.dll'
+  p=. (fexist p) # p
 end.
-(dll,' ',x) & cd
+res=. 0 < #p
+if. res do.
+  zcompress2=: (p,' compress2 i * *i * i i') & cd
+  zuncompress=: (p,' uncompress i * *i * i') & cd
+end.
+res
 )
 
-NB. =========================================================
-zlibinit=: 3 : 0
-zcompress2=: 'compress2 i * *i * i i' makezlib
-zuncompress=: 'uncompress i * *i * i' makezlib
-i.0 0
-)
+
+

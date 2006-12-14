@@ -9,7 +9,6 @@ PATHSEP=: '/\'{~6=9!:12''
 WHITESPACE=: TAB,CRLF,' '
 
 create=: ]
-destroy=: codestroy
 
 addLF=: , (LF #~ 0 < #) -. {:
 citemize=: ,:^:(2 > #@$)
@@ -65,6 +64,12 @@ NB. =========================================================
 defineindex=: 3 : 0
 y=. <;._2 (0 : 0)
 ('i',each y)=: i.#y
+)
+
+NB. =========================================================
+destroy=: 3 : 0
+coerase locT
+codestroy''
 )
 
 NB. =========================================================
@@ -125,6 +130,17 @@ try.
 catch.
 end.
 fixaligns''
+)
+
+NB. =========================================================
+NB. create new instance, storing locale name
+newinstance=: 4 : 0
+obj=. cocreate''
+coinsert__obj <y
+COCREATOR__obj=: coname''
+create__obj x
+locT__locS=: locT,obj
+obj
 )
 
 NB. =========================================================

@@ -34,10 +34,10 @@ NB. =========================================================
 fontindex1=: 3 : 0
 ndx=. AFMdir i. y
 if. ndx = #AFMdir do.
-  loc=. y conew 'jafm'
-  AFMloc__locRW=: AFMloc,loc
-  AFMdir__locRW=: AFMdir,y
-  AFMffi__locRW=: AFMffi,1 + (~.{."1 AFMdir) i. {.y
+  loc=. y newinstance 'jafm'
+  AFMloc__locS=: AFMloc,loc
+  AFMdir__locS=: AFMdir,y
+  AFMffi__locS=: AFMffi,1 + (~.{."1 AFMdir) i. {.y
   ndx
 end.
 )

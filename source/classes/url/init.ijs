@@ -8,6 +8,6 @@ create=: 3 : 0
 coinsert locP=: COCREATOR
 Data=: y
 NAME=: 'Ul',":#Urls
-Urls__locRW=: Urls,coname''
-UrlIds__locRW=: UrlIds,<y
+Urls__locS=: Urls,coname''
+UrlIds__locS=: UrlIds,<y
 )

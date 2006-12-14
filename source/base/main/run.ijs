@@ -1,6 +1,19 @@
 NB. run
 
 NB. =========================================================
+publish=: 3 : 0
+locS=:  conew 'ppublish'
+res=. publishrun__locS y
+destroy__locS ''
+res
+)
+
+NB. =========================================================
+publishconfig=: 3 : 0
+PDFCompress=: zlibinit_ppubzlib_''
+)
+
+NB. =========================================================
 publishinit=: 3 : 0
 rxinit''
 setdefaults ''
@@ -35,7 +48,8 @@ rxfree Rxhnd
 
 NB. =========================================================
 publishrun=: 3 : 0
-if. 0=publishinit y do. return. end.
+locT=: ''
+if. 0=publishinit y do. '' return. end.
 txt=. readtext MasterFile
 if. 0=#txt do.
   info 'No text in file: ',MasterFile

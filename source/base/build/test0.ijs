@@ -1,7 +1,7 @@
 NB. test0
 
 wdpclose 'jview'
-cocurrent 'publish'
+cocurrent 'ppublish'
 0!:0 <jpath '~Publish/base/main/pubdefs.ijs'
 0!:0 <jpath '~Publish/base/build/plot.ijs'
 ferase OutputFile

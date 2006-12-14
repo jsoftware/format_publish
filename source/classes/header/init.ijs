@@ -10,7 +10,7 @@ Tag=: ''    NB. header tag used
 NB. =========================================================
 create=: 3 : 0
 coinsert locP=: COCREATOR
-coinsert 'publishtext'
+coinsert 'ppubtext'
 ALIGN=: iLEFT
 ALIGNV=: iTOP
 )

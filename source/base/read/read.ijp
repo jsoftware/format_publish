@@ -23,7 +23,7 @@ OTHERFILES=: '~Publish/base/read/test0.ijs'
 
 TARGETFILE=: '~.Publish/release/read.ijs'
 
-TARGETLOCALE=: 'publish'
+TARGETLOCALE=: 'ppublish'
 
 TARGETHEADER=: ''
 

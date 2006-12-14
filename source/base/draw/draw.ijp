@@ -22,7 +22,7 @@ OTHERFILES=: 0 : 0
 
 TARGETFILE=: '~.Publish/release/draw.ijs'
 
-TARGETLOCALE=: 'publish'
+TARGETLOCALE=: 'ppublish'
 
 TARGETHEADER=: ''
 

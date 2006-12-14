@@ -38,7 +38,7 @@ NB. =========================================================
 plot21=: 3 : 0
 CBLUE_z_=: 153 153 255
 CPURPLE_z_=: 153 51 102
-CYELLOW_z_=: 235 235 184
+CYELLOW_z_=: 235 235 153
 pd SBARSTYLE
 pd 'color cyellow,red,cpurple,green,cblue'
 pd 'ycaption 1,000s'

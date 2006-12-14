@@ -20,11 +20,11 @@ r=. Colors i. c
 m=. r = #Colors
 if. is1color c do.
   if. m do.
-    Colors__locRW=: Colors,c
+    Colors__locS=: Colors,c
   end.
 else.
   if. 1 e. m do.
-    Colors__locRW=: Colors,m#c
+    Colors__locS=: Colors,m#c
   end.
   r=. Colors i. c
 end.

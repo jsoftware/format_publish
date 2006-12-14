@@ -10,7 +10,7 @@ NB. =========================================================
 create=: 3 : 0
 coinsert locP=: COCREATOR
 NAME=: 'Im',":#XObjects
-XObjects__locRW=: XObjects,coname''
+XObjects__locS=: XObjects,coname''
 )
 
 NB. =========================================================

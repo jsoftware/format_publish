@@ -16,6 +16,7 @@ base/build
 base/draw
 base/font
 base/read
+base/zlib
 
 classes/image
 classes/list

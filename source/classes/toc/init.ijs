@@ -10,7 +10,7 @@ TOCALIGN=: 0
 
 NB. =========================================================
 create=: 3 : 0
-coinsert 'publishtext'
+coinsert 'ppubtext'
 coinsert locP=: COCREATOR
 Font=: fontindex FONTC0  NB. default font
 )

@@ -34,29 +34,29 @@ NB.   level;shortname;longname
 PDFreader=: PDFREADER_j_
 ShowFrames=: 0
 
-addcontents=: 3 : 'Contents__locRW=: Contents,y'
+addcontents=: 3 : 'Contents__locS=: Contents,y'
 
 NB. =========================================================
 newsection=: 3 : 0
-cocurrent locRW
-y conew 'publishsection'
+cocurrent locS
+y newinstance 'ppubsection'
 )
 
 NB. =========================================================
 newurl=: 3 : 0
-cocurrent locRW
+cocurrent locS
 if. (<y) e. UrlIds do. return. end.
-y conew 'publishurl'
+y newinstance 'ppuburl'
 )
 
 NB. =========================================================
 newxobject=: 3 : 0
-cocurrent locRW
-y conew 'publishxobject'
+cocurrent locS
+y newinstance 'ppubxobject'
 )
 
 NB. =========================================================
 newplot=: 3 : 0
-cocurrent locRW
-y conew 'publishplot'
+cocurrent locS
+y newinstance 'ppubplot'
 )

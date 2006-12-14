@@ -24,7 +24,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish\release\table.ijs'
 
-TARGETLOCALE=: 'publishtable'
+TARGETLOCALE=: 'ppubtable'
 
 TARGETHEADER=: ''
 

@@ -5,13 +5,13 @@ coclass 'jproject'
 PRIMARYFILES=: 0 : 0
 ~Publish/base/main/init
 ~Publish/base/main/defs
+~Publish/base/main/pubdefs
 ~Publish/base/main/color
 ~Publish/base/main/frames
 ~Publish/base/main/indices
 ~Publish/base/main/opts
 ~Publish/base/main/run
 ~Publish/base/main/zfns
-~Publish/base/main/pubdefs
 )
 
 PRIMARYLIBS=: ''
@@ -24,7 +24,7 @@ OTHERFILES=: '~Publish/base/main/test0.ijs'
 
 TARGETFILE=: '~.Publish/release/main.ijs'
 
-TARGETLOCALE=: 'publish'
+TARGETLOCALE=: 'ppublish'
 
 TARGETHEADER=: ''
 

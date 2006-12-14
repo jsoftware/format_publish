@@ -16,8 +16,7 @@ while. 1 do.
     y=. }. y
   end.
   ndx=. 1 i.~ 'endstream' E. y
-  AA__=: ndx {. y
-  txt=. uncompress_pzlib_ ndx {. y
+  txt=. uncompress_ppubzlib_ ndx {. y
   r=. r,txt
   y=. ndx }. y
 end.

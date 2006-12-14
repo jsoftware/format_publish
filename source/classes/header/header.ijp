@@ -18,7 +18,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish\release\header.ijs'
 
-TARGETLOCALE=: 'publishheader'
+TARGETLOCALE=: 'ppubheader'
 
 TARGETHEADER=: ''
 

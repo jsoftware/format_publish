@@ -2,7 +2,7 @@ NB. section
 NB.
 NB. source text is chopped into top-level sections on the <h1>
 NB. tag.  Each top-level section starts a new page, and has a
-NB. locale in locRW.
+NB. locale in locS.
 NB.
 NB. material before the first such tag is the Front Page.
 

@@ -10,7 +10,7 @@ NB. =========================================================
 create=: 3 : 0
 coinsert locP=: COCREATOR
 NAME=: 'Pl',":#Plots
-Plots__locRW=: Plots,coname''
+Plots__locS=: Plots,coname''
 )
 
 NB. =========================================================

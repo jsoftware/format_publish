@@ -17,7 +17,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish\release\url.ijs'
 
-TARGETLOCALE=: 'publishurl'
+TARGETLOCALE=: 'ppuburl'
 
 TARGETHEADER=: ''
 

@@ -1,13 +1,19 @@
 script_z_ '~system/classes/plot/afm.ijs'
 script_z_ '~system/packages/graphics/bmp.ijs'
 script_z_ '~system/packages/color/colortab.ijs'
+script_z_ '~system/main/dll.ijs'
 script_z_ '~system/main/files.ijs'
 script_z_ '~system/packages/misc/font.ijs'
+script_z_ '~system/main/gl2.ijs'
+script_z_ '~system/classes/plot/jzplot.ijs'
+script_z_ '~system/main/libpath.ijs'
+script_z_ '~system/main/numeric.ijs'
 script_z_ '~system/classes/plot/plot.ijs'
 script_z_ '~system/main/regex.ijs'
 script_z_ '~system/main/strings.ijs'
+script_z_ '~system/main/trig.ijs'
 
-coclass 'publish'
+coclass 'ppublish'
 
 
 cutlist=: 3 : 0
@@ -65,7 +71,6 @@ PATHSEP=: '/\'{~6=9!:12''
 WHITESPACE=: TAB,CRLF,' '
 
 create=: ]
-destroy=: codestroy
 
 addLF=: , (LF #~ 0 < #) -. {:
 citemize=: ,:^:(2 > #@$)
@@ -102,6 +107,10 @@ a. {~ n (ndx +/ 0 1) } y
 defineindex=: 3 : 0
 y=. <;._2 (0 : 0)
 ('i',each y)=: i.#y
+)
+destroy=: 3 : 0
+coerase locT
+codestroy''
 )
 dictget=: 4 : 0
 (({."1 y) i. boxxopen x) { ({:"1 y),<''
@@ -143,6 +152,14 @@ try.
 catch.
 end.
 fixaligns''
+)
+newinstance=: 4 : 0
+obj=. cocreate''
+coinsert__obj <y
+COCREATOR__obj=: coname''
+create__obj x
+locT__locS=: locT,obj
+obj
 )
 pbuf=: 3 : 0
 if. #y do.
@@ -234,40 +251,37 @@ r=. ('m'$~<.y%1000),R1000{::~1000|y
 '(',r,')'
 )
 
-coclass 'publish'
+coclass 'ppublish'
 
 
 PDFreader=: PDFREADER_j_
 ShowFrames=: 0
 
-addcontents=: 3 : 'Contents__locRW=: Contents,y'
+addcontents=: 3 : 'Contents__locS=: Contents,y'
 newsection=: 3 : 0
-cocurrent locRW
-y conew 'publishsection'
+cocurrent locS
+y newinstance 'ppubsection'
 )
 newurl=: 3 : 0
-cocurrent locRW
+cocurrent locS
 if. (<y) e. UrlIds do. return. end.
-y conew 'publishurl'
+y newinstance 'ppuburl'
 )
 newxobject=: 3 : 0
-cocurrent locRW
-y conew 'publishxobject'
+cocurrent locS
+y newinstance 'ppubxobject'
 )
 newplot=: 3 : 0
-cocurrent locRW
-y conew 'publishplot'
+cocurrent locS
+y newinstance 'ppubplot'
 )
 Padchar=: 'W' 
 Txm_port=: '1 0 0 1 '
 Txm_land=: '0 1 -1 0 '
 PSletter=: 612 792    
 PSa4=: 595.28 841.89  
-readdefaults=: 3 : 0
-EMPTY
-)
 setdefaults=: 3 : 0
-locRW=: coname''
+locS=: coname''
 buf=: ''
 Sections=: ''
 Level=: ''
@@ -281,6 +295,52 @@ pageinit=: 3 : 0
 setframe Pxywh shrinkmargins PAGEMARGINS
 setdraw Fxywh
 )
+FONTH0=: 'Sans 11 bold'
+FONTH1=: 'Sans 11 bold'
+FONTH2=: 'Sans 10 bold'
+FONTH3=: 'Sans 9 bold'
+FONTH4=: 'Sans 9 bold'
+FONTH5=: 'Sans 9 bold'
+FONTH6=: 'Sans 9 bold'
+FONTC0=: 'Sans 10 bold'  
+FONTC1=: 'Sans 10 bold'  
+FONTC2=: 'Sans 9'
+FONTC3=: 'Sans 9'
+FONTC4=: 'Sans 9'
+FONTC5=: 'Sans 9'
+FONTC6=: 'Sans 9'
+
+FONTP=: 'Sans 9'  
+FONTPF=: 'Mono 9'  
+FONTTH=: 'Sans 9' 
+FONTTC=: 'Sans 9' 
+TCOLOR=: ". ;._2 (0 : 0)
+0 0 0 192 192 192
+0 0 0 255 255 255
+0 0 0 255 255 255
+0 0 0 255 255 179
+0 0 0 153 153 255
+255 0 0 255 255 255
+255 255 255 0 128 128
+)
+TGRIDSIZE=: 0.3
+ALIGN=: 0  
+ALIGNV=: 0 
+AUTHOR=: '' 
+BMLEVEL=: 3  
+CLASS=: '' 
+HYPHEN=: '~' 
+LEADING=: 1.2 
+LCOLOR=: 0 0 128 
+NAME=: ''
+PAGEMARGINS=: 72  
+PAGESIZE=: PSletter 
+PARASPACE=: 0.6 
+SCALE=: 1 
+STYLE=: '' 
+TITLE=: '' 
+TOCLEVEL=: 3 
+
 ". toupper COLORTABLE
 
 Colors=: i.0 3
@@ -290,11 +350,11 @@ r=. Colors i. c
 m=. r = #Colors
 if. is1color c do.
   if. m do.
-    Colors__locRW=: Colors,c
+    Colors__locS=: Colors,c
   end.
 else.
   if. 1 e. m do.
-    Colors__locRW=: Colors,m#c
+    Colors__locS=: Colors,m#c
   end.
   r=. Colors i. c
 end.
@@ -464,6 +524,15 @@ ALIGN=: fixalign ALIGN
 ALIGNV=: fixalign ALIGNV
 )
 
+publish=: 3 : 0
+locS=:  conew 'ppublish'
+res=. publishrun__locS y
+destroy__locS ''
+res
+)
+publishconfig=: 3 : 0
+PDFCompress=: zlibinit_ppubzlib_''
+)
 publishinit=: 3 : 0
 rxinit''
 setdefaults ''
@@ -486,7 +555,8 @@ publishfini=: 3 : 0
 rxfree Rxhnd
 )
 publishrun=: 3 : 0
-if. 0=publishinit y do. return. end.
+locT=: ''
+if. 0=publishinit y do. '' return. end.
 txt=. readtext MasterFile
 if. 0=#txt do.
   info 'No text in file: ',MasterFile
@@ -506,66 +576,15 @@ view ''
 publishfini''
 )
 
-publish_z_=: 3 : 0
-a=. conew 'publish'
-locRW_publish_=: a
-res=. publishrun__a y
-destroy__a''
-res
-)
+publish_z_=: publish_ppublish_
 publishload_z_=: 3 : 0
 if. -. 1 e. '/\' e. y do.
-  loc=. locRW_publish_
+  loc=. locS_ppublish_
   y=. MasterPath__loc,y
 end.
 load y
 )
-FONTH0=: 'Sans 11 bold'
-FONTH1=: 'Sans 11 bold'
-FONTH2=: 'Sans 10 bold'
-FONTH3=: 'Sans 9 bold'
-FONTH4=: 'Sans 9 bold'
-FONTH5=: 'Sans 9 bold'
-FONTH6=: 'Sans 9 bold'
-FONTC0=: 'Sans 10 bold'  
-FONTC1=: 'Sans 10 bold'  
-FONTC2=: 'Sans 9'
-FONTC3=: 'Sans 9'
-FONTC4=: 'Sans 9'
-FONTC5=: 'Sans 9'
-FONTC6=: 'Sans 9'
-
-FONTP=: 'Sans 9'  
-FONTPF=: 'Mono 9'  
-FONTTH=: 'Sans 9' 
-FONTTC=: 'Sans 9' 
-TCOLOR=: ". ;._2 (0 : 0)
-0 0 0 192 192 192
-0 0 0 255 255 255
-0 0 0 255 255 255
-0 0 0 255 255 179
-0 0 0 153 153 255
-255 0 0 255 255 255
-255 255 255 0 128 128
-)
-TGRIDSIZE=: 0.3
-ALIGN=: 0  
-ALIGNV=: 0 
-AUTHOR=: '' 
-BMLEVEL=: 3  
-CLASS=: '' 
-HYPHEN=: '~' 
-LEADING=: 1.2 
-LCOLOR=: 0 0 128 
-NAME=: ''
-PAGEMARGINS=: 72  
-PAGESIZE=: PSletter 
-PARASPACE=: 0.6 
-SCALE=: 1 
-STYLE=: '' 
-TITLE=: '' 
-TOCLEVEL=: 3 
-coclass 'publish'
+coclass 'ppublish'
 
 PDFCompress=: 0
 dict=: 3 : 0
@@ -923,7 +942,7 @@ r,s,LF,tr,(":#r),LF,'%%EOF'
 wrapstream=: 3 : 0
 if. PDFCompress do.
   s=. '<< /Length ',(":#y),' /Filter /FlateDecode >> stream',LF
-  s,(9 compress_pzlib_ y),LF,'endstream',LF
+  s,(9 compress_ppubzlib_ y),LF,'endstream',LF
 else.
   y=. addLF y
   s=. '<< /Length ',(":#y),' >> stream',LF
@@ -941,7 +960,7 @@ for_s. XObjects do.
   r=. r,<xobject__s''
 end.
 )
-coclass 'publish'
+coclass 'ppublish'
 
 
 setcolor=: 3 : 0
@@ -1001,7 +1020,7 @@ end.
 
 txt
 )
-coclass 'publish'
+coclass 'ppublish'
 
 
 CIDfonts=: ''  
@@ -1025,10 +1044,10 @@ fontindex1 (4 #. fnt,sty),size
 fontindex1=: 3 : 0
 ndx=. AFMdir i. y
 if. ndx = #AFMdir do.
-  loc=. y conew 'jafm'
-  AFMloc__locRW=: AFMloc,loc
-  AFMdir__locRW=: AFMdir,y
-  AFMffi__locRW=: AFMffi,1 + (~.{."1 AFMdir) i. {.y
+  loc=. y newinstance 'jafm'
+  AFMloc__locS=: AFMloc,loc
+  AFMdir__locS=: AFMdir,y
+  AFMffi__locS=: AFMffi,1 + (~.{."1 AFMdir) i. {.y
   ndx
 end.
 )
@@ -1068,7 +1087,7 @@ loc=. x { AFMloc
 getstrlens__loc y
 )
 
-coclass 'publish'
+coclass 'ppublish'
 
 delNB=: 3 : 0
 txt=. <;._2 y
@@ -1278,7 +1297,84 @@ txt=. msk <;.1 txt
 txt=. trimLF each txt
 txt;front
 )
-coclass 'publishimage'
+coclass 'ppubzlib'
+
+
+z2chr=: 2 & ic
+z2num=: _2 & ic
+
+Z_MEM_ERROR=: _4
+zlibinit=: 3 : 0
+if. IFUNIX do.
+  p=. find_dll :: (''"_) 'z'
+else.
+  p=. 'zlib.dll'
+  p=. (fexist p) # p
+end.
+res=. 0 < #p
+if. res do.
+  zcompress2=: (p,' compress2 i * *i * i i') & cd
+  zuncompress=: (p,' uncompress i * *i * i') & cd
+end.
+res
+)
+ZMINSIZE=: 512
+compress=: 3 : 0
+1 compress y
+:
+dat=. y
+len=. >. 1.01 * 12 + #dat
+'rc res wid j j j'=. zcompress2 ((len$' ');,len),y;(#y);x
+if. rc do.
+  dat
+else.
+  dat=. wid {. res
+end.
+)
+compress_count=: 3 : 0
+1 compress_count y
+:
+dat=. y
+cnt=. #dat
+if. cnt >: ZMINSIZE do.
+  len=. >. 1.01 * 12 + cnt
+  'rc res wid j j j'=. zcompress2 ((len$' ');,len),y;(#y);x
+  if. rc do.
+    throw 3002;'Compress error: ',":rc
+  else.
+    dat=. wid {. res
+  end.
+end.
+(z2chr cnt), dat
+)
+uncompress=: 3 : 0
+dat=. y
+cnt=. ZMINSIZE >. 10 * #dat
+while. 1 do.
+  'rc res wid j j'=. zuncompress ((cnt$' ');,cnt),dat;#dat
+  if. rc = Z_MEM_ERROR do.
+    cnt=. cnt * 1.1
+  elseif. rc do.
+    throw 3002;'Uncompress error: ',":rc
+  elseif. do.
+    res return.
+  end.
+end.
+)
+uncompress_count=: 3 : 0
+cnt=. z2num 4 {. y
+dat=. 4 }. y
+if. cnt >: ZMINSIZE do.
+  'rc res wid j j'=. zuncompress ((cnt$' ');,cnt),dat;#dat
+  if. rc do.
+    throw 3002;'Uncompress error: ',":rc
+  else.
+    res
+  end.
+end.
+)
+
+coclass 'ppubimage'
 
 
 Loc=: ''
@@ -1315,13 +1411,13 @@ setsxywhP Sx,Sy,Sw,(ALIGNV=0)*Sh-rws+pre+pst
 0;r
 )
 
-coclass 'publishlist'
+coclass 'ppublist'
 
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
 
-coclass 'publishpage'
+coclass 'ppubpage'
 
 
 State=: 0
@@ -1333,7 +1429,7 @@ State=: -. State
 State;''
 )
 
-coclass 'publishplot'
+coclass 'ppubplot'
 
 
 Data=: ''
@@ -1341,7 +1437,7 @@ Shape=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 NAME=: 'Pl',":#Plots
-Plots__locRW=: Plots,coname''
+Plots__locS=: Plots,coname''
 )
 add=: 3 : 0
 dat=. 1!:1 :: _1: <filename y
@@ -1367,7 +1463,7 @@ Data=: dat
 )
 draw=: 3 : 'Data'
 
-coclass 'publishpre'
+coclass 'ppubpre'
 
 
 Data=: ''    
@@ -1400,7 +1496,7 @@ r=. wraptext drawtext pos,.(<0),.(<Font),.dat
 setsxywhP Sx,Sy,Sw,Sh-hit * #dat
 rc;r
 )
-coclass 'publishsection'
+coclass 'ppubsection'
 
 
 Locs=: ''
@@ -1415,7 +1511,7 @@ if. FrontPage *. 1=#Level do. Level=: <:Level end.
 Sections=: ''
 )
 new=: 3 : 0
-a=. '' conew 'publish',y
+a=. '' newinstance 'ppub',y
 Locs=: Locs,a
 Locx=: Locx,('i',toupper y)~
 a
@@ -1531,7 +1627,7 @@ while. #y do.
   
 end.
 )
-coclass 'publishskip'
+coclass 'ppubskip'
 
 
 Size=: 1
@@ -1547,7 +1643,7 @@ setsxywhP Sxywh - 0 0 0,h
 0;''
 )
 
-coclass 'publishtable'
+coclass 'ppubtable'
 
 
 Align=: ''
@@ -2002,7 +2098,7 @@ Thigh=: ndx { Thigh
 Tw=: ndx { Tw
 drawall''
 )
-coclass 'publishtext'
+coclass 'ppubtext'
 
 
 Data=: ''    
@@ -2303,14 +2399,14 @@ txt=. ParaTags parseml txt
 (Color,Font) make txt
 )
 
-coclass 'publishurl'
+coclass 'ppuburl'
 
 create=: 3 : 0
 coinsert locP=: COCREATOR
 Data=: y
 NAME=: 'Ul',":#Urls
-Urls__locRW=: Urls,coname''
-UrlIds__locRW=: UrlIds,<y
+Urls__locS=: Urls,coname''
+UrlIds__locS=: UrlIds,<y
 )
 url=: 3 : 0
 s=. '/Type /Filespec'
@@ -2318,14 +2414,14 @@ s=. s,LF,'/FS /URL'
 s=. s,LF,'/F (',Data,')'
 dict s
 )
-coclass 'publishxobject'
+coclass 'ppubxobject'
 
 
 Shape=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 NAME=: 'Im',":#XObjects
-XObjects__locRW=: XObjects,coname''
+XObjects__locS=: XObjects,coname''
 )
 add=: 3 : 0
 File=: filename y
@@ -2401,14 +2497,14 @@ while. 1 do.
 end.
 256 #. a.i. _2 [\ 5 6 7 8 { dat
 )
-coclass 'publishheader'
+coclass 'ppubheader'
 
 
 NAME=: ''   
 Tag=: ''    
 create=: 3 : 0
 coinsert locP=: COCREATOR
-coinsert 'publishtext'
+coinsert 'ppubtext'
 ALIGN=: iLEFT
 ALIGNV=: iTOP
 )
@@ -2469,13 +2565,13 @@ if. (Dxywh -: Sxywh) +: Tag -: 'h0' do.
 end.
 drawpara 1
 )
-coclass 'publishtoc'
+coclass 'ppubtoc'
 
 
 Data=: ''      
 TOCALIGN=: 0
 create=: 3 : 0
-coinsert 'publishtext'
+coinsert 'ppubtext'
 coinsert locP=: COCREATOR
 Font=: fontindex FONTC0  
 )
@@ -2574,6 +2670,6 @@ for_p. y do.
 end.
 )
 
-cocurrent 'publish'
-readdefaults''
+cocurrent 'ppublish'
+publishconfig''
 cocurrent 'base'

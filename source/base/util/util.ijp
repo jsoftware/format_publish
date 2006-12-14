@@ -14,11 +14,17 @@ PRIMARYLIBS=: 0 : 0
 afm
 bmp
 colortab
+dll
 files
 font
+gl2
+jzplot
+libpath
+numeric
 plot
 regex
 strings
+trig
 )
 
 DEVFILES=: ''
@@ -29,7 +35,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish/release/util.ijs'
 
-TARGETLOCALE=: 'publish'
+TARGETLOCALE=: 'ppublish'
 
 TARGETHEADER=: ''
 

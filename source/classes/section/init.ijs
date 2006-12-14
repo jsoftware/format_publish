@@ -56,7 +56,7 @@ Sections=: ''
 
 NB. =========================================================
 new=: 3 : 0
-a=. '' conew 'publish',y
+a=. '' newinstance 'ppub',y
 Locs=: Locs,a
 Locx=: Locx,('i',toupper y)~
 a

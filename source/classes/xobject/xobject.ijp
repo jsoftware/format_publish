@@ -18,7 +18,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish/release/xobject.ijs'
 
-TARGETLOCALE=: 'publishxobject'
+TARGETLOCALE=: 'ppubxobject'
 
 TARGETHEADER=: ''
 

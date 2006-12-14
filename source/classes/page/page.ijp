@@ -14,7 +14,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish/release/page.ijs'
 
-TARGETLOCALE=: 'publishpage'
+TARGETLOCALE=: 'ppubpage'
 
 TARGETHEADER=: ''
 

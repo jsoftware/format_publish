@@ -14,7 +14,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish\release\skip.ijs'
 
-TARGETLOCALE=: 'publishskip'
+TARGETLOCALE=: 'ppubskip'
 
 TARGETHEADER=: ''
 

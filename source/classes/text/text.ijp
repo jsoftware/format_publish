@@ -22,7 +22,7 @@ OTHERFILES=: '~Publish/classes/text/test0.ijs'
 
 TARGETFILE=: '~.Publish/release/text.ijs'
 
-TARGETLOCALE=: 'publishtext'
+TARGETLOCALE=: 'ppubtext'
 
 TARGETHEADER=: ''
 

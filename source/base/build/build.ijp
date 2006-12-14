@@ -26,7 +26,7 @@ OTHERFILES=: '~Publish\base\build\test0.ijs'
 
 TARGETFILE=: '~.Publish\release\build.ijs'
 
-TARGETLOCALE=: 'publish'
+TARGETLOCALE=: 'ppublish'
 
 TARGETHEADER=: ''
 

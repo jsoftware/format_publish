@@ -11,18 +11,10 @@ PSletter=: 612 792    NB. 72 * 8.5 11
 PSa4=: 595.28 841.89  NB. 72 * 210 297 % 25.4
 
 NB. =========================================================
-readdefaults=: 3 : 0
-EMPTY
-NB. f=. toJ @ (1!:1) @ < :: (''"_)
-NB. RWdefaults=: f jpath '~binary/rwdefs.ijs'
-NB. MyRWdefaults=: f jpath '~config/rwdefs.ijs'
-)
-
-NB. =========================================================
 setdefaults=: 3 : 0
 NB. 0!:100 RWdefaults
 NB. 0!:100 MyRWdefaults
-locRW=: coname''
+locS=: coname''
 buf=: ''
 Sections=: ''
 Level=: ''

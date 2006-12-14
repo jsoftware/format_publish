@@ -17,7 +17,7 @@ OTHERFILES=: ''
 
 TARGETFILE=: '~.Publish\release\font.ijs'
 
-TARGETLOCALE=: 'publish'
+TARGETLOCALE=: 'ppublish'
 
 TARGETHEADER=: ''
 

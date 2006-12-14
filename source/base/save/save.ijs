@@ -8,8 +8,8 @@ cocurrent 'jprojsave'
 
 NB. =========================================================
 FOOTER=: 0 : 0
-cocurrent 'publish'
-readdefaults''
+cocurrent 'ppublish'
+publishconfig''
 cocurrent 'base'
 )
 
