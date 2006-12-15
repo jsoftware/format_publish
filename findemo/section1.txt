@@ -28,7 +28,7 @@ Saman verkonhaltijan verkkoja voi olla kaikissa ryhmissä.
 
 <h2>Keskijännitejohtopituudet koko Suomessa</h2>
 <j>gettable 'tab_1_3'</j>
-*) Lähde: Adato Energia Oy 2005, Verkostotietoja keskijänniteverkosta
+*) Lähde: Verkostotietoja keskijänniteverkosta
 
 
 

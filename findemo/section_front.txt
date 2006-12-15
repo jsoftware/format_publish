@@ -1,8 +1,8 @@
 NB. front page
 
-<image scale=0.2>Energiateollisuus_logo.jpg</image>
+<image scale=0.7>j_logo.jpg</image>
 
-<h0 style=bigpara>KESKEYTYSTILASTO 2005 v.2 </h0>
+<h0 style=bigpara>THIS A DEMO PUBLICATION IN FINNISH </h0>
 
 <b>ALKUSANAT</b><br/>
 Energiateollisuus ry:n vuoden 2005 keskeytystilasto on uudistunut aikaisempien 
@@ -35,24 +35,6 @@ tulevien keskeytystilastojen tapaan laskettu verkkopituuksilla painotettuina
 keskiarvoina. Lisäksi tilastoon on kirjoitettu uusi lukuohje ja epäluotettaviin 
 tietoihin perustuvat luvut on merkitty taulukoiden yhteyteen.  
 
-Uudistetun tilasto-ohjeen laati seuraava Energiateollisuus ry:n työryhmä: 
-
-Tero Isoviita, Pori Energia, puheenjohtaja<br/>
-Osmo Alasalmi, Kainuun Energia<br/>
-Kimmo Vainiola, Fortum Espoo<br/>
-Elina Lehtomäki, Energiateollisuus ry, sihteeri<br/>
-
-Uudistetun tilastojulkaisun laati seuraava Energiateollisuus ry:n työryhmä:
-
-Osmo Alasalmi, Kainuun Energia, puheenjohtaja<br/>
-Kimmo Kivikko, Tampereen teknillinen yliopisto<br/>
-Risto Laurila, Fortum<br/>
-Anna-Maria Muilu, Fortum Espoo Oy<br/>
-Markku Peippo, Fortum<br/>
-Terho Savolainen, Adato Energia<br/>
-Markku Vänskä, Vattenfall<br/>
-Elina Lehtomäki, Energiateollisuus ry, sihteeri (14.7.2006 asti)<br/>
-Antti Silvast, Energiateollisuus ry, sihteeri (14.7.2006 alkaen)<br/>
 
 <skip>2</skip>
 <b>LUKUHJE</b><br/>
@@ -91,10 +73,8 @@ yksittäisille yhtiöille voidaan tuottaa samanmuotoisia keskeytysraportteja. T�
 tutkitaan tulevissa keskeytystilastoissa. 
 
 <skip>2</skip>
-Julkaisija Energiateollisuus ry ET, Helsinki <br/>
-<skip>1</skip>
 Helsinki 2006<br/>
-<j>'(Korjattu versio: ',(isotimestamp 6!:0 ''),')'</j>
+<j>'(Version timestamp: ',(isotimestamp 6!:0 ''),')'</j>
 
 
 

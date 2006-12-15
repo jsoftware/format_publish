@@ -1,7 +1,7 @@
 NB. Publish example
 
-<title>KESKEYTYSTILASTO 2005 v.2</title>
-<author>Enease Oy</author>
+<title>DEMO STATISTICS PUBLICATION</title>
+<author>Anssi Seppälä</author>
 
 <include>section_front.txt</include>
 <include>section1.txt</include>
