@@ -1,17 +1,17 @@
-script_z_ '~system\classes\plot\afm.ijs'
-script_z_ '~system\packages\graphics\bmp.ijs'
-script_z_ '~system\packages\color\colortab.ijs'
-script_z_ '~system\main\dll.ijs'
-script_z_ '~system\main\files.ijs'
-script_z_ '~system\packages\misc\font.ijs'
-script_z_ '~system\main\gl2.ijs'
-script_z_ '~system\classes\plot\jzplot.ijs'
-script_z_ '~system\main\libpath.ijs'
-script_z_ '~system\main\numeric.ijs'
-script_z_ '~system\classes\plot\plot.ijs'
-script_z_ '~system\main\regex.ijs'
-script_z_ '~system\main\strings.ijs'
-script_z_ '~system\main\trig.ijs'
+script_z_ '~system/classes/plot/afm.ijs'
+script_z_ '~system/packages/graphics/bmp.ijs'
+script_z_ '~system/packages/color/colortab.ijs'
+script_z_ '~system/main/dll.ijs'
+script_z_ '~system/main/files.ijs'
+script_z_ '~system/packages/misc/font.ijs'
+script_z_ '~system/main/gl2.ijs'
+script_z_ '~system/classes/plot/jzplot.ijs'
+script_z_ '~system/main/libpath.ijs'
+script_z_ '~system/main/numeric.ijs'
+script_z_ '~system/classes/plot/plot.ijs'
+script_z_ '~system/main/regex.ijs'
+script_z_ '~system/main/strings.ijs'
+script_z_ '~system/main/trig.ijs'
 
 coclass 'ppublish'
 
@@ -642,8 +642,8 @@ dict r
 )
 creator=: 3 : 0
 msk=. (0 < #TITLE),(0 < #AUTHOR), 1 1
-t=. '/Title (',TITLE,')'
-a=. '/Author (',AUTHOR,')'
+t=. u2a '/Title (',TITLE,')'
+a=. u2a '/Author (',AUTHOR,')'
 p=. '/Producer (J Publish)'
 d=. creationdate''
 dict msk # t;a;p;d
@@ -1316,9 +1316,6 @@ if. res do.
 end.
 res
 )
-
-
-
 compress=: 3 : 0
 1 compress y
 :
@@ -1420,7 +1417,6 @@ Data=: dat
 )
 draw=: 3 : 'Data'
 
-
 coclass 'ppubpre'
 
 
@@ -1433,7 +1429,6 @@ add=: 3 : 0
 Data=: u2a y
 Font=: fontindex FONTPF
 )
-
 draw=: 3 : 0
 
 if. y do.
@@ -2401,7 +2396,6 @@ case. 'jpg' do.
   readjpgshape dat
 end.
 )
-
 xobject=: 3 : 0
 ('xobject',Type)~''
 )
@@ -2535,7 +2529,6 @@ coinsert 'ppubtext'
 coinsert locP=: COCREATOR
 Font=: fontindex FONTC0  
 )
-
 draw=: 3 : 0
 res=. 0;''
 if. isempty Contents do. res return. end.

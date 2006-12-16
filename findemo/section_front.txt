@@ -2,7 +2,7 @@ NB. front page
 
 <image scale=0.7>j_logo.jpg</image>
 
-<h0 style=bigpara>THIS A DEMO PUBLICATION IN FINNISH </h0>
+<h0 style=bigpara>DEMO PUBLICATION<br/>(In Finnish)</h0>
 
 <b>ALKUSANAT</b><br/>
 Energiateollisuus ry:n vuoden 2005 keskeytystilasto on uudistunut aikaisempien 
