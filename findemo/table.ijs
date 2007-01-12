@@ -10,7 +10,7 @@ row=: '<row>' , ,&'</row>'
 top=: '<top>' , ,&'</top>'
 quote=: '"' , ,&'" '
 
-PUBPATH=: 'e:\findemo\'
+PUBPATH=: jpath '~addons/format/publish/findemo/'
 
 NB. =========================================================
 gettable=: 3 : 0
@@ -218,7 +218,7 @@ get_tab_3_1=: 4 : 0
 r=. top 'VIKA'
 r=. r, col '"0-3 min","3-60 min","1-4 h","4-8 h","8-12 h","12-24 h","1-3 vrk","3-5 vrk","yli 5 vrk"'
 r=. r, row ; quote each ROW_3_1_1
-r=. r, data ; fread PUBPATH,x.
+r=. r, data ; fread PUBPATH,x
 r=. r, color ": _10 {. 1
 h=. 7$1
 h=. 6 (6)}h
@@ -570,7 +570,7 @@ get_tab_L2_1=: 4 : 0
 r=. top 'VIKA'
 r=. r, col '"0-3 min","3-60 min","1-4 h","4-8 h","8-12 h","12-24 h","1-3 vrk","3-5 vrk","yli 5 vrk"'
 r=. r, row ; quote each ROW_L2_1_1
-r=. r, data ; fread PUBPATH,x.
+r=. r, data ; fread PUBPATH,x
 b=. 1 (0 1 7 10 14 15 19 23 24})  25 10$0
 r=. r,bold  ":,b
 r=. r,color  ":, 1 (14 19 23 24}) 25 10$0

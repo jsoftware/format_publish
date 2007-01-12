@@ -18,7 +18,7 @@ NB. has already been run.
 NB.
 NB. set PUBPATH as appropriate
 
-PUBPATH=: 'e:\findemo\'
+PUBPATH=: jpath '~addons/format/publish/findemo/'
 PIECOLORS=: 'color red,blue,green,yellow,teal,brown,cyan,gray, jade, HotPink' 
 
 fmtc=: 3 : 0
