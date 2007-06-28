@@ -47,7 +47,7 @@ for_d. dat do.
         case. iLEFT do.
           px=. mx + 0, +/\ }: wid
         case. iCENTER do.
-          ext=. {: len=. +/\ ; wid
+          ext=. {: len=. +/\ wid
           px=. (mx - -: ext) + 0, }:len
         case. iRIGHT do.
           px=. mx - +/\. wid
