@@ -10,7 +10,7 @@ The markup language supports calling J expressions, for example, to allow data t
 
 VERSION=: '1.0.0'
 
-RELEASE=: 'j601'
+RELEASE=: 'j601 j602'
 
 FILES=: 0 : 0
 publish.ijs
