@@ -1,5 +1,8 @@
 NB. test
 
+NB. first save everything, i.e.
+NB.   loadp jpath '~Publish\base\save\save.ijp'
+
 buildproject_jproject_ 1
 
 NB. =========================================================

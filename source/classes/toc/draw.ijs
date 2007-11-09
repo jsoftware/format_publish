@@ -13,6 +13,7 @@ if. -. 1 e. msk do. res return. end.
 
 NB. ---------------------------------------------------------
 dat=. ~. 0 2 3 {"1 msk # Contents
+off=. <: _1 pick {. dat
 fts=. fontindex"1 ". 'FONTC' ,"1 ":,.1 + i.TOCLEVEL
 r=. ''
 p=. i.0 3
@@ -23,7 +24,7 @@ for_d. dat do.
     r=. r,<remlastLF p
     p=. i.0 3
   end.
-  txt=. ((4*lvl)$' '),txt,(4$' '),(":num),LF
+  txt=. ((4*lvl)$' '),txt,(4$' '),(":num-off),LF
   p=. p,0;(lvl{fts);txt
 end.
 
@@ -43,7 +44,7 @@ if. y do.
 end.
 
 NB. ---------------------------------------------------------
-cls=. ; each {:"1 each  Para
+cls=. ; each {:"1 each Para
 par=. LEADING * +/ &> cls
 spc=. PARASPACE * {: &> cls
 scn=. +/\par + 0,}:spc
