@@ -13,6 +13,7 @@ VERSION=: '1.0.3'
 RELEASE=: 'j601 j602'
 
 FILES=: 0 : 0
+history.txt
 publish.ijs
 demo/
 )
