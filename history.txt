@@ -1,0 +1,8 @@
+format/publish - change history
+
+== 1.0.3 ==
+ * correctly define getPDFreader
+
+== 1.0.2 ==
+ * fix for when PDFREADER_j_ not defined
+
