@@ -13,7 +13,7 @@ end.
 
 NB. =========================================================
 view=: 3 : 0
-if. #PDFreader do.
+if. #PDFreader=. getPDFreader'' do.
   cmd=. PDFreader,' "',OutputFile,'"'
   if. IFUNIX do.
     2!:1 cmd,' &'

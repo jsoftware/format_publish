@@ -31,7 +31,14 @@ NB.
 NB. Contents is a 3 column table of:
 NB.   level;shortname;longname
 
-PDFreader=: PDFREADER_j_
+NB. PDFreader=: PDFREADER_j_
+getPDFreader=: 3 : 0
+if. 0~: 4!:0 <'PDFREADER_j_' do.
+  ''
+else.
+  PDFREADER_j_
+end.
+
 ShowFrames=: 0
 
 addcontents=: 3 : 'Contents__locS=: Contents,y'

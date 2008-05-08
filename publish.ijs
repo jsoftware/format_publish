@@ -253,8 +253,13 @@ r=. ('m'$~<.y%1000),R1000{::~1000|y
 
 coclass 'ppublish'
 
+getPDFreader=: 3 : 0
+if. 0~: 4!:0 <'PDFREADER_j_' do.
+  ''
+else.
+  PDFREADER_j_
+end.
 
-PDFreader=: PDFREADER_j_
 ShowFrames=: 0
 
 addcontents=: 3 : 'Contents__locS=: Contents,y'
@@ -596,7 +601,7 @@ end.
 '<<',LF,s,'>>',LF
 )
 view=: 3 : 0
-if. #PDFreader do.
+if. #PDFreader=. getPDFreader'' do.
   cmd=. PDFreader,' "',OutputFile,'"'
   if. IFUNIX do.
     2!:1 cmd,' &'
@@ -1316,6 +1321,9 @@ if. res do.
 end.
 res
 )
+
+
+
 compress=: 3 : 0
 1 compress y
 :
@@ -1417,6 +1425,7 @@ Data=: dat
 )
 draw=: 3 : 'Data'
 
+
 coclass 'ppubpre'
 
 
@@ -1429,6 +1438,7 @@ add=: 3 : 0
 Data=: u2a y
 Font=: fontindex FONTPF
 )
+
 draw=: 3 : 0
 
 if. y do.
@@ -2396,6 +2406,7 @@ case. 'jpg' do.
   readjpgshape dat
 end.
 )
+
 xobject=: 3 : 0
 ('xobject',Type)~''
 )
@@ -2529,6 +2540,7 @@ coinsert 'ppubtext'
 coinsert locP=: COCREATOR
 Font=: fontindex FONTC0  
 )
+
 draw=: 3 : 0
 res=. 0;''
 if. isempty Contents do. res return. end.
