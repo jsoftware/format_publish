@@ -14,8 +14,19 @@ sec=. StructTags parseml txt
 if. 1 e. '<pre>' E. y do.
   sec=. parsepre sec
 end.
+sec=. parsegroup sec
 a=. newsection''
 make__a sec
+)
+
+NB. =========================================================
+NB. replace group tags with group/ (unnested)
+parsegroup=: 3 : 0
+msk=. (<'group') = 1{"1 y
+if. -. 1 e. msk do. y return. end.
+mid=. (~:/\msk) # 1{"1 y
+assert. -. 1 e. NotGroupTags e. mid
+(1;'group/') (<(I.msk);0 1) } y
 )
 
 NB. =========================================================

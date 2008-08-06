@@ -10,7 +10,7 @@ NB.   3 symbol/zapfdingbats
 CIDfonts=: ''  NB. none yet defined
 
 NB. =========================================================
-NB. AFMloc  locales 
+NB. AFMloc  locales
 NB. AFMdir  table - 2 columns:
 NB.         font family as index into font table
 NB.         font size

@@ -1,19 +1,19 @@
-NB. project file: e:\dev\apps\pub\source\base\build\build
+NB. project file: /home/chris/dev/apps/beta/source/publish/source/base/build/build
 
 coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
-~Publish\base\build\init
-~Publish\base\build\util
-~Publish\base\build\build
-~Publish\base\build\font
-~Publish\base\build\number
-~Publish\base\build\outline
-~Publish\base\build\page
-~Publish\base\build\section
-~Publish\base\build\url
-~Publish\base\build\wrap
-~Publish\base\build\xobject
+~Publish/base/build/init
+~Publish/base/build/util
+~Publish/base/build/build
+~Publish/base/build/font
+~Publish/base/build/number
+~Publish/base/build/outline
+~Publish/base/build/page
+~Publish/base/build/section
+~Publish/base/build/url
+~Publish/base/build/wrap
+~Publish/base/build/xobject
 )
 
 PRIMARYLIBS=: ''
@@ -22,9 +22,9 @@ DEVFILES=: ''
 
 DEVLIBS=: ''
 
-OTHERFILES=: '~Publish\base\build\test0.ijs'
+OTHERFILES=: '~Publish/base/build/test0.ijs'
 
-TARGETFILE=: '~.Publish\release\build.ijs'
+TARGETFILE=: '~.Publish/release/build.ijs'
 
 TARGETLOCALE=: 'ppublish'
 
@@ -38,10 +38,10 @@ PREBUILDFILE=: ''
 
 POSTBUILDFILE=: ''
 
-TESTFILE=: '~Publish\base\build\test.ijs'
+TESTFILE=: '~Publish/base/build/test.ijs'
 
 NOTES=: ''
 
-WINDOWS=: ''
+VERSION=: ''
 
-WINDOWSTATE=: 0
+WINDOWS=: ''

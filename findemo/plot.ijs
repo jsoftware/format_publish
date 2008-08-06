@@ -14,12 +14,12 @@ NB.   pd 'jpf c:\demo\plot71.jpf 300 150'
 NB.
 NB. Note: in the demo, this script is not loaded when
 NB. the report is built. It is assumed that the script
-NB. has already been run. 
+NB. has already been run.
 NB.
 NB. set PUBPATH as appropriate
 
 PUBPATH=: jpath '~addons/format/publish/findemo/'
-PIECOLORS=: 'color red,blue,green,yellow,teal,brown,cyan,gray, jade, HotPink' 
+PIECOLORS=: 'color red,blue,green,yellow,teal,brown,cyan,gray, jade, HotPink'
 
 fmtc=: 3 : 0
 ($r)$',' (I. (,r) e. '.')} ,r=. ": y
@@ -636,4 +636,3 @@ plot_6_2_2_pic2''
 plot_L3_1_pic1''
 plot_L3_2_pic1''
 plot_7_1_pic1''
-   

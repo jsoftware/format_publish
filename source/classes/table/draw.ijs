@@ -45,26 +45,34 @@ NB. get sizes:
 while. 1 do.
   Fh0=: prnd Leading * fontheight F0
   Fh1=: prnd Leading * fontheight F1
+  Fh1m=: prnd Leadingm * fontheight F1
   hrw=. F0 fontwidthboxed Row
   hcw=. F0 fontwidthboxed Col
   htw=. F0 fontwidthboxed Top
-  dtw=. F1 fontwidthboxed (Crws,Ccls)$Data
+  if. IfMulti do.
+    dtx=: F1 fontwidthboxed DataX
+    dtw=. (Crws,Ccls)$DataM >./;.1 dtx
+    Twx=: dtx - CDlen#,dtw
+  else.
+    dtw=. F1 fontwidthboxed (Crws,Ccls)$Data
+  end.
   Tw=: (htw,.hcw),hrw,.dtw
-  
+
 NB. ---------------------------------------------------------
 NB. width of row labels:
   rlw=. IfRow * MinLabelWid >. PadLabel + >./htw,hrw
-  
+
 NB. ---------------------------------------------------------
 NB. width of data columns:
   dcw=. MinCellWid >. PadCell + >./ hcw,dtw
-  
+
 NB. ---------------------------------------------------------
 NB. col indices (increasing from left)
   Dw=: rlw, dcw
   Dx=: Sx + +/\ 0, Dw
+
   if. Sw >: +/ Dw do. break. end.
-  
+
 NB. ---------------------------------------------------------
   select. STATE
   case. 0 do.
@@ -90,7 +98,7 @@ NB. ---------------------------------------------------------
   case. 2 do.
     break.
   end.
-  
+
 end.
 
 NB. ---------------------------------------------------------
@@ -102,7 +110,7 @@ if. IfCol do.
 else.
   hch=. 0
 end.
-Dh0=: hch, Crws$Fh0>.Fh1
+Dh0=: hch, (Fh0>.Fh1) + Fh1m * CRlen-1
 Dh=: Dh0 + (#Dh0){.(-Hrws*IfCol){.SepHdrCell
 Dy=: Sy + Sh - +/\ 0,Dh
 

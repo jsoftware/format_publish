@@ -20,9 +20,9 @@ NB. fontindex
 NB.
 NB. return index into AFM directories for given font
 NB.
-NB. font is a name + size in either J wd format, or 
+NB. font is a name + size in either J wd format, or
 NB. postscript1 format, e.g.
-NB. 
+NB.
 NB.    Arial 10 bold
 NB.    Helvetica-Bold 10
 fontindex=: 3 : 0
@@ -93,6 +93,12 @@ NB. =========================================================
 fontwidthboxed=: 4 : 0
 loc=. x { AFMloc
 getstrlen__loc &> y
+)
+
+NB. =========================================================
+fontwidthboxedm=: 4 : 0
+loc=. x { AFMloc
+getstrwid__loc &> y
 )
 
 NB. =========================================================

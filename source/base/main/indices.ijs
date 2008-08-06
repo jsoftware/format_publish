@@ -37,6 +37,7 @@ PARA
 NB. =========================================================
 NB. section types
 defineindex''
+GROUP
 HEADER
 IMAGE
 LIST

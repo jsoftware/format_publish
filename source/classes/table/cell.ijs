@@ -42,8 +42,20 @@ x=. x + -: (a * ,}."1 Hrws }. vw) - (a-1) * PadCell
 y=. ,Ccls # Hrws }.}: dy
 clr=. <&> (, }."1 Hrws }. Thigh) { Tfcolor
 fnt=. <&> ,}."1 Hrws}.Font
-r=. r,drawtext (<"1 x,.y),.clr,.fnt,.Data
+
+if. IfMulti do.
+  a=. CDlen#a
+  h=. ; (Fh1m * i.) each CDlen
+  y=. h -~ CDlen#y
+  x=. (CDlen#x) - Twx * -: a
+  clr=. CDlen#clr
+  fnt=. CDlen#fnt
+  dat=. DataX
+else.
+  dat=. Data
+end.
 
 NB. ---------------------------------------------------------
+r=. r,drawtext (<"1 x,.y),.clr,.fnt,.dat
 wraptext r
 )

@@ -1,5 +1,15 @@
 NB. defs
 
+ShowFrames=: 0
+
+getPDFreader=: 3 : 0
+if. 0~: 4!:0 <'PDFREADER_j_' do.
+  ''
+else.
+  PDFREADER_j_
+end.
+)
+
 NB. =========================================================
 Padchar=: 'W' NB. pad/spacer for PDF output W=widest
 Txm_port=: '1 0 0 1 '
@@ -12,15 +22,17 @@ PSa4=: 595.28 841.89  NB. 72 * 210 297 % 25.4
 
 NB. =========================================================
 setdefaults=: 3 : 0
-NB. 0!:100 RWdefaults
-NB. 0!:100 MyRWdefaults
-locS=: coname''
+locS=: locP=: coname''
 buf=: ''
-Sections=: ''
+GroupNum=: _1
 Level=: ''
+Locales=: ''
+Localex=: ''
+Plots=: ''
+Sections=: ''
+SectionNum=: _1 NB. top level section number
 Urls=: UrlIds=: ''
 XObjects=: ''
-Plots=: ''
 )
 
 NB. =========================================================
@@ -30,3 +42,4 @@ pageinit=: 3 : 0
 setframe Pxywh shrinkmargins PAGEMARGINS
 setdraw Fxywh
 )
+

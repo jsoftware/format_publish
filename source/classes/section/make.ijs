@@ -10,11 +10,11 @@ subheaders=. (#Level) }. max {. Headers
 
 NB. ---------------------------------------------------------
 while. #y do.
-  
+
   'top y'=. tagsplit y
   'off tag prm val'=. {. top
   bal=. > {: {: top
-  
+
 NB. ---------------------------------------------------------
   select. tag
   case. lvlheaders do.
@@ -29,7 +29,8 @@ NB. ---------------------------------------------------------
     make__a top
   case. Headers do.
     a=. new 'header'
-    add__a top
+  case. 'group/' do.
+    new 'group'
   case. 'newpage/' do.
     new 'page'
   case. 'toc' do.
@@ -70,7 +71,7 @@ NB. ---------------------------------------------------------
     'Invalid tag: ',tag
     assert. 0
   end.
-  
+
 NB. ---------------------------------------------------------
   bal=. trimWS bal
   if. #bal do.
@@ -78,6 +79,6 @@ NB. ---------------------------------------------------------
     add__a bal
     bal=. ''
   end.
-  
+
 end.
 )

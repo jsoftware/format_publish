@@ -40,6 +40,7 @@ STATE=: 0
 NB. =========================================================
 NB. defaults:
 Leading=: 1.4         NB. font leading
+Leadingm=: 1          NB. font leading for multi-line cells
 MinCellWid=: 50       NB. min data cell width
 MinLabelWid=: 100     NB. min row label width
 PadCell=: 15          NB. data cell horizontal padding

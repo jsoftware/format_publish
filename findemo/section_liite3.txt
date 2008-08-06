@@ -2,7 +2,7 @@ NB. Liite 3
 <newpage/>
 <b>LIITE 3  KESKEYTYSTEN VUOSIVAIHTELUT MUUNTOPIIRITUNTEIHIN PERUSTUEN</b>
 <skip>1</skip>
-Tilastointimenetelmä on muuttunut vuonna 2005, mistä lähtien mm. olosuhdejaottelu perustuu johtolähdön 
+Tilastointimenetelmä on muuttunut vuonna 2005, mistä lähtien mm. olosuhdejaottelu perustuu johtolähdön
 kaapelointiasteeseen. Tätä ennen olosuhdetarkastelu tapahtui verkonhaltijakohtaisesti.
 <skip>1</skip>
 <b> 1. Keskimääräinen häiriökeskeytysaika h/a </b>

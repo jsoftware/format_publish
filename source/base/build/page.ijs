@@ -9,7 +9,7 @@ pages=: 3 : 0
 
 Next=: 1 + RootPages NB. next free object
 Contents=: Contents,.<0 NB. add pages column
-Pagenum=: 1 NB. used to set /Count parameter
+PageNum=: 1 NB. used to set /Count parameter
 
 NB. ---------------------------------------------------------
 r=. pagesheader''
@@ -25,7 +25,7 @@ end.
 
 NB. ---------------------------------------------------------
 r=. r, ']',LF
-r=. r, '/Count ',(":Pagenum-1),LF
+r=. r, '/Count ',(":PageNum-1),LF
 r=. dict r
 
 r;s
@@ -39,7 +39,7 @@ pageset=: 3 : 0
 dat=. y
 here=. Next
 Next=: Next+1
-pno=. Pagenum
+pno=. PageNum
 len=. #dat
 r=. '/Type /Pages',LF
 r=. r, '/Parent ',(":RootPages),' 0 R',LF
@@ -74,7 +74,7 @@ end.
 
 NB. ---------------------------------------------------------
 r=. r, ']',LF
-r=. r, '/Count ',(":Pagenum-pno),LF
+r=. r, '/Count ',(":PageNum-pno),LF
 r=. dict r
 r;s
 )
@@ -89,7 +89,7 @@ NB.   r=. r,'/Rotate 90',LF
 NB. end.
 r=. dict r
 Next=: Next + 2
-Pagenum=: Pagenum+1
+PageNum=: PageNum+1
 s=. y
 if. ShowFrames do. s=. s, drawbox Dxywh end.
 r;wrapstream s

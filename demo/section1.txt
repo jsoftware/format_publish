@@ -12,7 +12,7 @@ she said to herself, `because of his great wig.'
 <h3>Subsubsection 1 - two row header<br/>
 (example of table formatting)</h3>
 
-The table is read as: 
+The table is read as:
 
 <pre>
    <j>gettable 'tab11'</j>

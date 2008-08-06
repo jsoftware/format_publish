@@ -23,7 +23,7 @@ txt=. ' ' (I. msk) } txt
 txt=. deb txt
 if. 0=#txt do. '' return. end.
 txt=. ',', txt
-a=. (txt ~: ' ') +. ~: /\ txt = '"' 
+a=. (txt ~: ' ') +. ~: /\ txt = '"'
 b=. (a # txt) e. ','
 c=. b +. }. b, 1
 d=. ~: /\ a #^:_1 c ~: }: 0, c
@@ -63,8 +63,8 @@ txt -. a:
 )
 
 BOXEMPTY=: <''
-BOXTYPE=: 32 
-CHARTYPE=: 2 131072 
+BOXTYPE=: 32
+CHARTYPE=: 2 131072
 EMPTY=: i. 0 0
 LF2=: LF,LF
 PATHSEP=: '/\'{~6=9!:12''
@@ -82,7 +82,7 @@ readlist=: 3 : '<;._2 (0 : 0)'
 tolist=: }.@;@:(LF&,@,@":each)
 trimLF=: 3 : 'y #~ (+./\msk) *. +./\.msk=. y ~: LF'
 trimWS=: 3 : 'y #~ (+./\msk) *. +./\.msk=. -. y e. LF,TAB,'' '''
-endian=. ({.a.)={. 1&(3!:4) 1  
+endian=. ({.a.)={. 1&(3!:4) 1
 toucodem=: ''&,@(1&(3!:4))@(3&u:)@u:
 toucoder=: ''&,@:,@:(|."1@(_2: ]\ 1&(3!:4)))@(3&u:)@u:
 toucode1=: toucodem`toucoder@.(-.endian) f.
@@ -188,7 +188,7 @@ elseif. 0 -: 7 u: :: 0: dat do.
   msk=. 127 < val
   uni=. 192 128 +"1 [ 0 64 #: msk # val
   val=. val #~ 1 j. msk
-  ndx=. I. 127 < val 
+  ndx=. I. 127 < val
   dat=. a. {~ uni (ndx +/ 0 1) } val
 end.
 dat=. (-(26{a.)={:dat) }. dat
@@ -281,11 +281,11 @@ newplot=: 3 : 0
 cocurrent locS
 y newinstance 'ppubplot'
 )
-Padchar=: 'W' 
+Padchar=: 'W'
 Txm_port=: '1 0 0 1 '
 Txm_land=: '0 1 -1 0 '
-PSletter=: 612 792    
-PSa4=: 595.28 841.89  
+PSletter=: 612 792
+PSa4=: 595.28 841.89
 setdefaults=: 3 : 0
 locS=: coname''
 buf=: ''
@@ -308,18 +308,18 @@ FONTH3=: 'Sans 9 bold'
 FONTH4=: 'Sans 9 bold'
 FONTH5=: 'Sans 9 bold'
 FONTH6=: 'Sans 9 bold'
-FONTC0=: 'Sans 10 bold'  
-FONTC1=: 'Sans 10 bold'  
+FONTC0=: 'Sans 10 bold'
+FONTC1=: 'Sans 10 bold'
 FONTC2=: 'Sans 9'
 FONTC3=: 'Sans 9'
 FONTC4=: 'Sans 9'
 FONTC5=: 'Sans 9'
 FONTC6=: 'Sans 9'
 
-FONTP=: 'Sans 9'  
-FONTPF=: 'Mono 9'  
-FONTTH=: 'Sans 9' 
-FONTTC=: 'Sans 9' 
+FONTP=: 'Sans 9'
+FONTPF=: 'Mono 9'
+FONTTH=: 'Sans 9'
+FONTTC=: 'Sans 9'
 TCOLOR=: ". ;._2 (0 : 0)
 0 0 0 192 192 192
 0 0 0 255 255 255
@@ -330,22 +330,22 @@ TCOLOR=: ". ;._2 (0 : 0)
 255 255 255 0 128 128
 )
 TGRIDSIZE=: 0.3
-ALIGN=: 0  
-ALIGNV=: 0 
-AUTHOR=: '' 
-BMLEVEL=: 3  
-CLASS=: '' 
-HYPHEN=: '~' 
-LEADING=: 1.2 
-LCOLOR=: 0 0 128 
+ALIGN=: 0
+ALIGNV=: 0
+AUTHOR=: ''
+BMLEVEL=: 3
+CLASS=: ''
+HYPHEN=: '~'
+LEADING=: 1.2
+LCOLOR=: 0 0 128
 NAME=: ''
-PAGEMARGINS=: 72  
-PAGESIZE=: PSletter 
-PARASPACE=: 0.6 
-SCALE=: 1 
-STYLE=: '' 
-TITLE=: '' 
-TOCLEVEL=: 3 
+PAGEMARGINS=: 72
+PAGESIZE=: PSletter
+PARASPACE=: 0.6
+SCALE=: 1
+STYLE=: ''
+TITLE=: ''
+TOCLEVEL=: 3
 
 ". toupper COLORTABLE
 
@@ -712,7 +712,7 @@ if. x do.
   mst=. top {. msk
   msk=. top }. msk
   sec=. top }. sec
-  
+
   s=. {. Sections
   if. iTOC e. Locx__s do.
     setsxywh__s Dxywh
@@ -720,7 +720,7 @@ if. x do.
     mst=. ;1 {"1 ini
     len=. (#ini) 0 } len
   end.
-  
+
   ndx=. I. 1 |. mst
   for_n. ndx do.
     s=. (<n;2) pick ini
@@ -789,7 +789,7 @@ for_i. i.#dat do.
   if. i < _1 + #dat do.
     r=. r, '/Next ',(_1 pick {.(i+1) pick dat),LF
   end.
-  
+
   dest=. '/Dest [',pag,' /XYZ null null null]',LF
   if. 1 = #sub do.
     r=. r, dest
@@ -804,16 +804,16 @@ for_i. i.#dat do.
     s=. s, <dict r
     s=. s, obj outlineset sub
   end.
-  
+
 end.
 
 )
 
 pages=: 3 : 0
 
-Next=: 1 + RootPages 
-Contents=: Contents,.<0 
-Pagenum=: 1 
+Next=: 1 + RootPages
+Contents=: Contents,.<0
+Pagenum=: 1
 r=. pagesheader''
 r=. r,'/Kids [',LF
 s=. ''
@@ -1029,7 +1029,7 @@ txt
 coclass 'ppublish'
 
 
-CIDfonts=: ''  
+CIDfonts=: ''
 AFMloc=: ''
 AFMdir=: i.0 2
 AFMffi=: ''
@@ -1430,8 +1430,8 @@ draw=: 3 : 'Data'
 coclass 'ppubpre'
 
 
-Data=: ''    
-Font=: ''    
+Data=: ''
+Font=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -1489,7 +1489,7 @@ for_loc. Locs do.
   if. ShowFrames do. page=. page,LF,RED drawboxc Sxywh end.
   lox=. loc_index { Locx
   r=. draw__loc 1
-  
+
   if. lox = iSECTION do.
     if. #page do.
       res=. res, Level;newpage;page
@@ -1498,7 +1498,7 @@ for_loc. Locs do.
     end.
     res=. res, r continue.
   end.
-  
+
   while.
     'rc dat'=. r
     page=. page,dat
@@ -1523,11 +1523,11 @@ max=. BMLEVEL >. TOCLEVEL
 lvlheaders=. 'h0';(#Level) {. Headers
 subheaders=. (#Level) }. max {. Headers
 while. #y do.
-  
+
   'top y'=. tagsplit y
   'off tag prm val'=. {. top
   bal=. > {: {: top
-  
+
   select. tag
   case. lvlheaders do.
     a=. new 'header'
@@ -1582,14 +1582,14 @@ while. #y do.
     'Invalid tag: ',tag
     assert. 0
   end.
-  
+
   bal=. trimWS bal
   if. #bal do.
     a=. new 'text'
     add__a bal
     bal=. ''
   end.
-  
+
 end.
 )
 coclass 'ppubskip'
@@ -1623,15 +1623,15 @@ Row=: ''
 Top=: ''
 CLASS=: 'std'
 SHAPE=: ''
-NewPage=: 0           
+NewPage=: 0
 STATE=: 0
-Leading=: 1.4         
-MinCellWid=: 50       
-MinLabelWid=: 100     
-PadCell=: 15          
-PadHeader=: 0         
-PadLabel=: 1          
-SepHdrCell=: 2        
+Leading=: 1.4
+MinCellWid=: 50
+MinLabelWid=: 100
+PadCell=: 15
+PadHeader=: 0
+PadLabel=: 1
+SepHdrCell=: 2
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -1864,7 +1864,7 @@ vw=. Dw -"1 Tw
 dy=. Dy - (#Dy) {. PadHeader
 if. IfRow do.
   x=. ({.Dx) + -: ({."1 Align) * ({."1 vw) - PadLabel
-  x=. x + PadLabel * {.Gridv 
+  x=. x + PadLabel * {.Gridv
   pos=. x,.}:dy
   clr=. ({."1 Thigh) { Tfcolor
   dat=. Top,Row
@@ -1907,7 +1907,7 @@ Thigh=: sethigh''
 FONTTHSIZE=: getfontsize FONTTH
 
 'Font F0 F1'=: setfont''
-RowPos=: 0 
+RowPos=: 0
 Textf=: Textc=: _1
 space=. _4 {. prnd PARASPACE * fontheight F0
 setsxywhP Sxywh - space
@@ -1925,15 +1925,15 @@ while. 1 do.
   htw=. F0 fontwidthboxed Top
   dtw=. F1 fontwidthboxed (Crws,Ccls)$Data
   Tw=: (htw,.hcw),hrw,.dtw
-  
+
   rlw=. IfRow * MinLabelWid >. PadLabel + >./htw,hrw
-  
+
   dcw=. MinCellWid >. PadCell + >./ hcw,dtw
-  
+
   Dw=: rlw, dcw
   Dx=: Sx + +/\ 0, Dw
   if. Sw >: +/ Dw do. break. end.
-  
+
   select. STATE
   case. 0 do.
     k=. 0.5
@@ -1958,7 +1958,7 @@ while. 1 do.
   case. 2 do.
     break.
   end.
-  
+
 end.
 if. IfCol do.
   hch=. (Hrws$Fh0) + Hrws{.PadHeader
@@ -2066,10 +2066,10 @@ drawall''
 coclass 'ppubtext'
 
 
-Data=: ''    
-Para=: ''    
-Font=: ''    
-Color=: ''   
+Data=: ''
+Para=: ''
+Font=: ''
+Color=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -2320,7 +2320,7 @@ while. #y do.
   bal=. > {: {: top
   top=. (<'') (<_1 _1) } top
   top=. (1;'') (<0 _1;0 1) } top
-  
+
   select. tag
   case. ,'b' do.
     r=. r,(clr,fontbold fnt) make top
@@ -2337,12 +2337,12 @@ while. #y do.
   case. do.
     assert. 0 [ 'tag not supported: ',tag
   end.
-  
+
   if. #bal do.
     r=. r,clr;fnt;bal
     bal=. ''
   end.
-  
+
 end.
 r
 )
@@ -2466,8 +2466,8 @@ end.
 coclass 'ppubheader'
 
 
-NAME=: ''   
-Tag=: ''    
+NAME=: ''
+Tag=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 coinsert 'ppubtext'
@@ -2534,12 +2534,12 @@ drawpara 1
 coclass 'ppubtoc'
 
 
-Data=: ''      
+Data=: ''
 TOCALIGN=: 0
 create=: 3 : 0
 coinsert 'ppubtext'
 coinsert locP=: COCREATOR
-Font=: fontindex FONTC0  
+Font=: fontindex FONTC0
 )
 
 draw=: 3 : 0

@@ -6,5 +6,6 @@ wdpclose 'jview'
 coreset''
 cocurrent 'base'
 
+load '~Publish/dev/demo/test0.ijs'
 NB. publish jpath '~.Publish/demo/master.txt'
-publish jpath '~addons/format/publish/demo/master.txt'
+NB. publish jpath '~Publish/dev/demo/master.txt'

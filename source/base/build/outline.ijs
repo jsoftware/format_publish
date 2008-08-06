@@ -50,7 +50,7 @@ for_i. i.#dat do.
   if. i < _1 + #dat do.
     r=. r, '/Next ',(_1 pick {.(i+1) pick dat),LF
   end.
-  
+
 NB. ---------------------------------------------------------
   dest=. '/Dest [',pag,' /XYZ null null null]',LF
   if. 1 = #sub do.
@@ -66,7 +66,7 @@ NB. ---------------------------------------------------------
     s=. s, <dict r
     s=. s, obj outlineset sub
   end.
-  
+
 end.
 
 )

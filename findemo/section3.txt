@@ -1,7 +1,7 @@
 NB. section 3
 <h1>KESKEYTYSMÄÄRÄN AIKAJAKAUMA ASIAKKAALLA VUODESSA</h1>
 
-Keskeytykseen osallistuneiden käyttöpaikkojen lukumäärä jaettuna ko 
+Keskeytykseen osallistuneiden käyttöpaikkojen lukumäärä jaettuna ko
 verkon (maaseutu, taajama, city) käyttöpaikkamäärällä (kpk/kp).
 
 Luvut eivät sisällä jälleenkytkentöjä.

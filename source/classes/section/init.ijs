@@ -1,7 +1,7 @@
 NB. init section
 NB.
-NB. a section corresponds to a header, up the TOC level. The
-NB. headers themselves are created in header locales.
+NB. a section corresponds to a header. The headers themselves
+NB. are created in header locales.
 NB.
 NB. sections are parsed and made - each making a list of object
 NB. locales. at this stage, they are not drawn.
@@ -37,6 +37,7 @@ NB. Level     number
 NB. Sections  subsections
 NB. Name      shortname
 NB. LName     longname
+NB. SNum      section number (only for level 0 or 1)
 
 Locs=: ''
 Locx=: ''
@@ -50,6 +51,7 @@ NB. parent sections:
 Sections__locP=: Sections,coname''
 Level=: Level__locP,#Sections
 if. FrontPage *. 1=#Level do. Level=: <:Level end.
+if. 1 = #Level do. SNum=: newsectionnum'' end.
 NB. own sections:
 Sections=: ''
 )
@@ -57,7 +59,10 @@ Sections=: ''
 NB. =========================================================
 new=: 3 : 0
 a=. '' newinstance 'ppub',y
+i=. ('i',toupper y)~
 Locs=: Locs,a
-Locx=: Locx,('i',toupper y)~
+Locx=: Locx,i
+Locales__locS=: Locales,a
+Localex__locS=: Localex,i
 a
 )

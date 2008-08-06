@@ -7,6 +7,9 @@ NB. draw called in locales with 1=new, 0=continue
 draw=: 3 : 0
 newpage=. 1=#Level
 page=. ''
+if. y do.
+  setsxywh Sxywh__locP
+end.
 res=. i.0 3
 
 NB. ---------------------------------------------------------
@@ -14,7 +17,7 @@ for_loc. Locs do.
   if. ShowFrames do. page=. page,LF,RED drawboxc Sxywh end.
   lox=. loc_index { Locx
   r=. draw__loc 1
-  
+
 NB. ---------------------------------------------------------
   if. lox = iSECTION do.
     if. #page do.
@@ -24,7 +27,7 @@ NB. ---------------------------------------------------------
     end.
     res=. res, r continue.
   end.
-  
+
 NB. ---------------------------------------------------------
   while.
     'rc dat'=. r
@@ -35,16 +38,13 @@ NB. ---------------------------------------------------------
       page=. ''
     end.
     newpage=. 1
-    setsxywh Dxywh
+    setnewpage''
     r=. draw__loc 0
   end.
 end.
 
 NB. ---------------------------------------------------------
 setsxywhP Sxywh
-NB. this test removes possibily unwanted rows
-NB. if. newpage +. 0 < #page do.
 res=. res, Level;newpage;page
-NB. end.
 res
 )

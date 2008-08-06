@@ -6,6 +6,7 @@ NB. =========================================================
 NB. drawpara
 NB. returncode 0=ok, 1=more to come
 drawpara=: 3 : 0
+
 if. y do.
   Para=: Sw fit &> Data
 end.

@@ -1,13 +1,13 @@
 NB. section 5
 <h1>KESKEYTYSMÄÄRIEN JA -AIKOJEN VUOSITTAINEN VAIHTELU</h1>
-Liitteessä 3 on esitetty muuntopiiriluvuista (aikaisempien keskeytystilastojen menetelmällä) 
+Liitteessä 3 on esitetty muuntopiiriluvuista (aikaisempien keskeytystilastojen menetelmällä)
 lasketut vuosivaihtelut.
 
 <h2>Keskijänniteverkon keskeytystaajuudet</h2>
 
 <h3>Vikakeskeytystaajuudet</h3>
 <b>Keskijänniteverkon vikakeskeytystaajuudet kpl/100km vuosina 1973-2005, ei jälleenkytkentöjä</b>
- 
+
 
 <image>plot_5_1_1_pic1.jpf</image>
 

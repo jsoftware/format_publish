@@ -29,7 +29,6 @@ addopts msk # val
 
 NB. ---------------------------------------------------------
 NB. set data globals:
-NB. Data=: ,Data
 IfRow=: 0 < #Row
 IfCol=: 0 < #Col
 
@@ -63,6 +62,17 @@ end.
 assert. Clen = #Data
 
 NB. ---------------------------------------------------------
+CDlen=: 1 + +/@(LF&=) &> Data
+CRlen=: >./"1 (Crws,Ccls) $ CDlen
+IfMulti=: 1 e. 1 < CDlen
+
+NB. ---------------------------------------------------------
+if. IfMulti do.
+  DataM=: ; CDlen {.each 1
+  DataX=: ; <;._1 each LF ,each Data
+end.
+
+NB. ---------------------------------------------------------
 hc=. <;._1 &> LF ,each Top;Col
 Top=: {.hc
 Col=: |:}.hc
@@ -89,7 +99,7 @@ for_d. y do.
   case. 'col' do.
     Col=: br2lf each cutlist val
   case. 'data' do.
-    Data=: cutlist val
+    Data=: br2lf each cutlist val
   case. 'gridh' do.
     Gridh=: fix val
   case. 'gridv' do.

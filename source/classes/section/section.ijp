@@ -1,11 +1,12 @@
-NB. project file: e:\dev\apps\pub\source\classes\section\section
+NB. project file: /home/chris/dev/apps/beta/source/publish/source/classes/section/section
 
 coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
-~Publish\classes\section\init
-~Publish\classes\section\draw
-~Publish\classes\section\make
+~Publish/classes/section/init
+~Publish/classes/section/util
+~Publish/classes/section/draw
+~Publish/classes/section/make
 )
 
 PRIMARYLIBS=: ''
@@ -16,7 +17,7 @@ DEVLIBS=: ''
 
 OTHERFILES=: ''
 
-TARGETFILE=: '~.Publish\release\section.ijs'
+TARGETFILE=: '~.Publish/release/section.ijs'
 
 TARGETLOCALE=: 'ppubsection'
 
@@ -30,10 +31,10 @@ PREBUILDFILE=: ''
 
 POSTBUILDFILE=: ''
 
-TESTFILE=: '~Publish\classes\section\test.ijs'
+TESTFILE=: '~Publish/classes/section/test.ijs'
 
 NOTES=: ''
 
-WINDOWS=: ''
+VERSION=: ''
 
-WINDOWSTATE=: 0
+WINDOWS=: ''

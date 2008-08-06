@@ -1,9 +1,8 @@
-NB. project file: /home/chris/deb/addons/format/publish/source/base/util/util
+NB. project file: e:/dev/apps/beta/source/publish/source/base/util/util
 
 coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
-~Publish/base/util/init
 ~Publish/base/util/cut
 ~Publish/base/util/util
 ~Publish/base/util/ascii85

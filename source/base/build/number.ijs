@@ -25,17 +25,18 @@ if. x do.
   mst=. top {. msk
   msk=. top }. msk
   sec=. top }. sec
-  
+
 NB. ---------------------------------------------------------
 NB. redraw if table of contents:
   s=. {. Sections
   if. iTOC e. Locx__s do.
-    setsxywh__s Dxywh
+    setnewpage''
+    setnewpage__s ''
     ini=. draw__s ''
     mst=. ;1 {"1 ini
     len=. (#ini) 0 } len
   end.
-  
+
 NB. ---------------------------------------------------------
   ndx=. I. 1 |. mst
   for_n. ndx do.

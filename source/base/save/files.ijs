@@ -18,6 +18,7 @@ base/font
 base/read
 base/zlib
 
+classes/group
 classes/image
 classes/list
 classes/page
@@ -39,4 +40,4 @@ NB. base/zlib
 
 NB. =========================================================
 NB. set this project last
-SOURCELAST=: 'classes/pre'
+SOURCELAST=: 'classes/table'

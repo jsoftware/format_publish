@@ -1,9 +1,10 @@
-NB. project file: /home/chris/deb/addons/format/publish/source/base/main/main
+NB. project file: /home/chris/dev/apps/beta/source/publish/source/base/main/main
 
 coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
 ~Publish/base/main/init
+~Publish/base/main/util
 ~Publish/base/main/defs
 ~Publish/base/main/pubdefs
 ~Publish/base/main/color

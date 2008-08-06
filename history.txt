@@ -1,5 +1,9 @@
 format/publish - change history
 
+== 1.0.4 ==
+ * add group tag to fit content to same page
+ * support multi-line table cells
+
 == 1.0.3 ==
  * correctly define getPDFreader
 

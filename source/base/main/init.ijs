@@ -2,8 +2,8 @@ NB. init
 NB.
 NB. 1. A document is a list of:
 NB.
-NB.    xobjects
-NB. sections
+NB.   xobjects
+NB.   sections
 NB.
 NB. 2. XObjects are named im0, im1 etc.
 NB.
@@ -31,40 +31,5 @@ NB.
 NB. Contents is a 3 column table of:
 NB.   level;shortname;longname
 
-NB. PDFreader=: PDFREADER_j_
-getPDFreader=: 3 : 0
-if. 0~: 4!:0 <'PDFREADER_j_' do.
-  ''
-else.
-  PDFREADER_j_
-end.
-)
 
-ShowFrames=: 0
 
-addcontents=: 3 : 'Contents__locS=: Contents,y'
-
-NB. =========================================================
-newsection=: 3 : 0
-cocurrent locS
-y newinstance 'ppubsection'
-)
-
-NB. =========================================================
-newurl=: 3 : 0
-cocurrent locS
-if. (<y) e. UrlIds do. return. end.
-y newinstance 'ppuburl'
-)
-
-NB. =========================================================
-newxobject=: 3 : 0
-cocurrent locS
-y newinstance 'ppubxobject'
-)
-
-NB. =========================================================
-newplot=: 3 : 0
-cocurrent locS
-y newinstance 'ppubplot'
-)

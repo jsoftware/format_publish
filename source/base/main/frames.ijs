@@ -14,6 +14,18 @@ setdraw=: 3 : 0
 )
 
 NB. =========================================================
+setnewpage=: 3 : 0
+PNum__locS=: PNum + 1
+setsxywh Dxywh
+)
+
+NB. =========================================================
+setnewpageP=: 3 : 0
+PNum__locS=: PNum + 1
+setsxywhP Dxywh
+)
+
+NB. =========================================================
 NB. Sxywh is the section drawing area
 NB. each object may update this.
 NB. (at some stage, Sxywh should be a set of frames)
@@ -22,6 +34,7 @@ setsxywh=: 3 : 0
 'Sx Sy Sw Sh'=: Sxywh=: 0 >. y
 )
 
+NB. =========================================================
 setsxywhP=: 3 : 'setsxywh__locP y'
 
 NB. =========================================================

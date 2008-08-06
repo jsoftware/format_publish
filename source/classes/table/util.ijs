@@ -15,6 +15,10 @@ res, drawcell''
 )
 
 NB. =========================================================
+NB. for historical compatibility
+draw_keskey=: draw_std
+
+NB. =========================================================
 NB. get alignment all table
 setalign=: 3 : 0
 aln=. ,Align

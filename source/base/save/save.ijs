@@ -55,5 +55,4 @@ NB. build the target script:
 dat=. ;freads each ~.SAVEFILES
 dat=. decomment_jproject_ dat
 dat=. dat,LF,FOOTER
-dat fwrites jpath '~.Publish/publish.ijs'
-dat fwrites jpath '~addons/format/publish/publish.ijs'
+dat fwrites jpath '~.Publish/release/publish.ijs'

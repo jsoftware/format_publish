@@ -1,17 +1,16 @@
-NB. project file: e:\dev\apps\pub\source\classes\table\table
+NB. project file: e:/dev/apps/beta/source/publish/source/classes/table/table
 
 coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
-~Publish\classes\table\init
-~Publish\classes\table\util
-~Publish\classes\table\add
-~Publish\classes\table\back
-~Publish\classes\table\cell
-~Publish\classes\table\draw
-~Publish\classes\table\keskey
-~Publish\classes\table\std
-~Publish\classes\table\table
+~Publish/classes/table/init
+~Publish/classes/table/util
+~Publish/classes/table/add
+~Publish/classes/table/back
+~Publish/classes/table/cell
+~Publish/classes/table/draw
+~Publish/classes/table/std
+~Publish/classes/table/table
 )
 
 PRIMARYLIBS=: ''
@@ -22,7 +21,7 @@ DEVLIBS=: ''
 
 OTHERFILES=: ''
 
-TARGETFILE=: '~.Publish\release\table.ijs'
+TARGETFILE=: '~.Publish/release/table.ijs'
 
 TARGETLOCALE=: 'ppubtable'
 
@@ -36,10 +35,10 @@ PREBUILDFILE=: ''
 
 POSTBUILDFILE=: ''
 
-TESTFILE=: '~Publish\classes\table\test.ijs'
+TESTFILE=: '~Publish/classes/table/test.ijs'
 
 NOTES=: ''
 
-WINDOWS=: ''
+VERSION=: ''
 
-WINDOWSTATE=: 0
+WINDOWS=: ''

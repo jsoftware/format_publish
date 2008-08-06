@@ -16,7 +16,7 @@ txt=. ' ' (I. msk) } txt
 txt=. deb txt
 if. 0=#txt do. '' return. end.
 txt=. ',', txt
-a=. (txt ~: ' ') +. ~: /\ txt = '"' 
+a=. (txt ~: ' ') +. ~: /\ txt = '"'
 b=. (a # txt) e. ','
 c=. b +. }. b, 1
 d=. ~: /\ a #^:_1 c ~: }: 0, c
