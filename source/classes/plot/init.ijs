@@ -16,7 +16,9 @@ Plots__locS=: Plots,coname''
 NB. =========================================================
 add=: 3 : 0
 dat=. 1!:1 :: _1: <filename y
-assert. -. dat -: _1
+if. dat -: _1 do.
+  throw '101 Unable to read file: ',filename y
+end.
 ndx=. dat i. LF
 hdr=. ndx {. dat
 dat=. (ndx+1) }. dat

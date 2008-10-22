@@ -25,7 +25,10 @@ parsegroup=: 3 : 0
 msk=. (<'group') = 1{"1 y
 if. -. 1 e. msk do. y return. end.
 mid=. (~:/\msk) # 1{"1 y
-assert. -. 1 e. NotGroupTags e. mid
+if. 1 e. NotGroupTags e. mid do.
+  msg=. towords wraptag each NotGroupTags intersect mid
+  throw '101 Not supported within <group> tag: ',msg
+end.
 (1;'group/') (<(I.msk);0 1) } y
 )
 

@@ -18,12 +18,12 @@ top
 
 NB. =========================================================
 add=: 3 : 0
-assert. 2 = #y
-assert. (1;_1) -: {."1 y
-'off tag prm val'=. {.y
+'off tag prm val'=. checktag2 y
 set prm
 val=. TableTags parseml val
-assert. *./ (<'data') e. 1{"1 val
+if. -. (<'data') e. 1{"1 val do.
+  throw '101 Data not given in table definition'
+end.
 msk=. (<1) = {."1 val
 addopts msk # val
 
@@ -36,7 +36,7 @@ NB. ---------------------------------------------------------
 select. IfRow,IfCol
 case. 0 0 do.
   if. 0=#SHAPE do.
-    'Shape not given' assert. 0
+    throw '101 Shape not given in table definition'
   end.
   'Crws Ccls'=: SHAPE
   Clen=: Crws * Ccls
@@ -59,7 +59,11 @@ case. 1 1 do.
   Ccls=: #Col
   Clen=: Crws * Ccls
 end.
-assert. Clen = #Data
+if. Clen ~: #Data do.
+  msg=. LF,LF,'Expected data items: ',":Clen
+  msg=. msg,LF,LF,'Given data items: ',":#Data
+  throw '101 Table data does not match rows and cols',msg
+end.
 
 NB. ---------------------------------------------------------
 CDlen=: 1 + +/@(LF&=) &> Data
@@ -76,7 +80,12 @@ NB. ---------------------------------------------------------
 hc=. <;._1 &> LF ,each Top;Col
 Top=: {.hc
 Col=: |:}.hc
-assert. Ccls = {:$Col
+
+if. Ccls ~: {:$Col do.
+  msg=. LF,LF,'Expected header columns: ',":Ccls
+  msg=. msg,LF,LF,'Given header columns: ',":{:$Col
+  throw '101 Header columns do not match data',msg
+end.
 
 NB. ---------------------------------------------------------
 Hrws=: #Col

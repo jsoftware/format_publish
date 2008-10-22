@@ -15,7 +15,6 @@ script_z_ '~system/main/trig.ijs'
 
 coclass 'ppublish'
 
-
 cutlist=: 3 : 0
 txt=. trimWS y
 msk=. (txt = LF) > ~: /\ txt = '"'
@@ -61,10 +60,9 @@ txt=. ndx {.each txt
 txt=. deb each txt
 txt -. a:
 )
-
 BOXEMPTY=: <''
-BOXTYPE=: 32
-CHARTYPE=: 2 131072
+BOXTYPE=: 32 
+CHARTYPE=: 2 131072 
 EMPTY=: i. 0 0
 LF2=: LF,LF
 PATHSEP=: '/\'{~6=9!:12''
@@ -76,13 +74,16 @@ addLF=: , (LF #~ 0 < #) -. {:
 citemize=: ,:^:(2 > #@$)
 dlb=: }.~ =&' ' i. 0:
 fix=: 0&". ::]
+intersect=: e. # [
 partition=: 1 , [: -. }. -:"_1 }:
 pfl=: [: ; {.&1&.>
 readlist=: 3 : '<;._2 (0 : 0)'
 tolist=: }.@;@:(LF&,@,@":each)
+towords=: ;:^:_1
 trimLF=: 3 : 'y #~ (+./\msk) *. +./\.msk=. y ~: LF'
 trimWS=: 3 : 'y #~ (+./\msk) *. +./\.msk=. -. y e. LF,TAB,'' '''
-endian=. ({.a.)={. 1&(3!:4) 1
+wraptag=: '<'&, @ (,&'>')
+endian=. ({.a.)={. 1&(3!:4) 1  
 toucodem=: ''&,@(1&(3!:4))@(3&u:)@u:
 toucoder=: ''&,@:,@:(|."1@(_2: ]\ 1&(3!:4)))@(3&u:)@u:
 toucode1=: toucodem`toucoder@.(-.endian) f.
@@ -97,12 +98,24 @@ is1color=: 3 = */ @ $
 
 round=: [ * [: <. 0.5"_ + %~
 roundint=: <. @ +&0.5
+debugq=: 13!:17
+debugss=: 13!:3
+debugstack=: 13!:13
 ascii2utf8=: 3 : 0
 y=. a. i. y
 y=. y #~ 1 j. 127 < y
 c=. y {~ ndx=. I. 127 < y
 n=. 192 128 +"1 [ 0 64 #: c
 a. {~ n (ndx +/ 0 1) } y
+)
+checktag2=: 3 : 0
+if. 2 ~: #y do.
+  throw '101 Invalid block for tag: ',wraptag 1 pick {.y
+end.
+if. -. (1;_1) -: {."1 y do.
+  throw '101 Invalid begin, end tags for: ',wraptag 1 pick {.y
+end.
+{. y
 )
 defineindex=: 3 : 0
 y=. <;._2 (0 : 0)
@@ -119,7 +132,9 @@ dictget1=: > @: dictget
 filename=: 3 : 0
 p=. PATHSEP
 d=. jhostpath deb y
-assert. 0 < #d
+if. 0 = #d do.
+  throw '101 Filename is empty'
+end.
 if. IFWIN32 *: ':' = {: 2 {. d do.
   if. p ~: {.d do.
     d=. MasterPath,d
@@ -139,12 +154,17 @@ end.
 )
 getpath=: ([: +./\. =&PATHSEP) # ]
 jcmd=: 3 : 0
+loc=. 18!:5''
 18!:4 <'base'
-0!:100 y
+3 : '0!:100 y' y
+18!:4 loc
 )
 jcmdr=: 3 : 0
+loc=. 18!:5''
 18!:4 <'base'
-". y
+r=. 3 : '". y' y
+18!:4 loc
+r
 )
 jset=: 3 : 0
 try.
@@ -242,6 +262,53 @@ r=. a.{~ ,(4#256) #: 85 #. _5 [\ r
 r }.~ - b { 0 0 3 2 1
 )
 
+FORCETHROW=: 0
+throwtext=: ''
+rcOK=: 0;<
+dat=. 0 : 0
+0   OK
+1   Unknown error
+101 Problem with source data
+201 Problem with program code
+)
+
+dat=. a: -.~ <;._2 dat
+RCN=: 0 ". 3 {.&> dat
+ndx=. RCN i. 101
+RCS=: (,ndx&{) (<&>RCN),.4 }.each dat
+getrc=: 3 : 'RCS {~ RCN i. y'
+getreturncode=: 3 : 0
+txt=. throwtext
+if. 0 = #txt do.
+  getrc 101 return.
+end.
+ndx=. txt i. ' '
+rc=. _1 ". ndx {. txt
+'rc msg'=. getrc rc
+txt=. deb (ndx+1) }. txt
+rc;msg,(0<#txt)#': ',txt
+)
+throw=: 3 : 0
+throwtext__locB=: y
+if. FORCETHROW < debugq'' do.
+  debugss ; (2 }. {."1 debugstack'') ,each <' *:*,'
+  info y
+else.
+  smoutput y
+  throw.
+end.
+)
+LOG=: jpath '~temp/publish.log'
+loginit=: 3 : 0
+if. _1 -: '' fwrite LOG do.
+  throw 'Unable to write to log file: ',LOG
+end.
+)
+log=: 3 : 0
+((,":y),LF) fappends LOG
+)
+
+
 r100=. <;._1 '  c cc ccc cd d dc dcc dccc cm'
 r10=. <;._1 '  x xx xxx xl l lx lxx lxxx xc'
 r1=. <;._1 '  i ii iii iv v vi vii viii ix'
@@ -253,17 +320,14 @@ r=. ('m'$~<.y%1000),R1000{::~1000|y
 
 coclass 'ppublish'
 
-getPDFreader=: 3 : 0
-if. 0~: 4!:0 <'PDFREADER_j_' do.
-  ''
-else.
-  PDFREADER_j_
-end.
-)
-
-ShowFrames=: 0
 
 addcontents=: 3 : 'Contents__locS=: Contents,y'
+newsectionnum=: 3 : 0
+SectionNum__locS=: SectionNum+1
+)
+newgroup=: 3 : 0
+GroupNum__locS=: GroupNum+1
+)
 newsection=: 3 : 0
 cocurrent locS
 y newinstance 'ppubsection'
@@ -281,19 +345,35 @@ newplot=: 3 : 0
 cocurrent locS
 y newinstance 'ppubplot'
 )
-Padchar=: 'W'
+setgroup=: 3 : 0
+Groups__locS=: Groups,SNum,PNum,Sh,Locales i. coname''
+)
+ShowFrames=: 0
+
+getPDFreader=: 3 : 0
+if. 0~: 4!:0 <'PDFREADER_j_' do.
+  ''
+else.
+  PDFREADER_j_
+end.
+)
+Padchar=: 'W' 
 Txm_port=: '1 0 0 1 '
 Txm_land=: '0 1 -1 0 '
-PSletter=: 612 792
-PSa4=: 595.28 841.89
+PSletter=: 612 792    
+PSa4=: 595.28 841.89  
 setdefaults=: 3 : 0
-locS=: coname''
+locS=: locP=: coname''
 buf=: ''
-Sections=: ''
+GroupNum=: _1
 Level=: ''
+Locales=: ''
+Localex=: ''
+Plots=: ''
+Sections=: ''
+SectionNum=: _1 
 Urls=: UrlIds=: ''
 XObjects=: ''
-Plots=: ''
 )
 pageinit=: 3 : 0
 'Px Py Pw Ph'=: Pxywh=: 0 0,PAGESIZE
@@ -301,6 +381,8 @@ pageinit=: 3 : 0
 setframe Pxywh shrinkmargins PAGEMARGINS
 setdraw Fxywh
 )
+
+
 FONTH0=: 'Sans 11 bold'
 FONTH1=: 'Sans 11 bold'
 FONTH2=: 'Sans 10 bold'
@@ -308,18 +390,18 @@ FONTH3=: 'Sans 9 bold'
 FONTH4=: 'Sans 9 bold'
 FONTH5=: 'Sans 9 bold'
 FONTH6=: 'Sans 9 bold'
-FONTC0=: 'Sans 10 bold'
-FONTC1=: 'Sans 10 bold'
+FONTC0=: 'Sans 10 bold'  
+FONTC1=: 'Sans 10 bold'  
 FONTC2=: 'Sans 9'
 FONTC3=: 'Sans 9'
 FONTC4=: 'Sans 9'
 FONTC5=: 'Sans 9'
 FONTC6=: 'Sans 9'
 
-FONTP=: 'Sans 9'
-FONTPF=: 'Mono 9'
-FONTTH=: 'Sans 9'
-FONTTC=: 'Sans 9'
+FONTP=: 'Sans 9'  
+FONTPF=: 'Mono 9'  
+FONTTH=: 'Sans 9' 
+FONTTC=: 'Sans 9' 
 TCOLOR=: ". ;._2 (0 : 0)
 0 0 0 192 192 192
 0 0 0 255 255 255
@@ -330,22 +412,22 @@ TCOLOR=: ". ;._2 (0 : 0)
 255 255 255 0 128 128
 )
 TGRIDSIZE=: 0.3
-ALIGN=: 0
-ALIGNV=: 0
-AUTHOR=: ''
-BMLEVEL=: 3
-CLASS=: ''
-HYPHEN=: '~'
-LEADING=: 1.2
-LCOLOR=: 0 0 128
+ALIGN=: 0  
+ALIGNV=: 0 
+AUTHOR=: '' 
+BMLEVEL=: 3  
+CLASS=: '' 
+HYPHEN=: '~' 
+LEADING=: 1.2 
+LCOLOR=: 0 0 128 
 NAME=: ''
-PAGEMARGINS=: 72
-PAGESIZE=: PSletter
-PARASPACE=: 0.6
-SCALE=: 1
-STYLE=: ''
-TITLE=: ''
-TOCLEVEL=: 3
+PAGEMARGINS=: 72  
+PAGESIZE=: PSletter 
+PARASPACE=: 0.6 
+SCALE=: 1 
+STYLE=: '' 
+TITLE=: '' 
+TOCLEVEL=: 3 
 
 ". toupper COLORTABLE
 
@@ -380,10 +462,17 @@ setframe=: 3 : 0
 setdraw=: 3 : 0
 'Dx Dy Dw Dh'=: Dxywh=: y
 )
+setnewpage=: 3 : 0
+PNum__locS=: PNum + 1
+setsxywh Dxywh
+)
+setnewpageP=: 3 : 0
+PNum__locS=: PNum + 1
+setsxywhP Dxywh
+)
 setsxywh=: 3 : 0
 'Sx Sy Sw Sh'=: Sxywh=: 0 >. y
 )
-
 setsxywhP=: 3 : 'setsxywh__locP y'
 subwindow=: 4 : 0
 'px py pw ph'=. x
@@ -432,6 +521,7 @@ H6
 PARA
 )
 defineindex''
+GROUP
 HEADER
 IMAGE
 LIST
@@ -502,7 +592,7 @@ for_s. opt,.nam,.val do.
   case. 's' do.
     v=. toupper v
     if. 0 ~: nc <v do.
-      ('Style not found: ',v) assert. 0
+      throw '101 Style not found: ',v
     end.
     jset ". v return.
   case. 'v' do.
@@ -531,8 +621,15 @@ ALIGNV=: fixalign ALIGNV
 )
 
 publish=: 3 : 0
-locS=:  conew 'ppublish'
-res=. publishrun__locS y
+'file throw'=. 2 {. (boxxopen y),<FORCETHROW
+locS=: conew 'ppublish'
+FORCETHROW__locS=: throw
+try.
+  res=. publishrun__locS file
+catcht.
+  res=. throwtext__locS
+  log res
+end.
 destroy__locS ''
 res
 )
@@ -540,17 +637,19 @@ publishconfig=: 3 : 0
 PDFCompress=: zlibinit_ppubzlib_''
 )
 publishinit=: 3 : 0
+loginit''
 rxinit''
 setdefaults ''
 Counth1=: 0
 Contents=: i.0 3
 MasterFile=: jhostpath y
+log 'master file: ',MasterFile
 if. -. fexist MasterFile do.
-  info 'File not found: ',MasterFile
-  0 return.
+  throw '101 Master file not found: ',MasterFile
 end.
 MasterPath=: getpath MasterFile
 OutputFile=: ((i:&'.'{.])MasterFile),'.pdf'
+log 'output file: ',OutputFile
 dat=. pread MasterPath,'master.ijs'
 if. -. dat -: _1 do. jcmd dat end.
 dat=. pread MasterPath,'master.sty'
@@ -561,25 +660,33 @@ publishfini=: 3 : 0
 rxfree Rxhnd
 )
 publishrun=: 3 : 0
+locB=: coname''
 locT=: ''
 if. 0=publishinit y do. '' return. end.
 txt=. readtext MasterFile
 if. 0=#txt do.
-  info 'No text in file: ',MasterFile
-  0 return.
+  throw '101 No text in file: ',MasterFile
 end.
 colorinit''
 pageinit''
+log 'First pass through source text'
 txt=. fixedtext txt
+if. 0=#txt do.
+  throw '101 No source text for report'
+end.
+log 'Parse source text into sections'
 'sec front'=. parsetext txt
 FrontPage=: front
 for_s. sec do.
+  log 'Parse section ',":s_index
   parsesec >s
 end.
 b=. build front
 write b
+log 'Report created'
 view ''
 publishfini''
+EMPTY
 )
 
 publish_z_=: publish_ppublish_
@@ -626,12 +733,18 @@ EMPTY
 )
 
 build=: 3 : 0
+log 'Make creator'
 inf=. creator''
+log 'Resolve urls'
 uls=. urls''
+log 'Resolve images'
 xbs=. xobjects''
 sec=. sections''
+log 'Make page numbers'
 sec=. y numbers sec
+log 'Make fonts'
 fnt=. fonts''
+log 'Make PDF pages'
 roots''
 nds=. pages sec
 out=. outlines''
@@ -712,15 +825,14 @@ if. x do.
   mst=. top {. msk
   msk=. top }. msk
   sec=. top }. sec
-
   s=. {. Sections
   if. iTOC e. Locx__s do.
-    setsxywh__s Dxywh
+    setnewpage''
+    setnewpage__s ''
     ini=. draw__s ''
     mst=. ;1 {"1 ini
     len=. (#ini) 0 } len
   end.
-
   ndx=. I. 1 |. mst
   for_n. ndx do.
     s=. (<n;2) pick ini
@@ -789,7 +901,6 @@ for_i. i.#dat do.
   if. i < _1 + #dat do.
     r=. r, '/Next ',(_1 pick {.(i+1) pick dat),LF
   end.
-
   dest=. '/Dest [',pag,' /XYZ null null null]',LF
   if. 1 = #sub do.
     r=. r, dest
@@ -811,9 +922,9 @@ end.
 
 pages=: 3 : 0
 
-Next=: 1 + RootPages
-Contents=: Contents,.<0
-Pagenum=: 1
+Next=: 1 + RootPages 
+Contents=: Contents,.<0 
+PageNum=: 1 
 r=. pagesheader''
 r=. r,'/Kids [',LF
 s=. ''
@@ -823,7 +934,7 @@ for_d. y do.
   PageBlk=: >: PageBlk
 end.
 r=. r, ']',LF
-r=. r, '/Count ',(":Pagenum-1),LF
+r=. r, '/Count ',(":PageNum-1),LF
 r=. dict r
 
 r;s
@@ -832,7 +943,7 @@ pageset=: 3 : 0
 dat=. y
 here=. Next
 Next=: Next+1
-pno=. Pagenum
+pno=. PageNum
 len=. #dat
 r=. '/Type /Pages',LF
 r=. r, '/Parent ',(":RootPages),' 0 R',LF
@@ -861,7 +972,7 @@ if. #page do.
   s=. s, here pageset1 page
 end.
 r=. r, ']',LF
-r=. r, '/Count ',(":Pagenum-pno),LF
+r=. r, '/Count ',(":PageNum-pno),LF
 r=. dict r
 r;s
 )
@@ -871,7 +982,7 @@ r=. r,'/Parent ',(":x),' 0 R',LF
 r=. r,'/Contents ',(":Next+1),' 0 R',LF
 r=. dict r
 Next=: Next + 2
-Pagenum=: Pagenum+1
+PageNum=: PageNum+1
 s=. y
 if. ShowFrames do. s=. s, drawbox Dxywh end.
 r;wrapstream s
@@ -914,11 +1025,58 @@ EMPTY
 
 
 sections=: 3 : 0
-r=. ''
-for_s. Sections do.
-  setsxywh Dxywh
-  r=. r,<draw__s ''
+log 'Build sections'
+if. GroupNum >: 0 do.
+  sectiongroups''
+  sectionreset''
 end.
+sectionrun 1
+)
+sectiongroups=: 3 : 0
+sectionrun 1
+while. #Groups do.
+  bal=. i.0 0
+  for_grp. ({."1 Groups) </. Groups do.
+    dat=. >grp
+    msk=. 2 # _2 =/\ 1 {"1 dat
+    if. {. msk do.
+      ndx=. msk # {:"1 dat
+      for_loc. ndx{Locales do.
+        Gstate__loc=: 1
+      end.
+    end.
+    dat=. (-.msk)#dat
+    if. #dat do.
+      loc=. ((<0;_1){dat){Locales
+      Gstate__loc=: 2
+      loc=. ((<1;_1){dat){Locales
+      Gstate__loc=: 1
+      dat=. 2 }. dat
+      bal=. bal,dat
+    end.
+  end.
+  if. 0=#bal do. break. end.
+  sectionrun (i.#Sections) e. {."1 bal
+end.
+)
+sectionreset=: 3 : 0
+locs=. (Localex e. iPAGE,iGROUP)#Locales
+for_loc. locs do.
+  State__loc=: 0
+end.
+EMPTY
+)
+sectionrun=: 3 : 0
+PNum=: 0
+Groups=: i.0 0
+ndx=. y # i.#Sections
+r=. ''
+for_s. ndx{Sections do.
+  log 'Build section ',":s_index{ndx
+  setnewpage ''
+  r=. r,<draw__s 1
+end.
+r
 )
 
 
@@ -1029,7 +1187,7 @@ txt
 coclass 'ppublish'
 
 
-CIDfonts=: ''
+CIDfonts=: ''  
 AFMloc=: ''
 AFMdir=: i.0 2
 AFMffi=: ''
@@ -1088,6 +1246,10 @@ fontwidthboxed=: 4 : 0
 loc=. x { AFMloc
 getstrlen__loc &> y
 )
+fontwidthboxedm=: 4 : 0
+loc=. x { AFMloc
+getstrwid__loc &> y
+)
 fontwidths=: 4 : 0
 loc=. x { AFMloc
 getstrlens__loc y
@@ -1116,24 +1278,30 @@ bgn=. I. '<pre>' E. y
 res=. (#y)$0
 if. 0 = #bgn do. return. end.
 end=. I. '</pre>' E. y
-assert. (#bgn) = #end
+if. (#bgn) ~: #end do.
+  throw '101 Unmatched <pre> and </pre> tags'
+end.
 end=. (end+6) -. #res
 msk=. +/\ _1 end } 1 bgn } res
-assert. *./ msk e. 0 1
+if. -. *./ msk e. 0 1 do.
+  throw '101 Unmatched <pre> and </pre> tags'
+end.
 0 < msk
 )
 tagsplit=: 3 : 0
-assert. 1 = > {.{.y
+if. 1 ~: > {.{.y do.
+  throw '101 Invalid tag block'
+end.
 tags=. 1 {"1 y
 tag0=. > {. tags
 if. '/' = {:tag0 do.
   (,:{.y);<}.y
 else.
-msk=. tags = {.tags
-cnt=. ;msk # {."1 y
-ndx=. 1 i.~ 0 = +/\cnt
-len=. ndx { (1 + I. msk),1
-(len{.y);<len}.y
+  msk=. tags = {.tags
+  cnt=. ;msk # {."1 y
+  ndx=. 1 i.~ 0 = +/\cnt
+  len=. ndx { (1 + I. msk),1
+  (len{.y);<len}.y
 end.
 )
 fixedtext=: 3 : 0
@@ -1143,13 +1311,15 @@ msk=. '' fixedtag txt;var;'comment'
 msk=. 'AUTHOR' fixedtag txt;msk;'author'
 msk=. 'TITLE' fixedtag txt;msk;'title'
 msk=. msk >: var
-msk#txt
+trimWS msk#txt
 )
 fixedtag=: 4 : 0
 'txt msk tag'=. y
-b=. msk *. ('<',tag,'>') E. txt
+b=. msk *. (wraptag tag) E. txt
 e=. msk *. ('</',tag,'>') E. txt
-assert. b pairs e
+if. -. b pairs e do.
+  throw '101 Begin and end tags do not match for tag: ',wraptag tag
+end.
 if. 0=+/b do. msk return. end.
 b=. I.b
 e=. I.e
@@ -1182,7 +1352,9 @@ ind=. dat indexq &> '>'
 prm=. ind {.each dat
 dat=. (1+ind) }.each dat
 sel=. '/' ~: {:&> prm
-assert. (sel#bgn) pairs sel#end
+if. -. (sel#bgn) pairs sel#end do.
+  throw '101 Begin and end tags do not match'
+end.
 off=. bgn-end
 prm=. (bgn++:end) }.each prm
 ndx=. prm i.&> ' '
@@ -1199,7 +1371,7 @@ end.
 
 readtext=: 3 : 0
 txt=. pread y
-txt=. delNB txt
+txt=. trimWS delNB txt
 inc=. ('<include>' E. txt) > premask txt
 if. 0=#inc do. txt return. end.
 ndx=. inc i. 1
@@ -1208,7 +1380,9 @@ txt=. inc <;.1 txt
 for_t. txt do.
   t=. >t
   ndx=. 1 i.~ '</include>' E. t
-  assert. ndx <#t
+  if. ndx = #t do.
+    throw '101 <include> tag has no closing </include>'
+  end.
   f=. filename 9 }. ndx {. t
   t=. (ndx+10) }. t
   h=. ''
@@ -1220,7 +1394,7 @@ for_t. txt do.
   case. '.txt' do.
     h=. readtext f
   case. do.
-    assert. 0
+    throw '101 Invalid <include> file type: ',f
   end.
   res=. res,h,t
 end.
@@ -1238,8 +1412,19 @@ sec=. StructTags parseml txt
 if. 1 e. '<pre>' E. y do.
   sec=. parsepre sec
 end.
+sec=. parsegroup sec
 a=. newsection''
 make__a sec
+)
+parsegroup=: 3 : 0
+msk=. (<'group') = 1{"1 y
+if. -. 1 e. msk do. y return. end.
+mid=. (~:/\msk) # 1{"1 y
+if. 1 e. NotGroupTags e. mid do.
+  msg=. towords wraptag each NotGroupTags intersect mid
+  throw '101 Not supported within <group> tag: ',msg
+end.
+(1;'group/') (<(I.msk);0 1) } y
 )
 parsej=: 3 : 0
 txt=. y
@@ -1276,6 +1461,7 @@ for_s. y do.
 end.
 )
 StructTags=: readlist''
+group
 h0
 h1
 h2
@@ -1292,6 +1478,7 @@ skip
 table
 toc
 )
+NotGroupTags=: <;._1 ' h0 h1 newpage/ toc'
 parsetext=: 3 : 0
 txt=. trimLF y
 if. 0=#txt do. '';0 return. end.
@@ -1322,9 +1509,6 @@ if. res do.
 end.
 res
 )
-
-
-
 compress=: 3 : 0
 1 compress y
 :
@@ -1337,6 +1521,28 @@ else.
   wid {. res
 end.
 )
+coclass 'ppubgroup'
+
+
+Gstate=: 0
+State=: 0
+create=: 3 : 0
+coinsert locP=: COCREATOR
+GroupNum=: newgroup''
+)
+draw=: 3 : 0
+select. Gstate
+case. 0 do.
+  setgroup ''
+  0;''
+case. 1 do.
+  0;''
+case. 2 do.
+  State=: -. State
+  State;''
+end.
+)
+
 coclass 'ppubimage'
 
 
@@ -1404,7 +1610,9 @@ Plots__locS=: Plots,coname''
 )
 add=: 3 : 0
 dat=. 1!:1 :: _1: <filename y
-assert. -. dat -: _1
+if. dat -: _1 do.
+  throw '101 Unable to read file: ',filename y
+end.
 ndx=. dat i. LF
 hdr=. ndx {. dat
 dat=. (ndx+1) }. dat
@@ -1426,12 +1634,11 @@ Data=: dat
 )
 draw=: 3 : 'Data'
 
-
 coclass 'ppubpre'
 
 
-Data=: ''
-Font=: ''
+Data=: ''    
+Font=: ''    
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -1439,7 +1646,6 @@ add=: 3 : 0
 Data=: u2a y
 Font=: fontindex FONTPF
 )
-
 draw=: 3 : 0
 
 if. y do.
@@ -1473,23 +1679,32 @@ coinsert locP=: COCREATOR
 Sections__locP=: Sections,coname''
 Level=: Level__locP,#Sections
 if. FrontPage *. 1=#Level do. Level=: <:Level end.
+if. 1 = #Level do. SNum=: newsectionnum'' end.
 Sections=: ''
 )
 new=: 3 : 0
 a=. '' newinstance 'ppub',y
+i=. ('i',toupper y)~
 Locs=: Locs,a
-Locx=: Locx,('i',toupper y)~
+Locx=: Locx,i
+Locales__locS=: Locales,a
+Localex__locS=: Localex,i
 a
 )
+dogroup=: 0:
+reset=: ]
+
 draw=: 3 : 0
 newpage=. 1=#Level
 page=. ''
+if. y do.
+  setsxywh Sxywh__locP
+end.
 res=. i.0 3
 for_loc. Locs do.
   if. ShowFrames do. page=. page,LF,RED drawboxc Sxywh end.
   lox=. loc_index { Locx
   r=. draw__loc 1
-
   if. lox = iSECTION do.
     if. #page do.
       res=. res, Level;newpage;page
@@ -1498,7 +1713,6 @@ for_loc. Locs do.
     end.
     res=. res, r continue.
   end.
-
   while.
     'rc dat'=. r
     page=. page,dat
@@ -1508,7 +1722,7 @@ for_loc. Locs do.
       page=. ''
     end.
     newpage=. 1
-    setsxywh Dxywh
+    setnewpage''
     r=. draw__loc 0
   end.
 end.
@@ -1527,7 +1741,6 @@ while. #y do.
   'top y'=. tagsplit y
   'off tag prm val'=. {. top
   bal=. > {: {: top
-
   select. tag
   case. lvlheaders do.
     a=. new 'header'
@@ -1541,7 +1754,8 @@ while. #y do.
     make__a top
   case. Headers do.
     a=. new 'header'
-    add__a top
+  case. 'group/' do.
+    new 'group'
   case. 'newpage/' do.
     new 'page'
   case. 'toc' do.
@@ -1579,10 +1793,8 @@ while. #y do.
   case. '' do.
     bal=. val
   case. do.
-    'Invalid tag: ',tag
-    assert. 0
+    throw '101 Invalid tag: ',wraptag tag
   end.
-
   bal=. trimWS bal
   if. #bal do.
     a=. new 'text'
@@ -1623,15 +1835,16 @@ Row=: ''
 Top=: ''
 CLASS=: 'std'
 SHAPE=: ''
-NewPage=: 0
+NewPage=: 0           
 STATE=: 0
-Leading=: 1.4
-MinCellWid=: 50
-MinLabelWid=: 100
-PadCell=: 15
-PadHeader=: 0
-PadLabel=: 1
-SepHdrCell=: 2
+Leading=: 1.4         
+Leadingm=: 1          
+MinCellWid=: 50       
+MinLabelWid=: 100     
+PadCell=: 15          
+PadHeader=: 0         
+PadLabel=: 1          
+SepHdrCell=: 2        
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -1644,6 +1857,7 @@ drawall=: 3 : 0
 res=. drawback''
 res, drawcell''
 )
+draw_keskey=: draw_std
 setalign=: 3 : 0
 aln=. ,Align
 select. #aln
@@ -1654,7 +1868,7 @@ case. 1;Ccls;Clen do.
 case. (Ccls + 1);Tlen do.
   (Trws,Tcls) $ aln
 case. do.
-  'invalid align setting' assert. 0
+  throw '101 Invalid align setting'
 end.
 )
 setfont=: 3 : 0
@@ -1671,7 +1885,7 @@ case. 1;Ccls;Clen do.
 case. (Ccls + 1);Tlen do.
   r=. ((Trws,Tcls) $ bld) + (-Trws,Tcls) {. (Crws,Ccls)$2
 case. do.
-  'invalid font setting' assert. 0
+  throw '101 Font values do not match table size'
 end.
 tab=. r { f0,f1,f2,f3
 hdr=. ({."1 r),,Hrws{.r
@@ -1688,7 +1902,7 @@ case. 0 do.
 case. 1;1+Trws do.
   (1+Trws)$gh
 case. do.
-  'invalid gridh setting' assert. 0
+  throw '101 Gridh values do not match table size'
 end.
 )
 setgridv=: 3 : 0
@@ -1699,7 +1913,7 @@ case. 0 do.
 case. 1;1+Tcls do.
   (1+Tcls)$gv
 case. do.
-  'invalid gridv setting' assert. 0
+  throw '101 Gridv values do not match table size'
 end.
 )
 sethigh=: 3 : 0
@@ -1716,7 +1930,7 @@ case. Ccls;Clen do.
 case. (Ccls + 1);Tlen do.
   def sethighx (Trws,Tcls) $ clr
 case. do.
-  'invalid color setting' assert. 0
+  throw '101 Color values do not match table size'
 end.
 )
 sethighx=: 4 : '(x * y=0) + (y+2) * y>0'
@@ -1732,12 +1946,12 @@ row
 top
 )
 add=: 3 : 0
-assert. 2 = #y
-assert. (1;_1) -: {."1 y
-'off tag prm val'=. {.y
+'off tag prm val'=. checktag2 y
 set prm
 val=. TableTags parseml val
-assert. *./ (<'data') e. 1{"1 val
+if. -. (<'data') e. 1{"1 val do.
+  throw '101 Data not given in table definition'
+end.
 msk=. (<1) = {."1 val
 addopts msk # val
 IfRow=: 0 < #Row
@@ -1745,7 +1959,7 @@ IfCol=: 0 < #Col
 select. IfRow,IfCol
 case. 0 0 do.
   if. 0=#SHAPE do.
-    'Shape not given' assert. 0
+    throw '101 Shape not given in table definition'
   end.
   'Crws Ccls'=: SHAPE
   Clen=: Crws * Ccls
@@ -1768,11 +1982,27 @@ case. 1 1 do.
   Ccls=: #Col
   Clen=: Crws * Ccls
 end.
-assert. Clen = #Data
+if. Clen ~: #Data do.
+  msg=. LF,LF,'Expected data items: ',":Clen
+  msg=. msg,LF,LF,'Given data items: ',":#Data
+  throw '101 Table data does not match rows and cols',msg
+end.
+CDlen=: 1 + +/@(LF&=) &> Data
+CRlen=: >./"1 (Crws,Ccls) $ CDlen
+IfMulti=: 1 e. 1 < CDlen
+if. IfMulti do.
+  DataM=: ; CDlen {.each 1
+  DataX=: ; <;._1 each LF ,each Data
+end.
 hc=. <;._1 &> LF ,each Top;Col
 Top=: {.hc
 Col=: |:}.hc
-assert. Ccls = {:$Col
+
+if. Ccls ~: {:$Col do.
+  msg=. LF,LF,'Expected header columns: ',":Ccls
+  msg=. msg,LF,LF,'Given header columns: ',":{:$Col
+  throw '101 Header columns do not match data',msg
+end.
 Hrws=: #Col
 Trws=: Hrws+Crws
 Tcls=: 1 + Ccls
@@ -1791,7 +2021,7 @@ for_d. y do.
   case. 'col' do.
     Col=: br2lf each cutlist val
   case. 'data' do.
-    Data=: cutlist val
+    Data=: br2lf each cutlist val
   case. 'gridh' do.
     Gridh=: fix val
   case. 'gridv' do.
@@ -1864,7 +2094,7 @@ vw=. Dw -"1 Tw
 dy=. Dy - (#Dy) {. PadHeader
 if. IfRow do.
   x=. ({.Dx) + -: ({."1 Align) * ({."1 vw) - PadLabel
-  x=. x + PadLabel * {.Gridv
+  x=. x + PadLabel * {.Gridv 
   pos=. x,.}:dy
   clr=. ({."1 Thigh) { Tfcolor
   dat=. Top,Row
@@ -1890,7 +2120,19 @@ x=. x + -: (a * ,}."1 Hrws }. vw) - (a-1) * PadCell
 y=. ,Ccls # Hrws }.}: dy
 clr=. <&> (, }."1 Hrws }. Thigh) { Tfcolor
 fnt=. <&> ,}."1 Hrws}.Font
-r=. r,drawtext (<"1 x,.y),.clr,.fnt,.Data
+
+if. IfMulti do.
+  a=. CDlen#a
+  h=. ; (Fh1m * i.) each CDlen
+  y=. h -~ CDlen#y
+  x=. (CDlen#x) - Twx * -: a
+  clr=. CDlen#clr
+  fnt=. CDlen#fnt
+  dat=. DataX
+else.
+  dat=. Data
+end.
+r=. r,drawtext (<"1 x,.y),.clr,.fnt,.dat
 wraptext r
 )
 
@@ -1907,7 +2149,7 @@ Thigh=: sethigh''
 FONTTHSIZE=: getfontsize FONTTH
 
 'Font F0 F1'=: setfont''
-RowPos=: 0
+RowPos=: 0 
 Textf=: Textc=: _1
 space=. _4 {. prnd PARASPACE * fontheight F0
 setsxywhP Sxywh - space
@@ -1920,20 +2162,24 @@ drawit=: 3 : 0
 while. 1 do.
   Fh0=: prnd Leading * fontheight F0
   Fh1=: prnd Leading * fontheight F1
+  Fh1m=: prnd Leadingm * fontheight F1
   hrw=. F0 fontwidthboxed Row
   hcw=. F0 fontwidthboxed Col
   htw=. F0 fontwidthboxed Top
-  dtw=. F1 fontwidthboxed (Crws,Ccls)$Data
+  if. IfMulti do.
+    dtx=: F1 fontwidthboxed DataX
+    dtw=. (Crws,Ccls)$DataM >./;.1 dtx
+    Twx=: dtx - CDlen#,dtw
+  else.
+    dtw=. F1 fontwidthboxed (Crws,Ccls)$Data
+  end.
   Tw=: (htw,.hcw),hrw,.dtw
-
   rlw=. IfRow * MinLabelWid >. PadLabel + >./htw,hrw
-
   dcw=. MinCellWid >. PadCell + >./ hcw,dtw
-
   Dw=: rlw, dcw
   Dx=: Sx + +/\ 0, Dw
-  if. Sw >: +/ Dw do. break. end.
 
+  if. Sw >: +/ Dw do. break. end.
   select. STATE
   case. 0 do.
     k=. 0.5
@@ -1965,7 +2211,7 @@ if. IfCol do.
 else.
   hch=. 0
 end.
-Dh0=: hch, Crws$Fh0>.Fh1
+Dh0=: hch, (Fh0>.Fh1) + Fh1m * CRlen-1
 Dh=: Dh0 + (#Dh0){.(-Hrws*IfCol){.SepHdrCell
 Dy=: Sy + Sh - +/\ 0,Dh
 drawtable''
@@ -1977,7 +2223,6 @@ MinCellWid=: y*MinCellWid
 PadCell=: y*PadCell
 )
 
-draw_keskey=: draw_std
 draw_std=: 3 : 0
 Gridh=: 0 (1+i.Hrws) } Gridh
 'rc txt'=. drawit''
@@ -2066,10 +2311,10 @@ drawall''
 coclass 'ppubtext'
 
 
-Data=: ''
-Para=: ''
-Font=: ''
-Color=: ''
+Data=: ''    
+Para=: ''    
+Font=: ''    
+Color=: ''   
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -2123,6 +2368,7 @@ Data=: Data,dat
 
 draw=: drawpara
 drawpara=: 3 : 0
+
 if. y do.
   Para=: Sw fit &> Data
 end.
@@ -2211,7 +2457,9 @@ while. #dat do.
   len=. +/ ; 3 {"1 lin
   hit=. >./; 4 {"1 lin
   siz=. siz,len,hit
-  assert. -. bal -: dat
+  if. bal -: dat do.
+    throw '201 Problem in fit - unable to fit text in width'
+  end.
   dat=. bal
 end.
 fit;siz
@@ -2270,7 +2518,9 @@ wid=. x
 b=. LF = {:str
 tlf=. b#LF
 txt=. (-b) }. str -. HYPHEN
-assert. -. LF e. txt
+if. LF e. txt do.
+  throw '201 Problem in fitwords - text has a LF'
+end.
 hit=. fontheight fnt
 off=. +/\ 1 + str = HYPHEN
 len=. 0, fnt fontwidths txt
@@ -2316,11 +2566,13 @@ ind=. (0 _1;1);<_1;_1
 while. #y do.
   'top y'=. tagsplit y
   'off tag prm val'=. {. top
-  assert. off=1
+  if. off ~: 1 do.
+    throw '201 Problem in make - invalid text tags'
+  end.
   bal=. > {: {: top
   top=. (<'') (<_1 _1) } top
   top=. (1;'') (<0 _1;0 1) } top
-
+  
   select. tag
   case. ,'b' do.
     r=. r,(clr,fontbold fnt) make top
@@ -2331,18 +2583,18 @@ while. #y do.
     clk=. colorindex LCOLOR
     r=. r,(clk,fnt) make top
   case. 'style' do.
-    assert. 0 [ 'style not yet'
+    throw '101 Tag not supported: <style>'
   case. '' do.
     bal=. val
   case. do.
-    assert. 0 [ 'tag not supported: ',tag
+    throw '101 Tag not supported: ',wraptag tag
   end.
-
+  
   if. #bal do.
     r=. r,clr;fnt;bal
     bal=. ''
   end.
-
+  
 end.
 r
 )
@@ -2392,7 +2644,9 @@ add=: 3 : 0
 File=: filename y
 Type=: tolower (1+File i: '.') }. File
 if. Type -: 'jpeg' do. Type=: 'jpg' end.
-assert. (<Type) e. 'bmp';'jpg'
+if. -. (<Type) e. 'bmp';'jpg' do.
+  throw '101 Image file not supported: ',FILE
+end.
 Shape=: readshape''
 )
 read=: 3 : 0
@@ -2407,7 +2661,6 @@ case. 'jpg' do.
   readjpgshape dat
 end.
 )
-
 xobject=: 3 : 0
 ('xobject',Type)~''
 )
@@ -2445,7 +2698,9 @@ s=. s,'stream',LF,dat,'endstream',LF
 
 readjpg=: 3 : 0
 dat=. 1!:1 boxxopen y
-assert. 255 216 255 224 -: a.i.4{.dat
+if. -. 255 216 255 224 -: a.i.4{.dat do.
+  throw '101 Not recognized as a JPEG: ',>y
+end.
 dat
 )
 readjpgshape=: 3 : 0
@@ -2454,7 +2709,9 @@ sf=. a. {~ 192 + (i.16) -. 4 8 12
 dat=. 4 }. y
 while. 1 do.
   ndx=. dat i. ff
-  assert. ndx < _10 + #dat
+  if. ndx >: _10 + #dat do.
+    throw '101 Could not read JPEG file correctly'
+  end.
   sel=. (ndx+1) { dat
   if. sel=ff do. dat=. }. dat continue. end.
   if. sel e. sf do. break. end.
@@ -2466,8 +2723,8 @@ end.
 coclass 'ppubheader'
 
 
-NAME=: ''
-Tag=: ''
+NAME=: ''   
+Tag=: ''    
 create=: 3 : 0
 coinsert locP=: COCREATOR
 coinsert 'ppubtext'
@@ -2475,9 +2732,7 @@ ALIGN=: iLEFT
 ALIGNV=: iTOP
 )
 add=: 3 : 0
-assert. 2 = #y
-assert. (1;_1) -: {."1 y
-'off tag prm val'=. {.y
+'off tag prm val'=. checktag2 y
 num=. ; ,&'.' each ": each Level
 num=. (-1 < #Level) }. num
 fontname=. 'FONT',toupper tag
@@ -2534,14 +2789,13 @@ drawpara 1
 coclass 'ppubtoc'
 
 
-Data=: ''
+Data=: ''      
 TOCALIGN=: 0
 create=: 3 : 0
 coinsert 'ppubtext'
 coinsert locP=: COCREATOR
-Font=: fontindex FONTC0
+Font=: fontindex FONTC0  
 )
-
 draw=: 3 : 0
 res=. 0;''
 if. isempty Contents do. res return. end.

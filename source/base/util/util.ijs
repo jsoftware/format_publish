@@ -22,6 +22,7 @@ tolist=: }.@;@:(LF&,@,@":each)
 towords=: ;:^:_1
 trimLF=: 3 : 'y #~ (+./\msk) *. +./\.msk=. y ~: LF'
 trimWS=: 3 : 'y #~ (+./\msk) *. +./\.msk=. -. y e. LF,TAB,'' '''
+wraptag=: '<'&, @ (,&'>')
 
 NB. =========================================================
 NB. endian - pdf always use big endian
@@ -44,6 +45,12 @@ round=: [ * [: <. 0.5"_ + %~
 roundint=: <. @ +&0.5
 
 NB. =========================================================
+NB. required debug verbs
+debugq=: 13!:17
+debugss=: 13!:3
+debugstack=: 13!:13
+
+NB. =========================================================
 NB. ascii2utf8
 NB. Convert ascii to utf-8.
 NB. 7-bit ascii is unchanged.
@@ -60,6 +67,17 @@ y=. y #~ 1 j. 127 < y
 c=. y {~ ndx=. I. 127 < y
 n=. 192 128 +"1 [ 0 64 #: c
 a. {~ n (ndx +/ 0 1) } y
+)
+
+NB. =========================================================
+checktag2=: 3 : 0
+if. 2 ~: #y do.
+  throw '101 Invalid block for tag: ',wraptag 1 pick {.y
+end.
+if. -. (1;_1) -: {."1 y do.
+  throw '101 Invalid begin, end tags for: ',wraptag 1 pick {.y
+end.
+{. y
 )
 
 NB. =========================================================
@@ -86,7 +104,9 @@ NB. =========================================================
 filename=: 3 : 0
 p=. PATHSEP
 d=. jhostpath deb y
-assert. 0 < #d
+if. 0 = #d do.
+  throw '101 Filename is empty'
+end.
 if. IFWIN32 *: ':' = {: 2 {. d do.
   if. p ~: {.d do.
     d=. MasterPath,d

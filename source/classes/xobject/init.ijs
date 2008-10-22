@@ -18,7 +18,9 @@ add=: 3 : 0
 File=: filename y
 Type=: tolower (1+File i: '.') }. File
 if. Type -: 'jpeg' do. Type=: 'jpg' end.
-assert. (<Type) e. 'bmp';'jpg'
+if. -. (<Type) e. 'bmp';'jpg' do.
+  throw '101 Image file not supported: ',FILE
+end.
 Shape=: readshape''
 )
 

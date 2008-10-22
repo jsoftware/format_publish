@@ -6,6 +6,8 @@ PRIMARYFILES=: 0 : 0
 ~Publish/base/util/cut
 ~Publish/base/util/util
 ~Publish/base/util/ascii85
+~Publish/base/util/event
+~Publish/base/util/log
 ~Publish/base/util/roman
 )
 

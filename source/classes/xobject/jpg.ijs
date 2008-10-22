@@ -3,7 +3,9 @@ NB. jpg
 NB. =========================================================
 readjpg=: 3 : 0
 dat=. 1!:1 boxxopen y
-assert. 255 216 255 224 -: a.i.4{.dat
+if. -. 255 216 255 224 -: a.i.4{.dat do.
+  throw '101 Not recognized as a JPEG: ',>y
+end.
 dat
 )
 
@@ -14,7 +16,9 @@ sf=. a. {~ 192 + (i.16) -. 4 8 12
 dat=. 4 }. y
 while. 1 do.
   ndx=. dat i. ff
-  assert. ndx < _10 + #dat
+  if. ndx >: _10 + #dat do.
+    throw '101 Could not read JPEG file correctly'
+  end.
   sel=. (ndx+1) { dat
   if. sel=ff do. dat=. }. dat continue. end.
   if. sel e. sf do. break. end.

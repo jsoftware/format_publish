@@ -1,5 +1,10 @@
 format/publish - change history
 
+== 1.0.5 ==
+ * add Publish Manager
+ * add progress log
+ * replace assert. with throw
+
 == 1.0.4 ==
  * add group tag to fit content to same page
  * support multi-line table cells

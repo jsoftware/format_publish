@@ -24,7 +24,9 @@ while. #dat do.
   len=. +/ ; 3 {"1 lin
   hit=. >./; 4 {"1 lin
   siz=. siz,len,hit
-  assert. -. bal -: dat
+  if. bal -: dat do.
+    throw '201 Problem in fit - unable to fit text in width'
+  end.
   dat=. bal
 end.
 fit;siz
@@ -109,7 +111,9 @@ wid=. x
 b=. LF = {:str
 tlf=. b#LF
 txt=. (-b) }. str -. HYPHEN
-assert. -. LF e. txt
+if. LF e. txt do.
+  throw '201 Problem in fitwords - text has a LF'
+end.
 hit=. fontheight fnt
 
 NB. ---------------------------------------------------------

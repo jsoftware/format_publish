@@ -34,9 +34,8 @@ classes/xobject
 classes/header
 classes/toc
 
+base/man
 )
-
-NB. base/zlib
 
 NB. =========================================================
 NB. set this project last

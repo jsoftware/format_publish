@@ -1,4 +1,4 @@
-NB. project file: /home/chris/dev/apps/beta/source/publish/source/base/main/main
+NB. project file: /home/chris/deb/addons/format/publish/source/base/main/main
 
 coclass 'jproject'
 
@@ -21,7 +21,11 @@ DEVFILES=: ''
 
 DEVLIBS=: ''
 
-OTHERFILES=: '~Publish/base/main/test0.ijs'
+OTHERFILES=: 0 : 0
+~Addons/format/publish/history.txt
+~Addons/format/publish/manifest.ijs
+~Publish/base/main/test0.ijs
+)
 
 TARGETFILE=: '~.Publish/release/main.ijs'
 

@@ -27,12 +27,18 @@ NB.  Trailer
 
 NB. =========================================================
 build=: 3 : 0
+log 'Make creator'
 inf=. creator''
+log 'Resolve urls'
 uls=. urls''
+log 'Resolve images'
 xbs=. xobjects''
 sec=. sections''
+log 'Make page numbers'
 sec=. y numbers sec
+log 'Make fonts'
 fnt=. fonts''
+log 'Make PDF pages'
 roots''
 nds=. pages sec
 out=. outlines''

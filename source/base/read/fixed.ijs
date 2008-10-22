@@ -11,16 +11,18 @@ msk=. '' fixedtag txt;var;'comment'
 msk=. 'AUTHOR' fixedtag txt;msk;'author'
 msk=. 'TITLE' fixedtag txt;msk;'title'
 msk=. msk >: var
-msk#txt
+trimWS msk#txt
 )
 
 NB. =========================================================
 NB. returns updated mask and tag value
 fixedtag=: 4 : 0
 'txt msk tag'=. y
-b=. msk *. ('<',tag,'>') E. txt
+b=. msk *. (wraptag tag) E. txt
 e=. msk *. ('</',tag,'>') E. txt
-assert. b pairs e
+if. -. b pairs e do.
+  throw '101 Begin and end tags do not match for tag: ',wraptag tag
+end.
 if. 0=+/b do. msk return. end.
 b=. I.b
 e=. I.e

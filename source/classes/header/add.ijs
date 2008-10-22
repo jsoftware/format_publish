@@ -2,10 +2,7 @@ NB. add
 
 NB. =========================================================
 add=: 3 : 0
-assert. 2 = #y
-assert. (1;_1) -: {."1 y
-NB. assert. (1;_1) -: ({.,{:) {."1 y
-'off tag prm val'=. {.y
+'off tag prm val'=. checktag2 y
 num=. ; ,&'.' each ": each Level
 num=. (-1 < #Level) }. num
 fontname=. 'FONT',toupper tag

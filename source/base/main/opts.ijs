@@ -66,7 +66,7 @@ NB. !!! should validate font here
   case. 's' do.
     v=. toupper v
     if. 0 ~: nc <v do.
-      ('Style not found: ',v) assert. 0
+      throw '101 Style not found: ',v
     end.
     jset ". v return.
   case. 'v' do.

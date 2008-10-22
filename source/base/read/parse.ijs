@@ -36,7 +36,9 @@ dat=. (1+ind) }.each dat
 
 NB. ---------------------------------------------------------
 sel=. '/' ~: {:&> prm
-assert. (sel#bgn) pairs sel#end
+if. -. (sel#bgn) pairs sel#end do.
+  throw '101 Begin and end tags do not match'
+end.
 
 NB. ---------------------------------------------------------
 off=. bgn-end

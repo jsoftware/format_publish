@@ -30,7 +30,7 @@ case. 1;Ccls;Clen do.
 case. (Ccls + 1);Tlen do.
   (Trws,Tcls) $ aln
 case. do.
-  'invalid align setting' assert. 0
+  throw '101 Invalid align setting'
 end.
 )
 
@@ -51,7 +51,7 @@ case. 1;Ccls;Clen do.
 case. (Ccls + 1);Tlen do.
   r=. ((Trws,Tcls) $ bld) + (-Trws,Tcls) {. (Crws,Ccls)$2
 case. do.
-  'invalid font setting' assert. 0
+  throw '101 Font values do not match table size'
 end.
 tab=. r { f0,f1,f2,f3
 hdr=. ({."1 r),,Hrws{.r
@@ -71,7 +71,7 @@ case. 0 do.
 case. 1;1+Trws do.
   (1+Trws)$gh
 case. do.
-  'invalid gridh setting' assert. 0
+  throw '101 Gridh values do not match table size'
 end.
 )
 
@@ -85,7 +85,7 @@ case. 0 do.
 case. 1;1+Tcls do.
   (1+Tcls)$gv
 case. do.
-  'invalid gridv setting' assert. 0
+  throw '101 Gridv values do not match table size'
 end.
 )
 
@@ -107,7 +107,7 @@ case. Ccls;Clen do.
 case. (Ccls + 1);Tlen do.
   def sethighx (Trws,Tcls) $ clr
 case. do.
-  'invalid color setting' assert. 0
+  throw '101 Color values do not match table size'
 end.
 )
 

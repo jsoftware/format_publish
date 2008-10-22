@@ -33,7 +33,8 @@ RELEASEPATH, nam,'.ijs'
 
 NB. =========================================================
 PROJECTS=: makeprojfile each SOURCEFILES
-SAVEFILES=: makesavefile each SOURCEFILES
+SAVEFILES=: makesavefile each }:SOURCEFILES
+MANFILE=: makesavefile _1 pick SOURCEFILES
 LASTPROJECT=: makeprojfile SOURCELAST
 
 NB. =========================================================
@@ -55,4 +56,8 @@ NB. build the target script:
 dat=. ;freads each ~.SAVEFILES
 dat=. decomment_jproject_ dat
 dat=. dat,LF,FOOTER
-dat fwrites jpath '~.Publish/release/publish.ijs'
+dat fwrites jpath '~.Publish/publish.ijs'
+dat fwrites jpath '~addons/format/publish/publish.ijs'
+dat=. decomment_jproject_ freads MANFILE
+dat fwrites jpath '~.Publish/pubman.ijs'
+dat fwrites jpath '~addons/format/publish/pubman.ijs'

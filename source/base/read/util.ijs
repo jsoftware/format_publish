@@ -35,10 +35,14 @@ bgn=. I. '<pre>' E. y
 res=. (#y)$0
 if. 0 = #bgn do. return. end.
 end=. I. '</pre>' E. y
-assert. (#bgn) = #end
+if. (#bgn) ~: #end do.
+  throw '101 Unmatched <pre> and </pre> tags'
+end.
 end=. (end+6) -. #res
 msk=. +/\ _1 end } 1 bgn } res
-assert. *./ msk e. 0 1
+if. -. *./ msk e. 0 1 do.
+  throw '101 Unmatched <pre> and </pre> tags'
+end.
 0 < msk
 )
 
@@ -47,16 +51,18 @@ NB. tagsplit
 NB.
 NB. splits block on first tag
 tagsplit=: 3 : 0
-assert. 1 = > {.{.y
+if. 1 ~: > {.{.y do.
+  throw '101 Invalid tag block'
+end.
 tags=. 1 {"1 y
 tag0=. > {. tags
 if. '/' = {:tag0 do.
   (,:{.y);<}.y
 else.
-msk=. tags = {.tags
-cnt=. ;msk # {."1 y
-ndx=. 1 i.~ 0 = +/\cnt
-len=. ndx { (1 + I. msk),1
-(len{.y);<len}.y
+  msk=. tags = {.tags
+  cnt=. ;msk # {."1 y
+  ndx=. 1 i.~ 0 = +/\cnt
+  len=. ndx { (1 + I. msk),1
+  (len{.y);<len}.y
 end.
 )

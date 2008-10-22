@@ -68,8 +68,7 @@ NB. ---------------------------------------------------------
   case. '' do.
     bal=. val
   case. do.
-    'Invalid tag: ',tag
-    assert. 0
+    throw '101 Invalid tag: ',wraptag tag
   end.
 
 NB. ---------------------------------------------------------

@@ -14,6 +14,7 @@ NB. Groups are also processed here. Right now the drawing
 NB. is done while checking groups, but this could be avoided
 
 sections=: 3 : 0
+log 'Build sections'
 if. GroupNum >: 0 do.
   sectiongroups''
   sectionreset''
@@ -65,8 +66,10 @@ NB. run sections, y is mask of sections to run
 sectionrun=: 3 : 0
 PNum=: 0
 Groups=: i.0 0
+ndx=. y # i.#Sections
 r=. ''
-for_s. y#Sections do.
+for_s. ndx{Sections do.
+  log 'Build section ',":s_index{ndx
   setnewpage ''
   r=. r,<draw__s 1
 end.

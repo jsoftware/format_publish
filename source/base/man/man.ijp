@@ -1,0 +1,65 @@
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/base/man/init
+~Publish/base/man/nouns
+~Publish/base/man/util
+~Publish/base/man/api
+~Publish/base/man/config
+~Publish/base/man/filename
+~Publish/base/man/note
+~Publish/base/man/pubfiles
+~Publish/base/man/recent
+~Publish/base/man/req
+~Publish/base/man/snapshot
+~Publish/base/man/tab
+~Publish/base/man/main
+~Publish/base/man/run
+~Publish/base/man/win
+~Publish/base/man/winutil
+)
+
+PRIMARYLIBS=: 0 : 0
+compare
+dir
+dirbrowse
+dll
+files
+gl2
+jview
+libpath
+print
+regex
+strings
+task
+text
+)
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: '~Publish/base/man/test0.ijs'
+
+TARGETFILE=: '~.Publish/release/man.ijs'
+
+TARGETLOCALE=: 'ppubman'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 1 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/base/man/test.ijs'
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''
