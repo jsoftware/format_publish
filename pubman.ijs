@@ -136,7 +136,7 @@ if. IFUNIX do.
   end.
   res
 else.
-  spawn y
+  spawn_jtask_ y
 end.
 )
 sortfiles=: 3 : 0
