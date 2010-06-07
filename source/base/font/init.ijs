@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppublish'
 NB. font init
 NB.
 NB. the 4 basic postscript families are included:

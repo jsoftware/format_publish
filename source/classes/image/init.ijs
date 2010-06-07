@@ -1,4 +1,7 @@
 NB. init
+
+coclass 'ppubimage'
+NB. init
 NB.
 NB. an image object is a pointer to xobject or plot
 NB.

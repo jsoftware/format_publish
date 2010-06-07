@@ -1,4 +1,7 @@
 NB. init
+
+coclass 'ppubpre'
+NB. init
 NB.
 NB. a pre object has preformatted text
 NB.

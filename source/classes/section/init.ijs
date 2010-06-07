@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubsection'
 NB. init section
 NB.
 NB. a section corresponds to a header. The headers themselves

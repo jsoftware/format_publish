@@ -1,4 +1,7 @@
 NB. init
+
+coclass 'ppubtable'
+NB. init
 NB.
 NB. A table object has tags for:
 NB.   top

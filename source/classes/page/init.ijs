@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubpage'
 NB. init page
 
 State=: 0

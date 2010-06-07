@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubheader'
 NB. init header
 NB.
 NB. A header object has one or two lines

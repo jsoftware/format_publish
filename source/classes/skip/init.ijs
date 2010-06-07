@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubskip'
 NB. init skip
 
 Size=: 1

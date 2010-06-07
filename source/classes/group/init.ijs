@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubgroup'
 NB. init group
 NB.
 NB. Gstate is:

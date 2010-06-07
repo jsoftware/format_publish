@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubtoc'
 NB. toc init
 NB.
 NB. Data is the toc header

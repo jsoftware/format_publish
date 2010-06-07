@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubxobject'
 NB. xobject init
 NB.
 NB. File   filename

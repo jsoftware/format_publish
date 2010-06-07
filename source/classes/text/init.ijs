@@ -1,4 +1,7 @@
 NB. init
+
+coclass 'ppubtext'
+NB. init
 NB.
 NB. A text object is a list of one or more paragraphs,
 NB. all with the same alignment (except see below).

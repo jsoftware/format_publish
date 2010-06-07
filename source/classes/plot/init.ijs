@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppubplot'
 NB. plot init
 NB.
 NB. Data   data

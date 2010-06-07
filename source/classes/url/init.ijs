@@ -1,3 +1,6 @@
+NB. init
+
+coclass 'ppuburl'
 NB. url init
 NB.
 NB. Data url

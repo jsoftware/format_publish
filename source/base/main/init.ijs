@@ -1,4 +1,7 @@
 NB. init
+
+coclass 'ppublish'
+NB. init
 NB.
 NB. 1. A document is a list of:
 NB.
