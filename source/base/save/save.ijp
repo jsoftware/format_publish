@@ -4,7 +4,7 @@ coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
 ~Publish\base\save\files
-~Publish\base\save\save
+~Publish\base\save\runsave
 )
 
 PRIMARYLIBS=: ''

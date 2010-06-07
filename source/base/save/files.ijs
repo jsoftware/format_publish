@@ -12,7 +12,7 @@ NB. of the same name in release
 SOURCEFILES=: a: -.~ <;._2 (0 : 0)
 base/util
 base/main
-base/build
+base/pubbuild
 base/draw
 base/font
 base/read

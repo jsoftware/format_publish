@@ -1,0 +1,47 @@
+NB. project file: /home/chris/dev/apps/beta/source/publish/source/base/pubbuild/pubbuild
+
+coclass 'jproject'
+
+PRIMARYFILES=: 0 : 0
+~Publish/base/pubbuild/init
+~Publish/base/pubbuild/util
+~Publish/base/pubbuild/pubbuild
+~Publish/base/pubbuild/font
+~Publish/base/pubbuild/number
+~Publish/base/pubbuild/outline
+~Publish/base/pubbuild/page
+~Publish/base/pubbuild/section
+~Publish/base/pubbuild/url
+~Publish/base/pubbuild/wrap
+~Publish/base/pubbuild/xobject
+)
+
+PRIMARYLIBS=: ''
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: '~Publish/base/pubbuild/test0.ijs'
+
+TARGETFILE=: '~.Publish/release/pubbuild.ijs'
+
+TARGETLOCALE=: 'ppublish'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: '~Publish/base/pubbuild/test.ijs'
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''
