@@ -165,7 +165,7 @@ res
 
 snapfilecopy=: 3 : 0
 'source dest'=. y
-if. IFWIN32 do.
+if. IFWIN do.
   0 pick 'kernel32 CopyFileA i *c *c i' cd source;dest;0
 else.
   if. 0 = pathcreate fpath dest do. 0 return. end.
@@ -1192,7 +1192,7 @@ refresh''
 
 3 : 0''
 qm=. 0 ". wd 'qm'
-if. IFWIN32 > IFJAVA do.
+if. IFWIN > IFJAVA do.
   DESK=: 14 15 { qm
   BLK=: +/ <: 9 10 { qm
 else.

@@ -135,7 +135,7 @@ d=. jhostpath deb y
 if. 0 = #d do.
   throw '101 Filename is empty'
 end.
-if. IFWIN32 *: ':' = {: 2 {. d do.
+if. IFWIN *: ':' = {: 2 {. d do.
   if. p ~: {.d do.
     d=. MasterPath,d
   end.
