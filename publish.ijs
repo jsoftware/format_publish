@@ -1496,9 +1496,11 @@ coclass 'ppubzlib'
 z2chr=: 2 & ic
 z2num=: _2 & ic
 zlibinit=: 3 : 0
-if. IFUNIX do.
+if. UNAME-:'Linux' do.
+  p=. 'libz.so.1'
+elseif. UNAME-:'Darwin' do.
   p=. find_dll :: (''"_) 'z'
-else.
+elseif. do.
   p=. 'zlib1.dll'
   p=. (fexist p) # p
 end.
