@@ -1,20 +1,4 @@
-script_z_ '~system/main/compare.ijs'
-script_z_ '~system/main/dir.ijs'
-script_z_ '~system/packages/winapi/dirbrowse.ijs'
-script_z_ '~system/main/dll.ijs'
-script_z_ '~system/main/files.ijs'
-script_z_ '~system/main/gl2.ijs'
-script_z_ '~system/classes/view/jview.ijs'
-script_z_ '~system/main/libpath.ijs'
-script_z_ '~system/packages/print/print.ijs'
-script_z_ '~system/main/regex.ijs'
-script_z_ '~system/main/strings.ijs'
-script_z_ '~system/packages/misc/task.ijs'
-script_z_ '~system/main/text.ijs'
-
 coclass 'ppubman'
-
-
 'load'~'format/publish'
 MAXRECENT=: 20
 PUBSNAPS=: 5
@@ -27,8 +11,6 @@ pubreset=: 3 : 0
 PUBFILE=: PUBFILES=: PUBPATH=: PUBPID=: PUBRECFILES=: ''
 (PUBDEFS)=: <''
 )
-
-
 EMPTY=: i. 0 0
 3 : 0''
 if. IFUNIX do.
@@ -161,20 +143,16 @@ if. #err do.
 end.
 res
 )
-
-
 snapfilecopy=: 3 : 0
 'source dest'=. y
 if. IFWIN do.
-  0 pick 'kernel32 CopyFileA i *c *c i' cd source;dest;0
+  0 pick 'kernel32 CopyFileW i *w *w i' cd (uucp source);(uucp dest);0
 else.
   if. 0 = pathcreate fpath dest do. 0 return. end.
   if. _1 -: dat=. fread source do. 0 return. end.
   -. _1 -: dat fwrite dest
 end.
 )
-
-
 CFGHDR=: ; < @ ('NB. '&,) ;.2 (0 : 0)
 Publish configuration
 
@@ -198,8 +176,6 @@ recfiles=. 'PUBRECFILES' nounrep tolist PUBRECFILES
 dat=. CFGHDR,LF,recfiles
 dat fwritesnew PUBCFG
 )
-
-
 PUBEXT=: <;.1 '.jpb.ijs.sty.txt'
 fexist=: 1:@(1!:4)@boxopen :: 0:
 fexists=: #~ fexist&>
@@ -229,8 +205,6 @@ end.
 pubshortname=: 3 : 0
 PUBPID drophead PUBPATH drophead extnone y
 )
-
-
 WNOTE=: 0 : 0
 pc wnote owner;
 xywh 2 3 55 11;cc z0 static;cn "Notes:";
@@ -257,7 +231,6 @@ wd 'psel ',HWNDP,';pactive'
 )
 
 wnote_cancel_button=: wnote_cancel=: wnote_close=: wnoteclose
-
 deletefile=: 3 : 0
 
 p=. PUBID
@@ -433,7 +406,6 @@ t=. jpathsep each filecase each dpath PUBPID
 t=. t ,each '/' ,each (dirname each t) ,each <'.jpb'
 PUBFILES=: fexists t
 )
-
 RECENT=: 0 : 0
 pc precent nomin owner;pn "Recent Publish Files";
 xywh 4 8 51 10;cc s0 static;cn "Publish Files:";
@@ -483,7 +455,6 @@ pubopen >{.j
 pubaddrecent''
 pubformshow''
 )
-
 RX=: '^(load|require|script<|script_z_<|script <|script_z_) *(''(''''|[^''])*'')'
 
 reqread=: 1!:1 :: (''"_)
@@ -558,7 +529,6 @@ s=. 1{"1 PUBLIC
 t=. fromfoldername s
 (s,r) {~ (t,r) i. r
 )
-
 snapdir=: 3 : 0
 jhostpath PUBPATH,'/.pub'
 )
@@ -668,8 +638,6 @@ fx=. x&, each fa
 fy=. y&, each fa
 (<@(1!:1) fy) -: <@(1!:1) fx
 )
-
-
 BPREFIX=: 'tsjw'
 BFILES=: ;: 'TEXTFILES STYLEFILES SCRIPTFILES OTHERFILES'
 BEXTS=: '.txt';'.sty';'.ijs';''
@@ -818,7 +786,6 @@ end.
 wd 'psel ',HWNDP,';pactive'
 
 )
-
 PUBFORM=: 0 : 0
 pc pubform;pn "Publish Manager";
 menupop "&File";
@@ -952,8 +919,6 @@ pubform_open_button=: tab_open
 pubform_openall_button=: tab_openall
 pubform_delete_button=: tab_delete_button
 pubform_view_button=: tab_view
-
-
 pubmanrun=: 3 : 0
 if. 0=#PUBFILE do. infonopub'' return. end.
 saveall_ppubwin_''
@@ -971,7 +936,6 @@ if. -. pubinit y do. return. end.
 pubform_run''
 )
 pubman_z_=: pubman_ppubman_
-
 coclass 'ppubwin'
 coinsert 'ppubman'
 
@@ -1189,7 +1153,6 @@ win_kctrlshift_fkey=: win_selplusline1_button
 win_lctrlshift_fkey=: win_selplusline2_button
 win_nctrlshift_fkey=: win_selplus_button
 refresh''
-
 3 : 0''
 qm=. 0 ". wd 'qm'
 if. IFWIN > IFJAVA do.
@@ -1304,3 +1267,4 @@ if. -. new -: sel do.
 end.
 
 )
+
