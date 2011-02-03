@@ -49,7 +49,7 @@ BOXTYPE=: 32
 CHARTYPE=: 2 131072 
 EMPTY=: i. 0 0
 LF2=: LF,LF
-PATHSEP=: '/\'{~6=9!:12''
+PATHJSEP=: PATHJSEP_j_
 WHITESPACE=: TAB,CRLF,' '
 
 create=: ]
@@ -114,8 +114,8 @@ dictget=: 4 : 0
 )
 dictget1=: > @: dictget
 filename=: 3 : 0
-p=. PATHSEP
-d=. jhostpath deb y
+p=. PATHJSEP
+d=. jpathsep deb y
 if. 0 = #d do.
   throw '101 Filename is empty'
 end.
@@ -132,7 +132,7 @@ indexq=: 4 : 0
 info=: 3 : 0
 wdinfo@('Publish'&;) :: smoutput y
 )
-getpath=: ([: +./\. =&PATHSEP) # ]
+getpath=: ([: +./\. =&PATHJSEP) # ]
 jcmd=: 3 : 0
 loc=. 18!:5''
 18!:4 <'base'
@@ -605,7 +605,7 @@ rxinit''
 setdefaults ''
 Counth1=: 0
 Contents=: i.0 3
-MasterFile=: jhostpath y
+MasterFile=: jpathsep y
 log 'master file: ',MasterFile
 if. -. fexist MasterFile do.
   throw '101 Master file not found: ',MasterFile
@@ -2843,7 +2843,7 @@ coclass 'ppubman'
 MAXRECENT=: 20
 PUBSNAPS=: 5
 PUBSNAPX=: ''
-PUBCFG=: jpath '~config\pubmancfg.ijs'
+PUBCFG=: jpath '~config/pubmancfg.ijs'
 PUBOLD=: ''
 PUBDEFS=: ;:'OTHERFILES SCRIPTFILES STYLEFILES TEXTFILES'
 pubdefs=: 3 : '". each PUBDEFS'
@@ -2880,7 +2880,7 @@ isboxed=: 0 < L.
 isempty=: 0: e. $
 dirname=: ] #~ [: *./\. '/' ~: ]
 matchhead=: [ -: &: filecase #@[ {. ]
-pathname=: 3 : '(b#y);(-.b=.+./\.y=PATHSEP_j_)#y'
+pathname=: 3 : '(b#y);(-.b=.+./\.y=PATHJSEP_j_)#y'
 query=: wdquery 'Publish Manager'&;
 subs=. 2 : 'x I. @(e.&y)@]} ]'
 termLF=: , (0: < #) # LF -. _1&{.    
@@ -3076,7 +3076,7 @@ deletefile=: 3 : 0
 p=. PUBID
 j=. '"Script Files (*.ijs)|*.ijs|Text Files (*.txt)|*.txt|'
 j=. j,'All Files (*.*)|*.*" ofn_nochangedir'
-f=. wd 'mbopen "Remove File" "',p,'" "" ',j
+f=. mbopen '"Remove File" "',p,'" "" ',j
 
 if. ''-:f do. return. end.
 if. 0=fexist f do. return. end.
@@ -3122,10 +3122,10 @@ end.
 )
 pubnewbrowse=: 3 : 0
 pubsave 0
-path=. jhostpath addsep PUBPID
+path=. jpathsep addsep PUBPID
 while. 1 do.
   j=. '"Publish Files(*.jpb)|*.jpb" ofn_nochangedir'
-  f=. wd 'mbsave "New Publish File" "',path,'" "" ',j
+  f=. mbsave '"New Publish File" "',path,'" "" ',j
   if. 0=#f do. return. end.
   f=. extjpb jpathsep f
   if. -. '.jpb' -: _4 {.f do.
@@ -3133,8 +3133,8 @@ while. 1 do.
   end.
   'path file'=. pathfile f
   pid=. 1 pick pathfile }:path
-  req=. jhostpath path,pid,'.jpb'
-  f=. jhostpath f
+  req=. jpathsep path,pid,'.jpb'
+  f=. jpathsep f
   if. -. f -: req do.
     info 'Publish project file should be named: ',req,'. Using that name.'
     f=. req
@@ -3155,10 +3155,10 @@ pubformshow''
 )
 pubopenbrowse=: 3 : 0
 pubsave 0
-path=. jhostpath }:PUBPID
+path=. jpathsep }:PUBPID
 while. 1 do.
   j=. '"Publish Files(*.jpb)|*.jpb" ofn_filemustexist ofn_nochangedir'
-  f=. wd 'mbopen "Open Publish File" "',path,'" "" ',j
+  f=. mbopen '"Open Publish File" "',path,'" "" ',j
   if. 0=#f do. return. end.
   f=. extjpb f
   if. '.jpb' -: _4 {.f do. break. end.
@@ -3197,16 +3197,16 @@ pubread=: 3 : 0
 try. 0!:0 <PUBFILE
 catch. info 'Unable to load: ',y
 end.
-SCRIPTFILES=: sortfiles cutopen jhostpath SCRIPTFILES
-STYLEFILES=: sortfiles cutopen jhostpath STYLEFILES
-TEXTFILES=: sortfiles cutopen jhostpath TEXTFILES
-OTHERFILES=: sortfiles cutopen jhostpath OTHERFILES
+SCRIPTFILES=: sortfiles cutopen jpathsep SCRIPTFILES
+STYLEFILES=: sortfiles cutopen jpathsep STYLEFILES
+TEXTFILES=: sortfiles cutopen jpathsep TEXTFILES
+OTHERFILES=: sortfiles cutopen jpathsep OTHERFILES
 OTHERFILES=: sortfiles OTHERFILES -. SCRIPTFILES,STYLEFILES,TEXTFILES
 PUBOLD=: pubdefs''
 pubrefresh''
 )
 pubrefresh=: 3 : 0
-p=. jhostpath addsep PUBPATH
+p=. jpathsep addsep PUBPATH
 TEXTFILES=: TEXTFILES pubmerge pubdir p,'*.txt'
 STYLEFILES=: STYLEFILES pubmerge pubdir p,'*.sty'
 SCRIPTFILES=: SCRIPTFILES pubmerge pubdir p,'*.ijs'
@@ -3219,7 +3219,7 @@ if. (y=0) *. PUBOLD -: pubdefs'' do. return. end.
 pn=. jpathsep extnone PUBFILE
 hdr=. 'NB. publish manager file: ',pn,LF,LF
 hdr=. hdr,'coclass ''ppubman''',LF
-pub=. pubdir jhostpath PUBPATH,'*.*'
+pub=. pubdir jpathsep PUBPATH,'*.*'
 r=. ''
 r=. r,<'SCRIPTFILES' nounrep SCRIPTFILES -. pub
 r=. r,<'STYLEFILES' nounrep STYLEFILES -. pub
@@ -3317,7 +3317,7 @@ t=. (1{"1 PUBLIC),y
 t {~ f i. y
 )
 getlibids=: 3 : 0
-s=. jhostpath each y
+s=. jpathsep each y
 f=. (1{"1 PUBLIC),y
 t=. (0{"1 PUBLIC),s
 t {~ f i. y
@@ -3370,7 +3370,7 @@ t=. fromfoldername s
 (s,r) {~ (t,r) i. r
 )
 snapdir=: 3 : 0
-jhostpath PUBPATH,'/.pub'
+jpathsep PUBPATH,'/.pub'
 )
 snapshot=: 3 : 0
 return.
@@ -3380,7 +3380,7 @@ p=. snapdir''
 if. 0 = #1!:0 p do.
   if. -. ss_makedir p do. return. end.
 end.
-p=. p,PATHSEP_j_
+p=. p,PATHJSEP_j_
 d=. 1!:0 p,'*'
 pfx=. p,today
 if. 0=#d do. ss_make pfx,'001' return. end.
@@ -3405,13 +3405,13 @@ else.
 end.
 d=. (PUBSNAPS-1) }. d
 for_s. d do.
-  f=. p,(>s),PATHSEP_j_
+  f=. p,(>s),PATHJSEP_j_
   1!:55 f&, each {."1 [ 1!:0 f,'*'
   1!:55 <f
 end.
 )
 snapview=: 3 : 0
-'require'~'~system\extras\util\dirmatch.ijs'
+require '~system/extras/util/dirmatch.ijs'
 PJPROJ_jdirmatch_=: ''
 dmrun_jdirmatch_ 1 1
 )
@@ -3427,8 +3427,8 @@ end.
 )
 ss_info=: wdinfo @ ('Snapshot'&;)
 ss_make=: 3 : 0
-fm=. jhostpath PUBPATH,'/'
-to=. jhostpath y,'/'
+fm=. jpathsep PUBPATH,'/'
+to=. jpathsep y,'/'
 if. 0 -: 1!:5 :: 0: <to do.
   ss_info 'Unable to create snapshot directory.'
   0 return.
@@ -3491,7 +3491,7 @@ All Files(*.*)|*.*
 )
 tab_add_button=: 3 : 0
 if. 0=#PUBFILE do. infonopub'' return. end.
-p=. jhostpath }:PUBPATH
+p=. jpathsep }:PUBPATH
 typ=. dquote TABNDX pick BTYPES
 lab=. TABNDX pick BLABELS
 ext=. TABNDX pick BEXTS
@@ -3499,7 +3499,7 @@ fls=. TABNDX pick BFILES
 
 while. 1 do.
   j=. typ,' ofn_nochangedir'
-  f=. wd 'mbsave "New ',lab,' File" "',p,'" "" ',j
+  f=. mbsave '"New ',lab,' File" "',p,'" "" ',j
   if. ''-:f do. return. end.
   if. TABNDX<3 do.
     f=. ext addext f
@@ -3536,7 +3536,7 @@ fls=. TABNDX pick BFILES
 for_f. files do.
   f=. >f
   if. PUBPATH -: 0 pick pathfile jpathsep f do.
-    ferase jhostpath f
+    ferase jpathsep f
   else.
     (fls)=: fls~ -. <jpathsep f
   end.
@@ -3561,7 +3561,7 @@ if. 0 e. msk do.
 end.
 fls=. msk # fls
 if. 0 = #fls do. return. end.
-open_ppubwin_ jhostpath each fls
+open_ppubwin_ jpathsep each fls
 )
 tab_refresh=: 3 : 0
 pubrefresh''
@@ -3581,11 +3581,11 @@ wd 'psel ',HWNDP
 if. 0=#PUBFILE do.
   wd 'set filelist *'
 else.
-  wd 'set filelist *', jhostpath tolist pubshortname each fls
+  wd 'set filelist *', jpathsep tolist pubshortname each fls
 end.
 )
 tab_view=: 3 : 0
-fls=. jhostpath each tab_selected ''
+fls=. jpathsep each tab_selected ''
 if. #fls do. view fls end.
 )
 view=: 3 : 0
@@ -3762,7 +3762,7 @@ pubform_view_button=: tab_view
 pubmanrun=: 3 : 0
 if. 0=#PUBFILE do. infonopub'' return. end.
 saveall_ppubwin_''
-mas=. jhostpath PUBPATH,'master.txt'
+mas=. jpathsep PUBPATH,'master.txt'
 if. -. fexist mas do.
   info 'Master file not found: ',mas return.
 end.
@@ -3823,7 +3823,7 @@ types=. '"Text (*.txt)|*.txt|Scripts (*.ijs)|*.ijs|Styles (*.sty)|*.sty|All File
 types=. types,' ofn_nochangedir'
 while. 1 do.
   'p f'=. pathname fn
-  fn=. wd 'mbsave "Save As" "',p,'" "',f,'" ',types
+  fn=. mbsave '"Save As" "',p,'" "',f,'" ',types
   if. 0=#fn do. return. end.
   if. -. '.' e. fn do. fn=. fn,'.txt' end.
   if. fn -: FILE do. return. end.
