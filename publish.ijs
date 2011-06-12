@@ -321,10 +321,10 @@ Groups__locS=: Groups,SNum,PNum,Sh,Locales i. coname''
 ShowFrames=: 0
 
 getPDFreader=: 3 : 0
-if. 0~: 4!:0 <'PDFREADER_j_' do.
+if. 0~: 4!:0 <'PDFReader_j_' do.
   ''
 else.
-  PDFREADER_j_
+  PDFReader_j_
 end.
 )
 Padchar=: 'W' 
