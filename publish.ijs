@@ -45,8 +45,8 @@ txt=. deb each txt
 txt -. a:
 )
 BOXEMPTY=: <''
-BOXTYPE=: 32 
-CHARTYPE=: 2 131072 
+BOXTYPE=: 32
+CHARTYPE=: 2 131072
 EMPTY=: i. 0 0
 LF2=: LF,LF
 PATHJSEP=: PATHJSEP_j_
@@ -67,7 +67,7 @@ towords=: ;:^:_1
 trimLF=: 3 : 'y #~ (+./\msk) *. +./\.msk=. y ~: LF'
 trimWS=: 3 : 'y #~ (+./\msk) *. +./\.msk=. -. y e. LF,TAB,'' '''
 wraptag=: '<'&, @ (,&'>')
-endian=. ({.a.)={. 1&(3!:4) 1  
+endian=. ({.a.)={. 1&(3!:4) 1
 toucodem=: ''&,@(1&(3!:4))@(3&u:)@u:
 toucoder=: ''&,@:,@:(|."1@(_2: ]\ 1&(3!:4)))@(3&u:)@u:
 toucode1=: toucodem`toucoder@.(-.endian) f.
@@ -327,11 +327,11 @@ else.
   PDFReader_j_
 end.
 )
-Padchar=: 'W' 
+Padchar=: 'W'
 Txm_port=: '1 0 0 1 '
 Txm_land=: '0 1 -1 0 '
-PSletter=: 612 792    
-PSa4=: 595.28 841.89  
+PSletter=: 612 792
+PSa4=: 595.28 841.89
 setdefaults=: 3 : 0
 locS=: locP=: coname''
 buf=: ''
@@ -341,7 +341,7 @@ Locales=: ''
 Localex=: ''
 Plots=: ''
 Sections=: ''
-SectionNum=: _1 
+SectionNum=: _1
 Urls=: UrlIds=: ''
 XObjects=: ''
 )
@@ -358,18 +358,18 @@ FONTH3=: 'Sans 9 bold'
 FONTH4=: 'Sans 9 bold'
 FONTH5=: 'Sans 9 bold'
 FONTH6=: 'Sans 9 bold'
-FONTC0=: 'Sans 10 bold'  
-FONTC1=: 'Sans 10 bold'  
+FONTC0=: 'Sans 10 bold'
+FONTC1=: 'Sans 10 bold'
 FONTC2=: 'Sans 9'
 FONTC3=: 'Sans 9'
 FONTC4=: 'Sans 9'
 FONTC5=: 'Sans 9'
 FONTC6=: 'Sans 9'
 
-FONTP=: 'Sans 9'  
-FONTPF=: 'Mono 9'  
-FONTTH=: 'Sans 9' 
-FONTTC=: 'Sans 9' 
+FONTP=: 'Sans 9'
+FONTPF=: 'Mono 9'
+FONTTH=: 'Sans 9'
+FONTTC=: 'Sans 9'
 TCOLOR=: ". ;._2 (0 : 0)
 0 0 0 192 192 192
 0 0 0 255 255 255
@@ -380,22 +380,22 @@ TCOLOR=: ". ;._2 (0 : 0)
 255 255 255 0 128 128
 )
 TGRIDSIZE=: 0.3
-ALIGN=: 0  
-ALIGNV=: 0 
-AUTHOR=: '' 
-BMLEVEL=: 3  
-CLASS=: '' 
-HYPHEN=: '~' 
-LEADING=: 1.2 
-LCOLOR=: 0 0 128 
+ALIGN=: 0
+ALIGNV=: 0
+AUTHOR=: ''
+BMLEVEL=: 3
+CLASS=: ''
+HYPHEN=: '~'
+LEADING=: 1.2
+LCOLOR=: 0 0 128
 NAME=: ''
-PAGEMARGINS=: 72  
-PAGESIZE=: PSletter 
-PARASPACE=: 0.6 
-SCALE=: 1 
-STYLE=: '' 
-TITLE=: '' 
-TOCLEVEL=: 3 
+PAGEMARGINS=: 72
+PAGESIZE=: PSletter
+PARASPACE=: 0.6
+SCALE=: 1
+STYLE=: ''
+TITLE=: ''
+TOCLEVEL=: 3
 ". toupper COLORTABLE
 
 Colors=: i.0 3
@@ -878,9 +878,9 @@ end.
 )
 pages=: 3 : 0
 
-Next=: 1 + RootPages 
-Contents=: Contents,.<0 
-PageNum=: 1 
+Next=: 1 + RootPages
+Contents=: Contents,.<0
+PageNum=: 1
 r=. pagesheader''
 r=. r,'/Kids [',LF
 s=. ''
@@ -1133,12 +1133,12 @@ end.
 txt
 )
 coclass 'ppublish'
-CIDfonts=: ''  
+CIDfonts=: ''
 AFMloc=: ''
 AFMdir=: i.0 2
 AFMffi=: ''
 coclass 'ppublish'
-CIDfonts=: ''  
+CIDfonts=: ''
 AFMloc=: ''
 AFMdir=: i.0 2
 AFMffi=: ''
@@ -1581,8 +1581,8 @@ Data=: dat
 draw=: 3 : 'Data'
 
 coclass 'ppubpre'
-Data=: ''    
-Font=: ''    
+Data=: ''
+Font=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -1783,16 +1783,16 @@ Row=: ''
 Top=: ''
 CLASS=: 'std'
 SHAPE=: ''
-NewPage=: 0           
+NewPage=: 0
 STATE=: 0
-Leading=: 1.4         
-Leadingm=: 1          
-MinCellWid=: 50       
-MinLabelWid=: 100     
-PadCell=: 15          
-PadHeader=: 0         
-PadLabel=: 1          
-SepHdrCell=: 2        
+Leading=: 1.4
+Leadingm=: 1
+MinCellWid=: 50
+MinLabelWid=: 100
+PadCell=: 15
+PadHeader=: 0
+PadLabel=: 1
+SepHdrCell=: 2
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -2040,7 +2040,7 @@ vw=. Dw -"1 Tw
 dy=. Dy - (#Dy) {. PadHeader
 if. IfRow do.
   x=. ({.Dx) + -: ({."1 Align) * ({."1 vw) - PadLabel
-  x=. x + PadLabel * {.Gridv 
+  x=. x + PadLabel * {.Gridv
   pos=. x,.}:dy
   clr=. ({."1 Thigh) { Tfcolor
   dat=. Top,Row
@@ -2094,7 +2094,7 @@ Thigh=: sethigh''
 FONTTHSIZE=: getfontsize FONTTH
 
 'Font F0 F1'=: setfont''
-RowPos=: 0 
+RowPos=: 0
 Textf=: Textc=: _1
 space=. _4 {. prnd PARASPACE * fontheight F0
 setsxywhP Sxywh - space
@@ -2252,10 +2252,10 @@ Tw=: ndx { Tw
 drawall''
 )
 coclass 'ppubtext'
-Data=: ''    
-Para=: ''    
-Font=: ''    
-Color=: ''   
+Data=: ''
+Para=: ''
+Font=: ''
+Color=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 )
@@ -2658,8 +2658,8 @@ end.
 256 #. a.i. _2 [\ 5 6 7 8 { dat
 )
 coclass 'ppubheader'
-NAME=: ''   
-Tag=: ''    
+NAME=: ''
+Tag=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 coinsert 'ppubtext'
@@ -2667,8 +2667,8 @@ ALIGN=: iLEFT
 ALIGNV=: iTOP
 )
 coclass 'ppubheader'
-NAME=: ''   
-Tag=: ''    
+NAME=: ''
+Tag=: ''
 create=: 3 : 0
 coinsert locP=: COCREATOR
 coinsert 'ppubtext'
@@ -2730,20 +2730,20 @@ end.
 drawpara 1
 )
 coclass 'ppubtoc'
-Data=: ''      
+Data=: ''
 TOCALIGN=: 0
 create=: 3 : 0
 coinsert 'ppubtext'
 coinsert locP=: COCREATOR
-Font=: fontindex FONTC0  
+Font=: fontindex FONTC0
 )
 coclass 'ppubtoc'
-Data=: ''      
+Data=: ''
 TOCALIGN=: 0
 create=: 3 : 0
 coinsert 'ppubtext'
 coinsert locP=: COCREATOR
-Font=: fontindex FONTC0  
+Font=: fontindex FONTC0
 )
 draw=: 3 : 0
 res=. 0;''
@@ -2883,8 +2883,8 @@ matchhead=: [ -: &: filecase #@[ {. ]
 pathname=: 3 : '(b#y);(-.b=.+./\.y=PATHJSEP_j_)#y'
 query=: wdquery 'Publish Manager'&;
 subs=. 2 : 'x I. @(e.&y)@]} ]'
-termLF=: , (0: < #) # LF -. _1&{.    
-termdelLF=: {.~ 1: i.~ [: *./\. =&LF   
+termLF=: , (0: < #) # LF -. _1&{.
+termdelLF=: {.~ 1: i.~ [: *./\. =&LF
 toblank=: ' ' subs '_'
 tolist=: }. @ ; @: (LF&, each)
 tounderscore=: '_' subs ' '
@@ -4004,7 +4004,7 @@ else.
 end.
 )
 getcascade=: 3 : 0
-lcs=. }:LOCS 
+lcs=. }:LOCS
 if. 0 = #lcs do. 0 0,SIZE return. end.
 top=. i.0 2
 for_loc. lcs do.

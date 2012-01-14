@@ -43,8 +43,8 @@ matchhead=: [ -: &: filecase #@[ {. ]
 pathname=: 3 : '(b#y);(-.b=.+./\.y=PATHJSEP_j_)#y'
 query=: wdquery 'Publish Manager'&;
 subs=. 2 : 'x I. @(e.&y)@]} ]'
-termLF=: , (0: < #) # LF -. _1&{.    
-termdelLF=: {.~ 1: i.~ [: *./\. =&LF   
+termLF=: , (0: < #) # LF -. _1&{.
+termdelLF=: {.~ 1: i.~ [: *./\. =&LF
 toblank=: ' ' subs '_'
 tolist=: }. @ ; @: (LF&, each)
 tounderscore=: '_' subs ' '
@@ -1164,7 +1164,7 @@ else.
 end.
 )
 getcascade=: 3 : 0
-lcs=. }:LOCS 
+lcs=. }:LOCS
 if. 0 = #lcs do. 0 0,SIZE return. end.
 top=. i.0 2
 for_loc. lcs do.
