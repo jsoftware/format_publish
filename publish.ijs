@@ -1443,7 +1443,7 @@ zlibinit=: 3 : 0
 if. UNAME-:'Linux' do.
   p=. 'libz.so.1'
 elseif. UNAME-:'Darwin' do.
-  p=. find_dll :: (''"_) 'z'
+  p=. 'libz.dylib'
 elseif. do.
   p=. 'zlib1.dll'
   p=. (fexist p) # p
