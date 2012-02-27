@@ -1,3 +1,5 @@
+require 'gtkwd'
+
 coclass 'ppubman'
 'load'~'format/publish'
 MAXRECENT=: 20

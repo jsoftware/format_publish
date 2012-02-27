@@ -2838,6 +2838,8 @@ for_p. y do.
   r=. r,clr;fnt;bgn;end;bwd;ewd;hit
 end.
 )
+require 'gtkwd'
+
 coclass 'ppubman'
 'load'~'format/publish'
 MAXRECENT=: 20

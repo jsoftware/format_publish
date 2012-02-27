@@ -1,5 +1,8 @@
 format/publish - change history
 
+== 1.0.8 ==
+ * j701
+
 == 1.0.5-7 ==
  * add Publish Manager
  * add progress log
