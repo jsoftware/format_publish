@@ -784,7 +784,7 @@ for_t. msk#y do.
       2!:1 cmd,' &'
     else.
       if. #pdf do.
-        wd 'winexec *',cmd
+        fork_jtask_ cmd
       else.
         shell }.cmd
       end.
