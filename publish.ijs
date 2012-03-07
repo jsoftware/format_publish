@@ -693,12 +693,7 @@ end.
 view=: 3 : 0
 if. IFJ6 do.
   if. #PDFreader=. getPDFreader'' do.
-    cmd=. PDFreader,' "',OutputFile,'"'
-    if. IFUNIX do.
-      2!:1 cmd,' &'
-    else.
-      fork_jtask_ cmd
-    end.
+    fork_jtask_ '"',PDFreader,'" "',OutputFile,'"'
   end.
 else.
   viewpdf_j_ OutputFile
