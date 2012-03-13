@@ -1461,7 +1461,7 @@ z2chr=: 2 & ic
 z2num=: _2 & ic
 zlibinit=: 3 : 0
 if. UNAME-:'Linux' do.
-  p=. 'libz.so.1'
+  p=. >(IFDEF'android'){'libz.so.1';'libz.so'
 elseif. UNAME-:'Darwin' do.
   p=. 'libz.dylib'
 elseif. do.
