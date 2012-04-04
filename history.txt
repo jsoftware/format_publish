@@ -1,6 +1,9 @@
 format/publish - change history
 
-== 1.0.8/9 ==
+== 1.0.11 ==
+ * UNAME android
+
+== 1.0.8/10 ==
  * j701
 
 == 1.0.5-7 ==
