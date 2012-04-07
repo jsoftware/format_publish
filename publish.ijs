@@ -1460,13 +1460,9 @@ coclass 'ppubzlib'
 z2chr=: 2 & ic
 z2num=: _2 & ic
 zlibinit=: 3 : 0
-if. UNAME-:'Linux' do.
-  p=. 'libz.so.1'
-elseif. UNAME-:'Android' do.
-  p=. 'libz.so'
-elseif. UNAME-:'Darwin' do.
-  p=. 'libz.dylib'
-elseif. do.
+if. IFUNIX do.
+  p=. unxlib 'z'
+else.
   p=. 'zlib1.dll'
   p=. (fexist p) # p
 end.
