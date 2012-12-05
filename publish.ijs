@@ -151,7 +151,7 @@ indexq=: 4 : 0
 1 i.~ (x=y) > ~:/\x='"'
 )
 info=: 3 : 0
-wdinfo@('Publish'&;) :: smoutput y
+sminfo@('Publish'&;) :: smoutput y
 )
 getpath=: ([: +./\. =&PATHJSEP) # ]
 jcmd=: 3 : 0
@@ -2909,7 +2909,7 @@ dtb=: #~ [: +./\. ' '&~:
 fix=: _1&".
 hostcmd=: [: 2!:0 '(' , ,&' || true)'
 index=: #@[ (| - =) i.
-info=: wdinfo @ ('Publish Manager'&;)
+info=: sminfo @ ('Publish Manager'&;)
 infonopub=: info bind 'First select a Publish Manager file'
 infonosel=: info bind 'No file selected'
 infonospec=: info bind 'No file specified'
@@ -3465,7 +3465,7 @@ if. #PUBSNAPX do.
   t #~ -. +./ PUBSNAPX (1: e. E.) &>/ {."1 t
 end.
 )
-ss_info=: wdinfo @ ('Snapshot'&;)
+ss_info=: sminfo @ ('Snapshot'&;)
 ss_make=: 3 : 0
 fm=. jpathsep PUBPATH,'/'
 to=. jpathsep y,'/'
@@ -4072,7 +4072,7 @@ txt=. read ''
 'bgn end'=. oldsel=. getsel ''
 
 if. 0 = #txt do.
-  wdinfo 'Selection';'No text selected' return.
+  sminfo 'Selection';'No text selected' return.
 end.
 
 sel=. bgn }. end {. txt
@@ -4127,7 +4127,7 @@ txt=. read ''
 'bgn end'=. getsel ''
 
 if. bgn = end do.
-  wdinfo 'Selection';'No text selected' return.
+  sminfo 'Selection';'No text selected' return.
 end.
 
 sel=. bgn }. end {. txt
