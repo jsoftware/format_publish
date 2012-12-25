@@ -3095,7 +3095,7 @@ wnote_run=: 3 : 0
 if. wdisparent 'wnote' do.
   wd 'psel wnote;pactive' return.
 end.
-pos=. wd 'qformx'
+pos=. wdformx''
 wd WNOTE
 wd 'set noteedit *',XNOTES
 wd 'setfocus noteedit'
@@ -3105,7 +3105,7 @@ wd 'pshow'
 wnoteclose=: 3 : 0
 XNOTES=: termLF (#~ +./\.@(~:&LF)) noteedit
 wd 'pclose'
-wd 'psel ',HWNDP,';pactive'
+wd 'psel ',(":HWNDP),';pactive'
 )
 
 wnote_cancel_button=: wnote_cancel=: wnote_close=: wnoteclose
@@ -3299,7 +3299,7 @@ if. 0 e. #PUBRECFILES do.
 end.
 pubsave 0
 rp=. pubshortname PUBRECFILES
-pos=. wd 'qformx'
+pos=. wdformx''
 wd RECENT
 wdcenter pos
 wd 'set l0 *', tolist rp
@@ -3309,17 +3309,17 @@ wd 'pshow'
 )
 precent_close=: 3 : 0
 wd 'pclose'
-wd 'psel ',HWNDP,';pactive'
+wd 'psel ',(":HWNDP),';pactive'
 )
 precent_doit=: 3 : 0
 wd 'pclose'
 if. #l0 do.
-  wd 'psel ',HWNDP
+  wd 'psel ',":HWNDP
   pubopen l0
   pubaddrecent''
   pubformshow''
 end.
-wd 'psel ',HWNDP,';pactive'
+wd 'psel ',(":HWNDP),';pactive'
 )
 precent_enter=: precent_ok_button=: precent_l0_button=: precent_doit
 precent_cancel=: precent_cancel_button=: precent_close
@@ -3617,7 +3617,7 @@ pubfullname each nms
 )
 tab_show=: 3 : 0
 fls=. ". TABNDX pick BFILES
-wd 'psel ',HWNDP
+wd 'psel ',":HWNDP
 if. 0=#PUBFILE do.
   wd 'set filelist *'
 else.
@@ -3667,7 +3667,7 @@ end.
 if. 0 e. dun do.
   info 'Cannot view: ',LF,LF,tolist (0=dun)#y
 end.
-wd 'psel ',HWNDP,';pactive'
+wd 'psel ',(":HWNDP),';pactive'
 
 )
 PUBFORM=: 0 : 0
@@ -3715,7 +3715,7 @@ if. wdisparent 'pubform' do.
 end.
 TABNDX=: 0
 wd PUBFORM
-HWNDP=: wd 'qhwndp'
+HWNDP=: wdqhwndp''
 pubformshow''
 wd 'setfocus run'
 wpset_j_ 'pubform'
@@ -3729,11 +3729,11 @@ try.
   wd 'psel wnote;pclose'
 catch. end.
 try.
-  wd 'psel ',HWNDP
+  wd 'psel ',":HWNDP
   wpsave_j_ 'pubform'
   wd 'pclose'
 catch. end.
-HWNDP=: ''
+HWNDP=: 0
 1
 )
 pubform_pubmanfile_select=: 3 : 0
@@ -3751,9 +3751,9 @@ pubsave 1
 info 'Saved: ',PUBFILE
 )
 pubformshow=: 3 : 0
-wd 'psel ',HWNDP
+wd 'psel ',":HWNDP
 showpubman''
-wd 'psel ',HWNDP,';pactive'
+wd 'psel ',(":HWNDP),';pactive'
 wd 'setfocus run'
 tab_show''
 )
@@ -3834,7 +3834,7 @@ win_run''
 destroy=: 3 : 0
 delete FILE
 try.
-  wd 'psel ',HWNDP
+  wd 'psel ',":HWNDP
   wd 'pclose'
 catch. end.
 codestroy''
@@ -3879,12 +3879,12 @@ end.
 
 )
 getsel=: 3 : 0
-dat=. wd 'qd'
+dat=. wdqd''
 ndx=. ({."1 dat) i. <'e_select'
 0 ". 1 pick ndx { dat
 )
 marksaved=: 3 : 0
-wd 'psel ',HWNDP
+wd 'psel ',":HWNDP
 wd 'setmodified e 0'
 )
 open=: 3 : 0
@@ -3893,7 +3893,7 @@ for_f. boxxopen y do.
   if. f e. FILES do.
     ndx=. FILES i. f
     loc=. ndx{LOCS
-    wd 'psel ',HWNDP__loc
+    wd 'psel ',":HWNDP__loc
     wd 'pactive'
   else.
     f conew 'ppubwin'
@@ -3901,8 +3901,8 @@ for_f. boxxopen y do.
 end.
 )
 read=: 3 : 0
-wd 'psel ',HWNDP
-dat=. wd 'qd'
+wd 'psel ',":HWNDP
+dat=. wdqd''
 ndx=. ({."1 dat) i. <,'e'
 1 pick ndx { dat
 )
@@ -3917,7 +3917,7 @@ else.
 end.
 )
 replace=: 3 : 0
-wd 'psel ',HWNDP
+wd 'psel ',":HWNDP
 wd 'setreplace e *',utf8 y
 )
 save=: 3 : 0
@@ -3951,11 +3951,11 @@ if. #fn do.
   IFSAVED=: 1
   wd 'pn *',1 pick pathname FILE
   tab_refresh_ppubman_''
-  wd 'psel ',HWNDP
+  wd 'psel ',":HWNDP
 end.
 )
 setsel=: 3 : 0
-wd 'psel ',HWNDP
+wd 'psel ',":HWNDP
 wd 'setselect e ',": y
 )
 WIN=: 0 : 0
@@ -3998,12 +3998,12 @@ rem form end;
 WINT=: WIN rplc 'e edit ';'e editijs ';'ZZ.';'NB.'
 win_run=: 3 : 0
 wd WINT
-HWNDP=: wd 'qhwndp'
+HWNDP=: wdqhwndp''
 wd 'pn *',1 pick pathname FILE
 wd 'set e *',TEXT
 wd 'setfont e ',FIXFONT
 if. SIZE -: 0 0 do.
-  SIZE_ppubwin_=: _2 {. 0 ". wd 'qformx'
+  SIZE_ppubwin_=: _2 {. wdqformx''
 else.
   wd 'pmovex ',":getcascade''
 end.
@@ -4038,7 +4038,7 @@ win_lctrlshift_fkey=: win_selplusline2_button
 win_nctrlshift_fkey=: win_selplus_button
 refresh''
 3 : 0''
-qm=. 0 ". wd 'qm'
+qm=. wdqm''
 if. IFWIN > IFJAVA do.
   DESK=: 14 15 { qm
   BLK=: +/ <: 9 10 { qm
@@ -4052,10 +4052,10 @@ lcs=. }:LOCS
 if. 0 = #lcs do. 0 0,SIZE return. end.
 top=. i.0 2
 for_loc. lcs do.
-  wd 'psel ',HWNDP__loc
-  top=. top,2 {. 0 ". wd 'qformx'
+  wd 'psel ',":HWNDP__loc
+  top=. top,2 {. wdqformx''
 end.
-wd 'psel ',HWNDP
+wd 'psel ',":HWNDP
 len=. 1 + 0 >. <. <./ (DESK - SIZE) % BLK
 bgn=. (BLK * i.len) - -: BLK
 end=. bgn + BLK
