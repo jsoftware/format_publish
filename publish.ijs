@@ -92,6 +92,7 @@ endian=. ({.a.)={. 1&(3!:4) 1
 toucodem=: ''&,@(1&(3!:4))@(3&u:)@u:
 toucoder=: ''&,@:,@:(|."1@(_2: ]\ 1&(3!:4)))@(3&u:)@u:
 toucode1=: toucodem`toucoder@.(-.endian) f.
+4!:55 <'endian'
 is1integer=: ({. -: <.) :: 0:
 isboxed=: 0 < L.
 ischar=: 3!:0 e. CHARTYPE"_

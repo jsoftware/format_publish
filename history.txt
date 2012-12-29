@@ -1,5 +1,8 @@
 format/publish - change history
 
+== 1.0.15 ==
+ * fix endian
+
 == 1.0.14 ==
  * cover verb for wd query cmds
 
