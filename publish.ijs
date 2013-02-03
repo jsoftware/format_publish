@@ -1,23 +1,4 @@
-3 : 0''
-if. IFJ6 do.
-  script_z_ jpath '~system/classes/plot/afm.ijs'
-  script_z_ jpath '~system/packages/graphics/bmp.ijs'
-  script_z_ jpath '~system/packages/color/colortab.ijs'
-  script_z_ jpath '~system/main/dll.ijs'
-  script_z_ jpath '~system/main/files.ijs'
-  script_z_ jpath '~system/packages/misc/font.ijs'
-  script_z_ jpath '~system/main/gl2.ijs'
-  script_z_ jpath '~system/classes/plot/jzplot.ijs'
-  script_z_ jpath '~system/main/numeric.ijs'
-  script_z_ jpath '~system/classes/plot/plot.ijs'
-  script_z_ jpath '~system/main/regex.ijs'
-  script_z_ jpath '~system/main/strings.ijs'
-  script_z_ jpath '~system/main/trig.ijs'
-else.
-  require 'afm bmp colortab dll files general/misc/font gl2 jzplot numeric plot regex strings trig'
-end.
-''
-)
+require 'afm bmp colortab dll files general/misc/font gl2 jzplot numeric plot regex strings trig'
 
 coclass 'ppublish'
 cutlist=: 3 : 0
@@ -692,13 +673,7 @@ end.
 '<<',LF,s,'>>',LF
 )
 view=: 3 : 0
-if. IFJ6 do.
-  if. #PDFreader=. getPDFreader'' do.
-    fork_jtask_ '"',PDFreader,'" "',OutputFile,'"'
-  end.
-else.
-  viewpdf_j_ OutputFile
-end.
+viewpdf_j_ OutputFile
 EMPTY
 )
 write=: 3 : 0
@@ -2857,26 +2832,7 @@ for_p. y do.
   r=. r,clr;fnt;bgn;end;bwd;ewd;hit
 end.
 )
-3 : 0''
-if. IFJ6 do.
-  script_z_ jpath '~system/main/compare.ijs'
-  script_z_ jpath '~system/main/dir.ijs'
-  script_z_ jpath '~system/packages/winapi/dirbrowse.ijs'
-  script_z_ jpath '~system/main/dll.ijs'
-  script_z_ jpath '~system/main/files.ijs'
-  script_z_ jpath '~system/main/gl2.ijs'
-  script_z_ jpath '~system/classes/view/jview.ijs'
-  script_z_ jpath '~system/packages/print/print.ijs'
-  script_z_ jpath '~system/main/regex.ijs'
-  script_z_ jpath '~system/main/strings.ijs'
-  script_z_ jpath '~system/packages/misc/task.ijs'
-  script_z_ jpath '~system/main/text.ijs'
-else.
-  require 'gtkwd'
-  require 'dir dll files gl2 print regex strings task text'
-end.
-''
-)
+require 'dir dll files gl2 print regex strings task text'
 
 coclass 'ppubman'
 MAXRECENT=: 20
@@ -3450,11 +3406,7 @@ for_s. d do.
 end.
 )
 snapview=: 3 : 0
-if. IFJ6 do.
-  require '~system/extras/util/dirmatch.ijs'
-  PJPROJ_jdirmatch_=: ''
-  dmrun_jdirmatch_ 1 1
-end.
+''
 )
 ss_files=: 3 : 0
 t=. 1!:0 y,'*'
@@ -3637,20 +3589,7 @@ pdf=. getPDFreader_ppublish_''
 msk=. ext = <'.pdf'
 dun=. dun +. msk
 for_t. msk#y do.
-  if. IFJ6 do.
-    cmd=. pdf,' "',(>t),'"'
-    if. IFUNIX do.
-      2!:1 cmd,' &'
-    else.
-      if. #pdf do.
-        fork_jtask_ cmd
-      else.
-        shell }.cmd
-      end.
-    end.
-  else.
-    viewpdf_j_ >t
-  end.
+  viewpdf_j_ >t
 end.
 msk=. IFUNIX < ext e. '.jpg';'.jpeg'
 dun=. dun +. msk
@@ -4040,7 +3979,7 @@ win_nctrlshift_fkey=: win_selplus_button
 refresh''
 3 : 0''
 qm=. wdqm''
-if. IFWIN > IFJAVA do.
+if. IFWIN do.
   DESK=: 14 15 { qm
   BLK=: +/ <: 9 10 { qm
 else.
