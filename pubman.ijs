@@ -1,3 +1,4 @@
+require^:(-.IFJ6) ::0: 'gtkwd print'
 require 'dir dll files gl2 print regex strings task text'
 
 coclass 'ppubman'

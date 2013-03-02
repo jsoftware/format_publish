@@ -1,3 +1,4 @@
+require^:(-.IFJ6) ::0: 'gtkwd print'
 require 'afm bmp colortab dll files general/misc/font gl2 jzplot numeric plot regex strings trig'
 
 coclass 'ppublish'
@@ -2832,6 +2833,7 @@ for_p. y do.
   r=. r,clr;fnt;bgn;end;bwd;ewd;hit
 end.
 )
+require^:(-.IFJ6) ::0: 'gtkwd print'
 require 'dir dll files gl2 print regex strings task text'
 
 coclass 'ppubman'

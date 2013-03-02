@@ -1,6 +1,6 @@
 format/publish - change history
 
-== 1.0.16 ==
+== 1.0.16/17 ==
  * j801
 
 == 1.0.15 ==
