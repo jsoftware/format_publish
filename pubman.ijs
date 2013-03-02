@@ -1,5 +1,4 @@
-require^:(-.IFJ6) ::0: 'gtkwd print'
-require 'dir dll files gl2 print regex strings task text'
+require 'gl2 print regex task'
 
 coclass 'ppubman'
 MAXRECENT=: 20
@@ -1144,16 +1143,8 @@ win_kctrlshift_fkey=: win_selplusline1_button
 win_lctrlshift_fkey=: win_selplusline2_button
 win_nctrlshift_fkey=: win_selplus_button
 refresh''
-3 : 0''
-qm=. wdqm''
-if. IFWIN do.
-  DESK=: 14 15 { qm
-  BLK=: +/ <: 9 10 { qm
-else.
-  DESK=: (2 {. qm) - 0 33
-  BLK=: 26
-end.
-)
+DESK=: (2 3{wdqscreen'') - 0 33
+BLK=: 26
 getcascade=: 3 : 0
 lcs=. }:LOCS
 if. 0 = #lcs do. 0 0,SIZE return. end.
