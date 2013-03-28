@@ -3943,9 +3943,9 @@ wd 'pn *',1 pick pathname FILE
 wd 'set e *',TEXT
 wd 'setfont e ',FIXFONT
 if. SIZE -: 0 0 do.
-  SIZE_ppubwin_=: _2 {. wdqformx''
+  SIZE_ppubwin_=: _2 {. wdqform''
 else.
-  wd 'pmovex ',":getcascade''
+  wd 'pmove ',":getcascade''
 end.
 wd 'pshow'
 )
@@ -3985,7 +3985,7 @@ if. 0 = #lcs do. 0 0,SIZE return. end.
 top=. i.0 2
 for_loc. lcs do.
   wd 'psel ',":HWNDP__loc
-  top=. top,2 {. wdqformx''
+  top=. top,2 {. wdqform''
 end.
 wd 'psel ',":HWNDP
 len=. 1 + 0 >. <. <./ (DESK - SIZE) % BLK
