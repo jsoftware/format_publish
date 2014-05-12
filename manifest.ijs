@@ -19,4 +19,3 @@ pubman.ijs
 demo/
 demo1/
 )
-PLATFORMS=: 'linux win darwin android'
