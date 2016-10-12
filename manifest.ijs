@@ -8,14 +8,23 @@ Publish generates a PDF report from source in plain text files in an html-like m
 The markup language supports calling J expressions, for example, to allow data to be read in from various sources. Apart from this, reports can be customized without knowledge of J.
 )
 
-VERSION=: '1.0.24'
+VERSION=: '1.0.25'
 
-RELEASE=: 'j802 j803 j804 j805'
+RELEASE=: 'j804 j805'
+
+DEPENDS=: 0 : 0
+afm
+bmp
+colortab
+general/misc/font
+gl2
+numeric
+plot
+regex
+trig
+)
 
 FILES=: 0 : 0
-history.txt
 publish.ijs
-pubman.ijs
 demo/
-demo1/
 )

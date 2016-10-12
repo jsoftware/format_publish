@@ -2,7 +2,7 @@ NB. front page
 
 <image scale=0.65>torii.jpg</image>
 
-<h0 style=bigpara>FRONTISPIECE<br/>2007<br/>Publish Demo</h0>
+<h0 style=bigpara>FRONTISPIECE<br/>2016<br/>Publish Demo</h0>
 
 <newpage/>
 
