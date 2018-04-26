@@ -10,7 +10,9 @@ The markup language supports calling J expressions, for example, to allow data t
 
 VERSION=: '1.0.28'
 
-RELEASE=: 'j804 j805 j806 j807'
+RELEASE=: ''
+
+FOLDER=: 'format/publish'
 
 DEPENDS=: 0 : 0
 afm
