@@ -138,15 +138,15 @@ sminfo@('Publish'&;) :: smoutput y
 getpath=: ([: +./\. =&PATHJSEP) # ]
 jcmd=: 3 : 0
 loc=. 18!:5''
-18!:4 <'base'
+cocurrent <'base'
 3 : '0!:100 y' y
-18!:4 loc
+cocurrent loc
 )
 jcmdr=: 3 : 0
 loc=. 18!:5''
-18!:4 <'base'
+cocurrent <'base'
 r=. 3 : '". y' y
-18!:4 loc
+cocurrent loc
 r
 )
 jset=: 3 : 0
